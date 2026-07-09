@@ -151,6 +151,11 @@ class HFLensModel:
         )
 
     @property
+    def hf_model(self) -> nn.Module:
+        """The wrapped ``*ForCausalLM``, e.g. for :meth:`~transformers.GenerationMixin.generate`."""
+        return self._hf_model
+
+    @property
     def input_device(self) -> torch.device:
         return self._embed_tokens.weight.device
 
@@ -172,6 +177,22 @@ class HFLensModel:
         if self._logit_softcap is not None:
             logits = self._logit_softcap * torch.tanh(logits / self._logit_softcap)
         return logits
+
+    def unembed_rows(self, token_ids: torch.Tensor) -> torch.Tensor:
+        """Effective unembedding rows for ``token_ids``: ``[n, d_model]`` fp32.
+
+        Row ``w`` is the final-residual-space direction whose inner product
+        with a residual gives token ``w``'s logit, up to the normalization
+        scalar: the LM-head row with the final norm's diagonal gain folded in.
+        A norm bias or logit softcap shifts/monotonically squashes logits and
+        is ignored — it does not change the direction.
+        """
+        weight = self._lm_head.weight
+        rows = weight[token_ids.to(weight.device)].float()
+        gain = getattr(self._final_norm, "weight", None)
+        if gain is not None and gain.shape == (self.d_model,):
+            rows = rows * gain.float().to(rows.device)
+        return rows
 
 
 def from_hf(

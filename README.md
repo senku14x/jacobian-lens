@@ -79,6 +79,59 @@ slices and combining with `JacobianLens.merge()`.
 model, load (or fit) a lens, apply it at a few layers, and render a slice page
 like the one above.
 
+## Qwen3-8B chain of thought
+
+This branch adds first-class support for reading (and intervening on) the
+lens over **Qwen3-8B thinking-mode rollouts** — the `<think>…</think>` chain
+of thought the model emits before its answer.
+
+[`qwen3_cot_walkthrough.ipynb`](qwen3_cot_walkthrough.ipynb) is the
+end-to-end notebook. The pieces:
+
+- **`jlens.cot`** — `chat_prompt` renders the chat template with
+  `enable_thinking`; `generate_cot` samples a rollout (Qwen3's recommended
+  thinking-mode sampling) and returns a `CoTTrace` with the exact token ids
+  and the located thinking/answer spans. Sampled text does not reliably
+  re-encode to the tokens the model produced, so `JacobianLens.apply` and
+  `compute_slice` now accept `input_ids=` and the trace is consumed that way:
+
+  ```python
+  trace = jlens.generate_cot(model, "Is 977 prime? Answer yes or no.", seed=0)
+  slice_data = compute_slice(model, lens, input_ids=trace.input_ids,
+                             last_n_tokens=trace.total_len - trace.prompt_len)
+  ```
+
+- **`jlens.interventions`** — the paper's §5 primitives over the token
+  directions `D_l = W_U J_l`: `steer` (additive thought injection),
+  `coordinate_swap` (projection-based swap preserving the orthogonal
+  complement), `project_out` (span ablation), applied over
+  `jlens.workspace_band(n_layers)` (the paper's normalized L38–92 mid-layer
+  band; L14–L32 on Qwen3-8B's 36 layers):
+
+  ```python
+  with jlens.coordinate_swap(model, lens, source_token_id=italy,
+                             target_token_id=japan, layers=band):
+      swapped = jlens.generate_cot(model, question, seed=0)
+  ```
+
+- **`scripts/`** —
+  [`fit_lens.py`](scripts/fit_lens.py) fits the paper-default 1000×128
+  WikiText lens on `Qwen/Qwen3-8B` (checkpointed; `--shard i/N` +
+  `JacobianLens.merge` to spread across GPUs; `--dim-batch` is the GPU-memory
+  knob: 8 for 40 GB, 16–32 for 80 GB).
+  [`cot_slice.py`](scripts/cot_slice.py) samples a rollout and renders the
+  slice page over the reasoning tokens.
+  [`lens_eval.py`](scripts/lens_eval.py) scores J-lens vs logit lens
+  (pass@k) on the six bundled [`data/evaluations/`](data/evaluations/)
+  distributions.
+  [`swap_eval.py`](scripts/swap_eval.py) runs the causal coordinate-swap
+  test on the 90 bundled two-hop prompts, with an unrelated-pair control.
+
+The fit is calibrated on ordinary web text and applied to chat/thinking
+traces, matching the paper's protocol. A full 1000-prompt fit on Qwen3-8B is
+`ceil(4096/dim_batch)` backward passes per prompt — hours-to-days on one
+GPU; ~100 prompts is already usable (§Fit above).
+
 Reading a slice page:
 
 - Each cell shows the lens top-1 word at that (position, layer); the

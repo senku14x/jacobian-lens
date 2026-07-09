@@ -85,3 +85,6 @@ class TinyDecoder(nn.Module):
 
     def unembed(self, residual: torch.Tensor) -> torch.Tensor:
         return self.lm_head(self.norm(residual.float()))
+
+    def unembed_rows(self, token_ids: torch.Tensor) -> torch.Tensor:
+        return self.lm_head.weight[token_ids].float() * self.norm.weight.float()

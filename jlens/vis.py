@@ -194,8 +194,9 @@ class SliceData:
 def compute_slice(
     model: LensModel,
     lens: JacobianLens,
-    prompt: str,
+    prompt: str | None = None,
     *,
+    input_ids: torch.Tensor | None = None,
     top_n: int = 10,
     max_tracked: int | None = None,
     pinned_token_ids: set[int] | None = None,
@@ -209,7 +210,11 @@ def compute_slice(
     Args:
         model: The model to read out from.
         lens: A fitted :class:`~jlens.lens.JacobianLens`.
-        prompt: Input text.
+        prompt: Input text. Pass exactly one of ``prompt`` / ``input_ids``.
+        input_ids: Pre-tokenized input of shape ``[1, seq_len]``. Use this for
+            model-generated sequences (e.g. a chain-of-thought rollout from
+            :func:`jlens.cot.generate_cot`), where decode/re-encode may not
+            round-trip to the same tokens. Not truncated by ``max_seq_len``.
         top_n: Top tokens kept per ``(position, layer)`` cell.
         mask_display: Restrict displayed top-K to word-like tokens (ranks stay
             full-vocab).
@@ -224,6 +229,8 @@ def compute_slice(
             indices. ``None`` (default) renders every position.
         max_seq_len: Truncate the prompt to this many tokens.
     """
+    if (prompt is None) == (input_ids is None):
+        raise ValueError("pass exactly one of prompt= / input_ids=")
     tokenizer = model.tokenizer
     pinned_token_ids = set(pinned_token_ids or ())
     final_layer = model.n_layers - 1
@@ -238,7 +245,10 @@ def compute_slice(
         layers.append(final_layer)
     layers = sorted(set(layers))
 
-    input_ids = model.encode(prompt, max_length=max_seq_len)
+    if input_ids is None:
+        input_ids = model.encode(prompt, max_length=max_seq_len)
+    else:
+        input_ids = input_ids.to(model.input_device)
     full_len = input_ids.shape[1]
     start = 0 if last_n_tokens is None else max(0, full_len - last_n_tokens)
     seq_len = full_len - start

@@ -25,6 +25,10 @@ class Example:
         prompt: Raw-text prompt. Mutually exclusive with ``user`` (chat mode).
         system / user / assistant_prefill: Chat-mode fields; assembled via the
             tokenizer's chat template by :func:`resolve_prompt`.
+        enable_thinking: Chat-template thinking switch (Qwen3-style reasoning
+            models). ``None`` leaves the template's default; ``True`` examples
+            are meant to be rolled out with :func:`jlens.cot.generate_cot`
+            and read over the generated trace.
         n_tracked: Override for :func:`jlens.vis.compute_slice`'s ``n_tracked``
             on this example. ``None`` uses the caller's default.
     """
@@ -36,6 +40,7 @@ class Example:
     system: str | None = None
     user: str | None = None
     assistant_prefill: str = ""
+    enable_thinking: bool | None = None
     n_tracked: int | None = None
 
 
@@ -67,17 +72,14 @@ def resolve_prompt(example: Example, tokenizer: Any) -> str:
         if example.prompt is None:
             raise ValueError(f"example {example.section!r} has neither prompt nor user")
         return example.prompt
-    messages: list[dict] = []
-    if example.system:
-        messages.append({"role": "system", "content": example.system})
-    messages.append({"role": "user", "content": example.user})
-    if example.assistant_prefill:
-        messages.append({"role": "assistant", "content": example.assistant_prefill})
-        return tokenizer.apply_chat_template(
-            messages, tokenize=False, continue_final_message=True
-        )
-    return tokenizer.apply_chat_template(
-        messages, tokenize=False, add_generation_prompt=True
+    from jlens.cot import chat_prompt
+
+    return chat_prompt(
+        tokenizer,
+        example.user,
+        system=example.system,
+        assistant_prefill=example.assistant_prefill,
+        enable_thinking=example.enable_thinking,
     )
 
 
@@ -177,5 +179,48 @@ EXAMPLES: list[Example] = [
         user=_BLACKMAIL["user"],
         # Cap n_tracked: this prompt is long enough that the default would be huge.
         n_tracked=1024,
+    ),
+    # ----- Chain-of-thought examples (thinking mode; roll out with -----
+    # ----- jlens.cot.generate_cot and lens the generated trace).   -----
+    Example(
+        slug="cot-two-hop",
+        section="CoT: two-hop factual",
+        description=(
+            "A two-hop factual question in thinking mode: the bridge entity "
+            "(Italy) should surface in the lens over the reasoning trace "
+            "before the answer (euro) is written."
+        ),
+        user=(
+            "What currency is used in the country shaped like a boot? "
+            "Answer with a single word after thinking."
+        ),
+        enable_thinking=True,
+    ),
+    Example(
+        slug="cot-arithmetic",
+        section="CoT: multi-step arithmetic",
+        description=(
+            "A word problem whose intermediate quantities (19, 133, 124) "
+            "should appear in the lens at distinct stages of the trace."
+        ),
+        user=(
+            "A crate holds 7 boxes. Each box has 13 red and 6 blue marbles. "
+            "How many marbles are in the crate after 9 are removed? "
+            "Give just the number."
+        ),
+        enable_thinking=True,
+    ),
+    Example(
+        slug="cot-rhyme",
+        section="CoT: rhyme planning",
+        description=(
+            "Poetry planning in thinking mode: candidate rhyme words should "
+            "be visible in the trace before the second line is committed."
+        ),
+        user=(
+            "Write a rhyming couplet about the sea. Plan the rhyme first, "
+            "then give only the two lines."
+        ),
+        enable_thinking=True,
     ),
 ]

@@ -146,8 +146,9 @@ class JacobianLens:
     def apply(
         self,
         model: LensModel,
-        prompt: str,
+        prompt: str | None = None,
         *,
+        input_ids: torch.Tensor | None = None,
         layers: Sequence[int] | None = None,
         positions: Sequence[int] | None = None,
         max_seq_len: int = 512,
@@ -157,7 +158,11 @@ class JacobianLens:
 
         Args:
             model: The model to read out from.
-            prompt: Input text.
+            prompt: Input text. Pass exactly one of ``prompt`` / ``input_ids``.
+            input_ids: Pre-tokenized input of shape ``[1, seq_len]``. Use this
+                for model-generated sequences (e.g. a sampled chain-of-thought
+                rollout), where decode/re-encode may not round-trip to the
+                same tokens. Not truncated by ``max_seq_len``.
             layers: Layers to read out at. Defaults to all of
                 :attr:`source_layers`. Must be a subset of
                 :attr:`source_layers` when ``use_jacobian`` is ``True``.
@@ -177,8 +182,11 @@ class JacobianLens:
 
         Raises:
             ValueError: If any requested layer is out of range for the model,
-                or (with ``use_jacobian``) not in :attr:`source_layers`.
+                or (with ``use_jacobian``) not in :attr:`source_layers`, or if
+                ``prompt`` and ``input_ids`` are both (or neither) given.
         """
+        if (prompt is None) == (input_ids is None):
+            raise ValueError("pass exactly one of prompt= / input_ids=")
         if layers is None:
             layers = self.source_layers
         out_of_range = sorted(l for l in set(layers) if not 0 <= l < model.n_layers)
@@ -195,7 +203,10 @@ class JacobianLens:
         final_layer = model.n_layers - 1
         record_at = sorted(set(layers) | {final_layer})
 
-        input_ids = model.encode(prompt, max_length=max_seq_len)
+        if input_ids is None:
+            input_ids = model.encode(prompt, max_length=max_seq_len)
+        else:
+            input_ids = input_ids.to(model.input_device)
         with ActivationRecorder(model.layers, at=record_at) as recorder:
             model.forward(input_ids)
             activations = {i: recorder.activations[i].detach() for i in record_at}

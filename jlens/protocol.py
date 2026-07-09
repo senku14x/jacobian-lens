@@ -34,6 +34,11 @@ class LensModel(Protocol):
     layers: Sequence[nn.Module]
     tokenizer: Any
 
+    @property
+    def input_device(self) -> torch.device:
+        """Device that ``forward`` expects ``input_ids`` on."""
+        ...
+
     def encode(self, text: str, *, max_length: int = ...) -> torch.Tensor:
         """Tokenize ``text`` to ``input_ids`` of shape ``[1, seq_len]`` on the
         model's input device."""
@@ -49,4 +54,11 @@ class LensModel(Protocol):
     def unembed(self, residual: torch.Tensor) -> torch.Tensor:
         """Map a residual-stream tensor ``[..., d_model]`` to logits
         ``[..., vocab_size]`` (final norm + LM head)."""
+        ...
+
+    def unembed_rows(self, token_ids: torch.Tensor) -> torch.Tensor:
+        """Effective unembedding rows for ``token_ids``, shape ``[n, d_model]``
+        fp32: the final-residual-space direction whose inner product with a
+        residual scores that token (final-norm diagonal gain folded in).
+        Needed only by :mod:`jlens.interventions`."""
         ...
