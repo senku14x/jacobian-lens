@@ -132,6 +132,20 @@ traces, matching the paper's protocol. A full 1000-prompt fit on Qwen3-8B is
 `ceil(4096/dim_batch)` backward passes per prompt — hours-to-days on one
 GPU; ~100 prompts is already usable (§Fit above).
 
+First run on a fresh GPU box:
+
+```bash
+pip install -e ".[dev]"   # dev extra includes `datasets` for the WikiText fit corpus
+
+python scripts/fit_lens.py --n-prompts 3 --out lenses/timing.pt      # read s/prompt off the log
+python scripts/fit_lens.py --n-prompts 100 --dim-batch 32 --compile \
+    --out lenses/qwen3-8b_n100.pt
+python scripts/lens_eval.py --lens lenses/qwen3-8b_n100.pt           # J-lens should beat logit lens
+python scripts/swap_eval.py --lens lenses/qwen3-8b_n100.pt --control unrelated
+python scripts/cot_slice.py --lens lenses/qwen3-8b_n100.pt \
+    --example cot-arithmetic --pin "19,133,124" --out slices/cot-arithmetic
+```
+
 Reading a slice page:
 
 - Each cell shows the lens top-1 word at that (position, layer); the

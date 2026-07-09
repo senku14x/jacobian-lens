@@ -100,6 +100,13 @@ def main() -> None:
     jlens.configure_logging()
 
     if args.corpus == "wikitext":
+        try:
+            import datasets  # noqa: F401
+        except ImportError:
+            raise SystemExit(
+                "the wikitext corpus needs the `datasets` package: "
+                'pip install -e ".[dev]" (or pip install datasets)'
+            ) from None
         prompts = load_wikitext_prompts(args.n_prompts)
     else:
         import json

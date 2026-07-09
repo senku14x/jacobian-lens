@@ -143,11 +143,35 @@ def test_locate_spans_no_block_and_unclosed():
     assert think == (4, 6)
     assert answer == (6, 6)
 
-    # A <think> in the *prompt* region must not count as completion thinking.
+    # A *closed* <think> pair in the prompt (Qwen3 enable_thinking=False
+    # inserts an empty one) must not count as completion thinking.
     ids = [THINK, 10, END_THINK, 30, 31]
     think, answer = locate_spans(ids, prompt_len=3, tokenizer=tok)
     assert think is None
     assert answer == (3, 5)
+
+
+def test_locate_spans_prompt_prefilled_open_marker():
+    """QwQ-style templates (and manual assistant prefills) open the <think>
+    block in the prompt; the completion then starts mid-thought."""
+    tok = FakeThinkTokenizer()
+    # prompt ends with <think>; completion: 20 21 </think> 30
+    ids = [BOS, 10, THINK, 20, 21, END_THINK, 30]
+    think, answer = locate_spans(ids, prompt_len=3, tokenizer=tok)
+    assert think == (3, 5)
+    assert answer == (6, 7)
+
+    # Dangling open marker and the completion never closes it.
+    ids = [BOS, 10, THINK, 20, 21]
+    think, answer = locate_spans(ids, prompt_len=3, tokenizer=tok)
+    assert think == (3, 5)
+    assert answer == (5, 5)
+
+    # A closed pair earlier in the prompt plus a dangling open still counts.
+    ids = [THINK, END_THINK, 10, THINK, 20, END_THINK, 30]
+    think, answer = locate_spans(ids, prompt_len=4, tokenizer=tok)
+    assert think == (4, 5)
+    assert answer == (6, 7)
 
 
 def test_generate_cot_end_to_end_spans_and_text():

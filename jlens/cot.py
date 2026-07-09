@@ -157,7 +157,13 @@ def locate_spans(
     """Locate ``(think_span, answer_span)`` in a full token-id sequence.
 
     Searches the completion region ``token_ids[prompt_len:]`` for the first
-    thinking-marker pair. See :class:`CoTTrace` for the span conventions.
+    thinking-marker pair. A dangling ``<think>`` in the *prompt* (some chat
+    templates or assistant prefills open the block themselves rather than
+    letting the model emit the marker) means the block is already open when
+    generation starts, so the thinking content begins at ``prompt_len``. A
+    closed pair in the prompt — e.g. the empty block Qwen3 inserts with
+    ``enable_thinking=False`` — is ignored. See :class:`CoTTrace` for the
+    span conventions.
     """
     total_len = len(token_ids)
     markers = think_marker_ids(tokenizer)
@@ -165,9 +171,18 @@ def locate_spans(
         return None, (prompt_len, total_len)
     open_id, close_id = markers
     completion = token_ids[prompt_len:]
-    if open_id not in completion:
-        return None, (prompt_len, total_len)
-    think_start = prompt_len + completion.index(open_id) + 1
+
+    if open_id in completion:
+        think_start = prompt_len + completion.index(open_id) + 1
+    else:
+        prompt_ids = token_ids[:prompt_len]
+        last_close = max(
+            (i for i, t in enumerate(prompt_ids) if t == close_id), default=-1
+        )
+        if open_id not in prompt_ids[last_close + 1 :]:
+            return None, (prompt_len, total_len)
+        think_start = prompt_len  # block opened by the prompt, still open
+
     tail = token_ids[think_start:]
     if close_id not in tail:  # unclosed: ran out of tokens mid-thought
         return (think_start, total_len), (total_len, total_len)
