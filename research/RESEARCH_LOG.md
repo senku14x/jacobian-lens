@@ -6,16 +6,25 @@ work.
 
 ---
 
-## Current state (2026-08-12)
+## Current state (2026-08-12, all runs complete)
 
-**Read [`STATUS_2026-08-12.md`](STATUS_2026-08-12.md) for the current numbers.** Summary: the
-Phase-A negative on the secant **did not survive the broadened bank** — widening the natural-delta
-family 4.2× (D4 effective rank 117 → 555) roughly doubled `T_sec`'s held-out accuracy and moved it
-CI-clear above `J̄` at all three layers. That is the same-distribution axis, which was never the
-gate; the three span-immune checks (Stein control, in-span transfer, behavioural M2) are being
-re-measured on the broadened bank. **G-SECANT is reopened and undecided.** G-CONTEXT passes 2/3
-(`J_loc/J̄` = 4.34 / 3.17 / 1.95 — L46 now CI-clear *below* 2×). G-CONDVIABLE fails: an oracle
-rank-16 conditional model recovers only 23% / 40% of the `J̄ → J_loc` gap at L16 / L31.
+**Full write-up:** [`artifacts/007-2026-08-12-transport-operators/report.md`](artifacts/007-2026-08-12-transport-operators/report.md)
+· running numbers: [`STATUS_2026-08-12.md`](STATUS_2026-08-12.md)
+
+- **G-SECANT: FAIL.** Broadening the bank 4.2× (D4 effective rank 117 → 555) tripled the secant's
+  *in-family* margin over `J̄` and moved none of the three span-immune checks. Stein −0.31/−0.47,
+  in-span −0.12/−0.20, behavioural M2 −0.86 (at the random-direction noise floor). Robust to the
+  identifiability objection that made the first pass provisional.
+- **G-CONTEXT: PASS 2/3.** `J_loc/J̄` = 4.34 / 3.17 / 1.95 at L16/L31/L46, monotone in depth;
+  context-averaging is the dominant failure of the fixed lens, and worst early.
+- **G-CONDVIABLE: FAIL.** An *oracle* rank-16 conditional model recovers 23% / 40% / 85% of the
+  `J̄ → J_loc` gap — it works only where the gap is smallest.
+- **The finding with headroom is positive.** SmoothGrad-J beats the *exact* local Jacobian by
+  +0.17…+0.27, and the gain is **denoising, not path-averaging**: orthogonal-only smoothing
+  recovers 99–109% of it in 9 of 9 conditions. So it is *not* structurally barred from a fixed
+  operator. Validated ceiling: `T_IG` ≈ 0.95.
+- **Next:** fit the released estimator at smoothed operating points and test whether the per-input
+  gain survives averaging into one matrix.
 
 ---
 
@@ -216,3 +225,66 @@ The routing decision made yesterday (G-SECANT FAIL → Branch C2) was made on na
 (iii) a **learning curve** — fit `T_sec` on 1/8, 1/4, 1/2, all calibrate bases and plot held-out
 cos, which is the cheapest test that separates "rank-starved but converging" from "converged and
 still worse", and which the reversal above makes the obvious next measurement.
+
+---
+
+## 2026-08-12 (later) — Phase B closes: G-SECANT fails on all three span-immune axes
+
+Detailed write-up with figures: [`artifacts/007-2026-08-12-transport-operators/report.md`](artifacts/007-2026-08-12-transport-operators/report.md).
+
+**The reopening closed.** Broadening the bank raised `T_sec`'s in-family accuracy a lot and its
+span-immune accuracy not at all:
+
+| L16 | narrow bank | broadened bank |
+|---|---|---|
+| in-family `T_sec − J̄` | +0.075 | **+0.294** |
+| Stein `T_sec − SG-J` | −0.302 | **−0.306** |
+| in-span `T_sec − J̄` (D1) | −0.108 | **−0.119** |
+| in-span `T_sec − J̄` (D2) | −0.127 | **−0.199** |
+| behavioural `T_sec − J̄` (M2) | −0.858 | **−0.861** |
+
+**G-SECANT: FAIL**, now robust to the identifiability objection that made the first pass
+provisional. Correction to yesterday's entry: on the refit operators `T_sec^D4 − random` is −0.005
+and no longer CI-clear, so "worse than a random direction" was specific to the rank-starved D4-only
+fit. "Indistinguishable from random" survives.
+
+**B3 learning curves** put a number on the negative instead of leaving it categorical. Fitting on
+15→120 calibrate prompts, nothing has plateaued: in-family D4 +16–26% over the last doubling,
+cross-family D2 +37–64%, captured D2 energy +24–27%, effective rank +71%. At 240 base prompts
+`T_sec` reaches 0.092 cross-family where `J̄` reaches 0.311, closing at ~+0.03 per doubling —
+parity would need ~6 more doublings (~64× corpus) if the trend held, which it must not. So: **a
+bounded, quantified negative at this data scale, not a proof of impossibility.** Worth stating that
+way; "the secant doesn't work" would have been an overclaim.
+
+**B4 — the real finding, and it is positive.** SmoothGrad-J beats the *exact* local Jacobian by
++0.17…+0.27 CI-clear. Two mechanisms were possible and they differ in whether a lens can ever
+capture the gain: path-averaging (δ-dependent, barred from any fixed matrix) or denoising
+(δ-independent, fittable). Decomposing the smoothing direction settles it — 60 sites × 300
+directions × 51 held-out prompts per layer:
+
+**Orthogonal-only smoothing recovers 99–109% of the isotropic gain in 9 of 9 (layer × ε)
+conditions**, while doing no path averaging at all. Parallel-only — which is *nothing but* path
+averaging — recovers far less and at L16/ε=0.05 is catastrophically worse than no smoothing
+(.217 vs J_loc .649). The σ×ε grid separately shows σ* tracking ε (0.05→0.05, 0.2→0.2, 1.0→0.5) at
+all three layers, which initially looked like the opposite conclusion. The two facts coexist:
+smoothing is an **isotropic regulariser whose optimal strength scales with the effect being
+predicted but whose direction is irrelevant** — variance reduction, which a 2-point average along
+one line cannot deliver and any (d−1)-dimensional average can.
+
+**Positive control caught a bug in itself.** `T_IG` must read ~1.0 by the fundamental theorem of
+calculus; it read 0.81/0.84/0.62. Cause: ∫₀¹J(h+tδ)dt·δ = `Δ_one`, but the target is the antithetic
+`Δ_odd`, which equals the integral over the *symmetric* interval [−1,1]. Sampling t symmetrically →
+**0.921/0.947/0.879**. Lesson kept: a control reading 0.84 where theory says 1.0 is not "close
+enough" — it was pointing at a genuine estimand/target mismatch, and chasing it bought a validated
+ceiling (T_IG ≈ 0.95 at ε ≤ 0.2) that every other operator is now scored against.
+
+### Where this leaves the plan
+
+Both fitted-operator branches are closed (G-SECANT fail, G-CONDVIABLE fail). What replaces them is
+better supported than either: the largest available gain over `J̄` is **not** structurally barred
+from a lens, because it is about *where* the Jacobian is evaluated, not about which δ is applied.
+Next experiment is one change to the fitting loop — fit the released estimator at **smoothed
+operating points**, `E_x E_u[∂h_final/∂h_ℓ|_{h+u}]` with isotropic u at σ ≈ 0.05–0.2×median‖h‖ —
+and test whether the per-input +0.2 survives averaging into a single matrix. It has a measured
+ceiling (T_IG ≈ 0.95) and a measured irreducible floor (G-CONTEXT says 2–4.3× of the gap is
+context-averaging no fixed matrix can recover).
