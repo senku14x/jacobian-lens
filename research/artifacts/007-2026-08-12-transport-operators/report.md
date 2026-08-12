@@ -1,8 +1,52 @@
 # 007 — Which operator transports an intermediate representation to the output?
 
 **Date** 2026-08-12 · **Model** Qwen/Qwen3.6-27B (64 layers, d_model 5120) · **Status** Phase A + B
-complete; Phase C routed and closed. Numbers reproducible from `research/experiments/` at the
+complete; Phase C routed and closed. **Revised 2026-08-12 after external review — see Corrections.** Numbers reproducible from `research/experiments/` at the
 commit recorded in each `research/outputs/*/qwen3.6-27b.json`.
+
+---
+
+## Corrections (2026-08-12, after external review)
+
+Three claims in the first version of this report were wrong or overstated. They are corrected in
+place below; this block exists so the corrections are not discoverable only by diffing.
+
+**C1 — the smoothing-mechanism conclusion is RETRACTED.** The first version claimed the SmoothGrad
+advantage is "denoising, not path-averaging," on the strength of orthogonal-only smoothing
+recovering 99–109% of the isotropic gain in 9 of 9 conditions. That comparison does not
+discriminate the hypotheses. For isotropic `u` in d=5120, `E[(u·δ̂)²] = 1/d ≈ 1.95e-4`, so only
+0.02% of its squared norm is parallel to δ; projecting that out leaves a direction with
+**cos(u_iso, u_orth) = 0.99990** (measured, 20k samples). The two arms are the same experiment to
+0.01%, and the result was guaranteed by high-dimensional geometry regardless of mechanism. The
+parallel arm was independently mis-specified: it evaluated `J(h ± σδ̂)` at σ=0.2·median‖h‖ while the
+path at ε=0.05 extends only to 0.05·median‖h‖, i.e. it sampled points 4× beyond the path, so its
+poor score does not refute a path explanation. **Supported statement: spherical averaging around
+the operating point substantially improves finite-effect prediction. The mechanism is open.**
+Note also that `T_IG`, the genuine path operator, is the best method in the table — which if
+anything favours path effects mattering.
+
+**C2 — the split leaked, and the in-family secant result was largely template memorisation.**
+Calibrate/held-out was split by base prompt. A base is keyed by its own token ids, so the pair
+(a→b) and the pair (b→a) live on different bases and can fall on opposite sides — with deltas that
+are *exact negatives* of each other. Two arguments in one template leak the same way. Re-run under
+nested splits (§ "Split leakage"), `T_sec` falls from 0.43–0.70 to **0.01–0.15** once templates
+cannot cross the split, while `J̄` and `R̄` — never fitted on this data — stay flat. G-SECANT's
+verdict is unchanged but its *reason* is now much simpler and stronger than the learning-curve
+argument the first version used.
+
+**C3 — `J_loc` is not "the exact local Jacobian."** It is a central secant at
+`ε_ref = 0.01·median‖h‖` through a bf16 upper stack. The wording is corrected throughout. The
+SmoothGrad advantage could therefore be partly numerical — finite-difference truncation, bf16
+quantisation, or noise acting as dither — and that is not yet excluded. An `ε_ref` convergence
+sweep and an fp32 replication are queued.
+
+Smaller items also corrected: cosine is supplemented with relative residual error, which reveals
+that `J̄`'s transport scores relerr ≈ 0.96–1.00, i.e. **no better in magnitude than predicting zero
+effect**; the primary target is switched to the native one-sided patch, with the normalised
+antithetic effect demoted to a diagnostic; and "context-averaging is the dominant failure" is
+weakened to what is actually controlled (see §"What this does not establish").
+
+Credit: this review came from outside the project and materially changed three conclusions.
 
 ---
 
@@ -18,8 +62,8 @@ against readability:
 > for a perturbation δ applied to `h_ℓ` at one position of one prompt, which operator best predicts
 > the actual downstream change `Δ = [F(h+δ) − F(h−δ)]/2` in the final residual stream?
 
-Operators compared: `I` (logit lens), `J̄`, `R̄`, `J̄+λI`, the input-specific local Jacobian
-`J_loc(x)`, a fitted secant `T_sec = C_Δδ(C_δδ+ηI)⁻¹`, its R-anchored variant
+Operators compared: `I` (logit lens), `J̄`, `R̄`, `J̄+λI`, the input-specific local transport
+`J_loc(x)` (a bf16 central secant at ε_ref=0.01·median‖h‖, not an exact Jacobian), a fitted secant `T_sec = C_Δδ(C_δδ+ηI)⁻¹`, its R-anchored variant
 `T_RC = (C_Δδ+λR)(C_δδ+λI)⁻¹`, SmoothGrad-J, and the path-integrated `T_IG`.
 
 **North Star.** A vocabulary-readable instrument for causally active intermediates. Cosine against
@@ -181,7 +225,7 @@ D4-only fit and does not survive; the "indistinguishable from random" finding do
 
 ---
 
-## Result 2 — context-averaging is the dominant failure of the lens (G-CONTEXT: PASS 2/3)
+## Result 2 — the fixed lens loses 2–4× to input-specific transport (G-CONTEXT: PASS 2/3)
 
 `J_loc(x)` — the same estimator conditioned on the actual prompt and position — against the
 released `J̄`, held-out D4 @ε=0.2:
@@ -199,6 +243,14 @@ best-determined effect in the study. Averaging the Jacobian over contexts costs 
 in effect prediction**, and the cost is **monotone in depth**: largest early, decaying to ~2× by
 three-quarters depth. L46 crossed from CI-clear *above* 2× on the narrow bank to CI-clear *below*
 it on the broadened one — the gate reads 2 of 3, with the failing layer the deepest.
+
+**This gap is not isolated to context-averaging.** `J_loc(x)` is compared against the *released*
+`J̄`, fitted on 25 different pile passages, so the ratio bundles context averaging with
+source-position mismatch, fitting-corpus mismatch, finite-sample estimation noise, and possible
+convention differences. Isolating it needs a convention-matched
+`J_own = E_{our calibration contexts}[J_loc(x)]`, which was not computed. The supported wording is
+therefore **"the released fixed J-lens loses 2–4× to the input-specific estimator under this
+evaluation"**, not "context averaging is responsible for the gap."
 
 Interpretation, at *supported claim* level: the single averaged matrix is a much better
 approximation late than early. That is the direction the workspace picture predicts if
@@ -230,57 +282,52 @@ bounds them.
 
 ---
 
-## Result 4 — the largest effect in the study is smoothing, and it is *not* a path effect
+## Result 4 — smoothing helps a lot; why is open
 
-SmoothGrad-J beats the **exact local Jacobian** by +0.17 to +0.27, CI-clear at every layer and
-every scale ε ≤ 0.2. An
-operator that beats the exact derivative at predicting a finite effect demands an explanation, and
-the two candidates have opposite consequences for whether a lens can capture it:
+SmoothGrad-J beats the local finite-difference transport `J_loc` by +0.17…+0.27, CI-clear at every
+layer and every scale ε ≤ 0.2. That is a large, replicated, and (within this model, precision, and
+target) credible observation. **The mechanism is not established** — see C1. Two candidates remain
+live, and they differ in whether a lens could ever capture the gain:
 
-- **H_path** — at ε=0.2 the truth is the secant from h to h+δ, not the tangent at h. Isotropic
-  smoothing partially averages J along the path. This advantage is **δ-dependent: no fixed matrix
-  can capture it**, and a lens is barred from it in principle.
-- **H_denoise** — J(h) at the exact operating point is atypically ill-conditioned (saturated SiLU
-  gates, RMSNorm geometry) and averaging over *any* small ball regularises it. This is largely
-  δ-independent, so **a fitted operator could capture it**.
+- **H_path** — at finite ε the truth is a secant, not a tangent; averaging approximates the
+  mean-value operator. δ-dependent, so no fixed matrix captures it.
+- **H_denoise** — the exact operating point is atypically ill-conditioned and any small average
+  regularises it. Largely δ-independent, so a fixed operator could capture it.
+
+A third candidate was raised in review and is not excluded: **numerical**. `J_loc` is a bf16
+central difference at ε_ref = 0.01·median‖h‖, so part of the gain could be finite-difference
+truncation, quantisation, or smoothing noise acting as dither rather than model nonlinearity.
 
 ![Smoothing mechanism](figures/fig4_smoothing_mechanism.png)
 
-Three discriminators sharing one machinery, 60 sites × 300 directions × 51 held-out prompts per
-layer, σ_decomp = 0.2:
+The measured grid, 60 sites × 300 directions × 51 held-out prompts per layer, σ_decomp = 0.2:
 
-| layer | ε | σ\* | J̄ | T_sec | `J_loc` σ=0 | `SG_par` ∥δ only | `SG_orth` ⊥δ only | `SG_iso` | `T_IG` | **⊥ share of gain** |
-|---|---|---|---|---|---|---|---|---|---|---|
-| L16 | 0.05 | 0.05 | .092 | .259 | .649 | .217 | **.823** | .818 | .899 | **103%** |
-| L16 | 0.2 | 0.2 | .114 | .406 | .490 | .445 | **.705** | .704 | .882 | **101%** |
-| L16 | 1.0 | 0.5 | .170 | .370 | .207 | .345 | .319 | .310 | .592 | **109%** |
-| L31 | 0.05 | 0.05 | .171 | .325 | .600 | .557 | **.855** | .856 | .883 | **100%** |
-| L31 | 0.2 | 0.2 | .194 | .380 | .592 | .654 | **.864** | .868 | .899 | **99%** |
-| L31 | 1.0 | 0.5 | .295 | .463 | .372 | .527 | .546 | .546 | .780 | **100%** |
-| L46 | 0.05 | 0.05 | .379 | .484 | .753 | .741 | **.935** | .936 | .949 | **100%** |
-| L46 | 0.2 | 0.2 | .394 | .524 | .744 | .804 | **.933** | .934 | .957 | **100%** |
-| L46 | 1.0 | 0.5 | .530 | .612 | .584 | .710 | .739 | .738 | .911 | **101%** |
+| layer | ε | σ\* | J̄ | T_sec | `J_loc` σ=0 | `SG_par` ∥δ only | `SG_orth` ⊥δ only | `SG_iso` | `T_IG` |
+|---|---|---|---|---|---|---|---|---|---|
+| L16 | 0.05 | 0.05 | .092 | .259 | .649 | .217 | .823 | .818 | .899 |
+| L16 | 0.2 | 0.2 | .114 | .406 | .490 | .445 | .705 | .704 | .882 |
+| L16 | 1.0 | 0.5 | .170 | .370 | .207 | .345 | .319 | .310 | .592 |
+| L31 | 0.05 | 0.05 | .171 | .325 | .600 | .557 | .855 | .856 | .883 |
+| L31 | 0.2 | 0.2 | .194 | .380 | .592 | .654 | .864 | .868 | .899 |
+| L31 | 1.0 | 0.5 | .295 | .463 | .372 | .527 | .546 | .546 | .780 |
+| L46 | 0.05 | 0.05 | .379 | .484 | .753 | .741 | .935 | .936 | .949 |
+| L46 | 0.2 | 0.2 | .394 | .524 | .744 | .804 | .933 | .934 | .957 |
+| L46 | 1.0 | 0.5 | .530 | .612 | .584 | .710 | .739 | .738 | .911 |
 
-**In 9 of 9 conditions, orthogonal-only smoothing recovers 99–109% of the isotropic gain while
-doing no path averaging whatsoever.** Parallel-only smoothing — which is *nothing but* path
-averaging — recovers far less, and at L16/ε=0.05 it is **catastrophically worse than no smoothing
-at all** (.217 vs J_loc .649). **This is H_denoise, decisively and uniformly.**
+**The `SG_orth` vs `SG_iso` columns carry no information about mechanism** (C1): those two
+perturbation sets differ by 0.01% in direction. They are retained only as a record of what was run.
+`SG_par` is not a valid path control either, because its radius was not matched to the path length.
 
-The σ×ε grid adds a second, initially confusing fact: **σ\* tracks ε exactly** (0.05→0.05,
-0.2→0.2, 1.0→0.5) at all three layers. That looks like an H_path signature, and on the 8-site
-smoke it was ambiguous. With 300 directions the two facts resolve into one coherent story:
-*smoothing acts as an isotropic regulariser whose optimal **strength** grows with the scale of the
-effect being predicted, but whose **direction** is irrelevant.* The benefit is variance reduction
-from averaging over many directions — which is why a 2-point average along a single line
-(`SG_par`) does not deliver it, and why any (d−1)-dimensional average does.
+What the grid *does* support: σ\* tracks ε monotonically at all three layers (0.05→0.05, 0.2→0.2,
+1.0→0.5), so the optimal amount of averaging scales with the size of the effect being predicted.
+That is consistent with both H_path and H_denoise and does not separate them.
 
-So: the exact local Jacobian is a worse predictor of its own model's behaviour than a locally
-averaged one, because the exact operating point is atypically ill-conditioned. Smoothing at the
-matched radius closes **80–98% of the distance to the exact path integral** (L46: .934 of .957).
-
-**Consequence for the North Star:** the largest available improvement over `J̄` is *not*
-structurally barred from a lens. It is a property of where the Jacobian is evaluated, not of which
-δ is applied.
+**The correct discriminator, not yet run**, is a parallel-energy sweep with matched radial
+distributions — draw `u_ρ = σ(ρ·s·δ̂ + √(1−ρ²)·q)` with `q ⊥ δ`, `s = ±1`, over
+ρ ∈ {0, 0.25, 0.5, 0.75, 1}, holding `K` and the radius distribution fixed so only the parallel
+*fraction* varies. H_path predicts the gain rises with ρ; H_denoise predicts it is flat in ρ.
+Pairing that with the ε_ref convergence sweep and an fp32 replication separates all three
+candidates including the numerical one.
 
 ### The positive control, and a bug it caught
 
@@ -297,14 +344,71 @@ equals the integral over the **symmetric** interval [−1,1]. Sampling t symmetr
 | ε=1.0 | 0.622 | **0.879** |
 
 The residual gap is discretisation (largest at ε=1.0, where the path is longest and most curved)
-plus finite-difference noise; in the full run at M=8 the ceiling reads 0.88–0.96 at ε≤0.2 and
-0.59–0.91 at ε=1.0. **The framework recovers the true finite effect at ~0.95 where the path is
-short, and that is the ceiling every other number competes against.** At L46/ε=0.2: T_IG .957,
-SmoothGrad-J .934, J_loc .744, T_sec .524, J̄ .394.
+plus finite-difference noise. **The framework recovers the true finite effect at ~0.95 where the
+path is short, and that is the ceiling every other number competes against.**
 
 The general lesson kept: a positive control that reads 0.84 when theory says 1.0 is not "close
-enough" — it was pointing at a real mismatch between the estimand and the target, and chasing it
-cost one run and bought a validated ceiling.
+enough" — it was pointing at a real mismatch between the estimand and the target.
+
+---
+
+## Result 5 — split leakage, and the operator that actually generalises
+
+Added after review (C2). Calibrate/held-out was split by **base prompt**, which does not separate
+(a→b) from (b→a) — different bases, exactly negated deltas — nor two arguments in one template.
+Re-fitting under four nested split levels, held-out D4, ε=0.2 antithetic:
+
+| T_sec | base | unordered-pair | **template** | **category** |
+|---|---|---|---|---|
+| L16 | 0.430 | 0.530 | **0.088** | **0.014** |
+| L31 | 0.402 | 0.557 | **0.073** | **0.021** |
+| L46 | 0.560 | 0.700 | **0.153** | **0.060** |
+
+and the internal control that makes this leakage rather than distribution shift — `J̄` and `R̄` were
+never fitted on this data and are flat across all four levels:
+
+| L16 | base | unordered-pair | template | category |
+|---|---|---|---|---|
+| J̄ | 0.107 | 0.110 | 0.119 | 0.112 |
+| R̄ | 0.121 | 0.124 | 0.133 | 0.126 |
+
+**`T_sec`'s in-family advantage was template memorisation.** Under a category-disjoint split it
+scores 0.014–0.060 against `J̄`'s 0.11–0.40 — an order of magnitude worse than the fixed lens it
+was supposed to beat. This is a cleaner and stronger statement of the G-SECANT negative than the
+learning-curve extrapolation the first version relied on, and it supersedes it as the primary
+argument.
+
+**Anchored operators.** The identity
+`A + (C_Δδ − A·C_δδ)(C_δδ+λI)⁻¹ = (C_Δδ + λA)(C_δδ+λI)⁻¹` means a J-anchored operator is the
+existing anchored solve with `anchor = J̄`. The first version anchored only to `R̄`, the weaker
+baseline. J-anchoring degrades gracefully — at L46/category, `T_J@λ=1` scores 0.243 where `T_sec`
+scores 0.070 — but **still loses to plain `J̄` (0.393)** out-of-category, so the learned correction
+is actively harmful off-distribution at every λ tested.
+
+**The affine blend is the only fitted thing that generalises.** Fitting three scalars
+`a·J̄ + b·R̄ + c·I` by least squares beats `J̄` at every layer and is **stable across all four split
+levels** (L16: 0.122 / 0.125 / 0.138 / 0.131 vs `J̄` 0.107 / 0.110 / 0.119 / 0.112). Small, but it
+is the only positive fitted result in the study that survives a category-disjoint split.
+
+**Relative error changes the reading of every operator.** Cosine hides magnitude, and
+`relerr = ‖pred − true‖/‖true‖ = 1.0` is what predicting *zero* scores:
+
+| L46, native one-sided | cos | rel. err |
+|---|---|---|
+| J̄ | 0.373 | **0.96** |
+| R̄ | 0.378 | 0.96 |
+| T_sec (base split) | 0.826 | 0.55 |
+| T_J@0.03 (base split) | 0.824 | 0.55 |
+
+**The released J-lens transport is no better in relative error than predicting no effect at all**
+(0.96–1.00 at every layer). It carries direction, weakly, and essentially no magnitude. Any claim
+that a lens "transports" a representation should be read against that.
+
+**Target ecology.** The primary target is now the **native one-sided** patch
+`Δ_one = F(h + (h(x′)−h(x))) − F(h)`, since for a natural delta `h+δ` is a state the model reaches
+while `h−δ` is an extrapolation and 0.2·median‖h‖ is not the natural magnitude. Under the native
+one-sided target every operator scores higher (L46 base split: T_sec 0.826 vs 0.560) but the
+template/category collapse is unchanged (0.226 / 0.070).
 
 ---
 
@@ -324,6 +428,22 @@ cost one run and bought a validated ceiling.
   *this* metric, which is why `T_RC ≈ T_sec` is unsurprising.
 - **Three layers, one model, one δ-family as primary.** Depth trends rest on 3 points. Nothing here
   has been checked on a second model or a standard-attention architecture.
+- **The causal endpoint is layer 62, not the model's output.** `forward_from` stops at the
+  released lens's target row and the primary target sums residual change over current-and-future
+  positions. That matches the estimator being tested, but "causal fate" should ultimately be read
+  at the logits — final-position logit change, or output KL. Not done.
+- **Better transport does not imply a better readout, and this study never tested a readout.** A
+  lens applies `h ↦ U·T·h`; everything here scores `T·δ`. Derivative accuracy says nothing about
+  affine offsets or semantic basis alignment, so an operator can win here and produce worse
+  vocabulary tokens. Every candidate needs three separate gates — finite-effect prediction,
+  vocabulary-readout quality, semantic causal specificity — and only the first was run.
+- **One shared 96-token prefix** is used by every prompt in the bank, so prefix diversity is zero
+  and nothing here speaks to generalisation across contexts at the document level.
+- **The builder enforces equal total token length** but does not enforce single-token arguments or
+  a single contiguous differing block, contrary to how the method section described it.
+- **One model, and an unusual one.** Qwen3.6-27B is a GatedDeltaNet hybrid (48 of 64 blocks are
+  linear-attention). No standard-attention or fp32 replication was run, so no general lens claim
+  is supported.
 - **The bank's natural deltas span 555 of 5,120 dimensions.** Better than 117, still 11%. Every
   cross-family number remains identifiability-limited and is reported with its captured fraction.
 
@@ -331,18 +451,47 @@ cost one run and bought a validated ceiling.
 
 ## Where this leaves the project
 
-The pre-registered plan routed *G-SECANT fail → Branch C2 (conditional model)*, and C2 has now
-failed too. Both fitted-operator branches are closed. What replaced them is an unplanned but better
-supported target: **the gain is available to a fixed operator, because it is a denoising effect
-rather than a path effect.**
+Both fitted-operator branches are closed (G-SECANT fail, G-CONDVIABLE fail), and after C2 the
+G-SECANT negative is stronger and simpler: the secant's apparent advantage was template
+memorisation, and it loses to `J̄` by an order of magnitude across a category-disjoint split. The
+only fitted object that generalises is the 3-parameter affine blend `a·J̄ + b·R̄ + c·I`.
 
-The natural next experiment is therefore no longer a new operator family but a direct one: fit a
-lens by the released estimator **at smoothed operating points** — replace `E[∂h_final/∂h_ℓ]` with
-`E_x E_u[∂h_final/∂h_ℓ |_{h+u}]` for isotropic u at σ≈0.05–0.2×median‖h‖ — and test whether the
-+0.2 cosine that SmoothGrad-J shows per-input survives averaging into a single matrix. That is one
-change to the fitting loop, it is measured against a ceiling we now have (`T_IG` ≈ 0.95), and
-G-CONTEXT says how much of the remaining gap is context-averaging that no fixed matrix can recover
-(a factor 2–4.3, largest early).
+**We have a strong causal-transport study and we do not have a better lens.** The gap between those
+two is the honest headline. What we have is a validated measurement framework (`T_IG` ≈ 0.95
+positive control, exact `forward_from`), a well-characterised negative on fitted transport, and one
+large unexplained observation — spherical averaging around the operating point predicts finite
+effects far better than the local finite difference.
+
+Run order, revised after review:
+
+1. **Offline, done** — leak-repaired splits, native one-sided targets, J-anchored operator, affine
+   blend (`B7_splits_targets_anchors.py`). This is Result 5.
+2. **Numerical validation, blocking** — `ε_ref` convergence sweep
+   {1e-4 … 3e-2} on 8–16 sites, plus an fp32 replication. If the SmoothGrad advantage shrinks in
+   fp32 or depends strongly on probe scale, it is partly numerical rather than model biology, and
+   nothing downstream is worth running.
+3. **The real mechanism discriminator** — parallel-energy sweep at matched radii,
+   `u_ρ = σ(ρ·s·δ̂ + √(1−ρ²)·q)`, ρ ∈ {0, .25, .5, .75, 1}. Flat in ρ → denoising; rising in ρ →
+   path. This replaces the retracted orth/iso test.
+4. **`J_own`** — a convention-matched `E_{our contexts}[J_loc(x)]`, which finally separates
+   context-averaging from corpus/convention/estimation mismatch, and is also the correct baseline
+   for step 5.
+5. **B6, rewritten** — compare fixed sketched `J̄_own^σ` against fixed sketched `J̄_own^0` on
+   held-out *templates and prefixes*, with the sketch basis built from calibration data only, σ
+   chosen on an inner split, and shared-energy estimated by the cross-product of two independent
+   smoothing estimates `⟨C̄^A, C̄^B⟩ / mean_i⟨C_i^A, C_i^B⟩` so Monte-Carlo noise does not bias it
+   toward "not shared". Report convergence over K ∈ {2,4,8,16}.
+6. **Only if 5 passes** — fit `J̄_σ = E_{x,u}[J(h_x+u)]`, or a low-rank smoothed correction that
+   falls back to `J̄` outside the measured span.
+7. **Lens gate** — frozen intermediate-recovery/readability sets, wrong-concept controls, and
+   output-level causal tests. Nothing here has tested a readout.
+8. **Replication** — one smaller standard-attention model in fp32.
+
+**Pre-registered decision rule for step 6:** proceed to a full smoothed lens fit only if the fixed
+sketched `J̄_cal^σ` beats **both** `J̄_cal^0` **and** the released `J̄`, on template- and
+prefix-disjoint data, for one-sided native patches, on **both** relative residual error and
+final-logit prediction. If it improves only per-input SmoothGrad, or only cosine on antithetic
+normalised directions, then what we have is a better local causal estimator — not a better lens.
 
 ## Reproduce
 

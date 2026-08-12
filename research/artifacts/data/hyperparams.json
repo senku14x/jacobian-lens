@@ -1,0 +1,93 @@
+{
+  "A1_A6_fits": {
+    "EKKO_TARGET": "d_odd_sum",
+    "N_BOOT": 2000,
+    "eta_rel": 0.001
+  },
+  "A2_A5_model": {
+    "EKKO_K": 8,
+    "EKKO_RANKS": [
+      555,
+      1911
+    ],
+    "EKKO_SG_SITES": 120,
+    "eps_eval": 0.2,
+    "eps_ref": 0.01
+  },
+  "A4_m2_ablation": {
+    "BANDS": {
+      "L16": [
+        16
+      ],
+      "L16_31_46": [
+        16,
+        31,
+        46
+      ]
+    },
+    "N_ITEMS": 40,
+    "N_RANDOM": 3,
+    "scoring": "delta log-prob of correct answer token"
+  },
+  "B1_bank_broad": {
+    "EPS_GRID": [
+      0.01,
+      0.05,
+      0.2,
+      1.0
+    ],
+    "MAX_BASES": 240,
+    "layers": [
+      16,
+      31,
+      46
+    ],
+    "prefix_tokens": 96,
+    "seed": 0
+  },
+  "B3_learning_curve": {
+    "FRACS": [
+      0.125,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "eta_rel": 0.001
+  },
+  "B4_smoothing_mechanism": {
+    "EPS_EVAL": [
+      0.05,
+      0.2,
+      1.0
+    ],
+    "K": 8,
+    "M_IG": 8,
+    "N_SITES": 60,
+    "SIGMAS": [
+      0.05,
+      0.2,
+      0.5
+    ],
+    "SIGMA_DECOMP": 0.2
+  },
+  "B7_splits_targets_anchors": {
+    "ETA_REL": 0.001,
+    "LAMBDAS": [
+      0.03,
+      0.1,
+      0.3,
+      1.0
+    ],
+    "splits": [
+      "base",
+      "unordered_pair",
+      "template",
+      "category"
+    ]
+  },
+  "C2_conditional": {
+    "eps_eval": 0.2,
+    "n_sites": 56,
+    "r_sketch": 192
+  }
+}

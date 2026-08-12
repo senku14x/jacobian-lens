@@ -6,7 +6,20 @@ work.
 
 ---
 
-## Current state (2026-08-12, all runs complete)
+## Current state (2026-08-12, revised after external review)
+
+**Three conclusions changed.** (1) The smoothing-mechanism claim is **retracted** — the orth-vs-iso
+discriminator is vacuous, since `cos(u_iso, u_orth) = 0.9999` in d=5120 (only 1/d of an isotropic
+vector's energy is parallel to δ). (2) The calibrate/held-out split **leaked**: (a→b) and (b→a) sit
+on different bases with exactly negated deltas, and `T_sec` collapses from 0.43–0.70 to **0.01–0.15**
+under a template- or category-disjoint split while `J̄`/`R̄` stay flat. (3) `J_loc` is a bf16 central
+secant, not an exact Jacobian, so part of the SmoothGrad gain may be numerical. Also: `J̄`'s relative
+residual error is **0.96–1.00**, i.e. no better than predicting zero effect — cosine hid this.
+Bottom line: **a strong causal-transport study, and still no better lens.**
+
+---
+
+## Superseded state (2026-08-12, all runs complete)
 
 **Full write-up:** [`artifacts/007-2026-08-12-transport-operators/report.md`](artifacts/007-2026-08-12-transport-operators/report.md)
 · running numbers: [`STATUS_2026-08-12.md`](STATUS_2026-08-12.md)
@@ -288,3 +301,73 @@ operating points**, `E_x E_u[∂h_final/∂h_ℓ|_{h+u}]` with isotropic u at σ
 and test whether the per-input +0.2 survives averaging into a single matrix. It has a measured
 ceiling (T_IG ≈ 0.95) and a measured irreducible floor (G-CONTEXT says 2–4.3× of the gap is
 context-averaging no fixed matrix can recover).
+
+
+---
+
+## 2026-08-12 (evening) — external review: three conclusions revised
+
+A review of the whole branch landed and was right on the load-bearing point. Full corrections are
+in the report's Corrections block; the log records what changed and why.
+
+**Retracted: "the smoothing gain is denoising, not path."** The discriminator does not discriminate.
+For isotropic `u` in d=5120, `E[(u·δ̂)²] = 1/d ≈ 1.95e-4`, so 0.02% of its energy is parallel to δ,
+and projecting that out gives `cos(u_iso, u_orth) = 0.99990` (verified numerically, 20k samples).
+The "9 of 9 conditions, orthogonal recovers 99–109%" headline was measuring that two near-identical
+perturbation distributions give near-identical answers. The parallel arm was separately
+mis-specified — radius σ=0.2·med against a path of length 0.05·med at ε=0.05, i.e. sampling 4×
+beyond the path, so its collapse says "far outside the path hurts," not "path averaging doesn't
+help." Compounding it: `T_IG`, the genuine path operator, is the *best* method in the table.
+Supported claim is now just: spherical averaging around the operating point improves finite-effect
+prediction; mechanism open, with a third candidate (numerical — bf16 dither / FD truncation) added.
+
+**Split leakage, and it is the biggest single correction.** Splitting by base prompt does not
+separate (a→b) from (b→a): different bases, exactly negated deltas. Nor two arguments in one
+template. Under nested splits (`B7_splits_targets_anchors.py`):
+
+| T_sec, ε=0.2 antithetic | base | unordered-pair | template | category |
+|---|---|---|---|---|
+| L16 | 0.430 | 0.530 | **0.088** | **0.014** |
+| L31 | 0.402 | 0.557 | **0.073** | **0.021** |
+| L46 | 0.560 | 0.700 | **0.153** | **0.060** |
+
+`J̄` and `R̄`, never fitted on this data, are flat across all four levels (L16 J̄: .107/.110/.119/.112)
+— which is the control proving leakage rather than distribution shift. **The secant's in-family
+advantage was template memorisation.** This supersedes the learning-curve argument as the primary
+G-SECANT reasoning: under a category-disjoint split the secant is an order of magnitude worse than
+the fixed lens it was meant to beat.
+
+**J-anchoring, which should have been run first.** Note
+`A + (C_Δδ − A C_δδ)(C_δδ+λI)⁻¹ = (C_Δδ + λA)(C_δδ+λI)⁻¹` — so the J-anchored operator is the
+existing anchored solve with `anchor=J̄`. The study anchored only to `R̄`, the *weaker* baseline,
+despite J̄ winning M2 by +0.269. J-anchoring degrades gracefully (L46/category: 0.243 vs T_sec
+0.070) but still loses to plain `J̄` (0.393), so the learned correction is harmful off-distribution
+at every λ tested. **The only fitted object that generalises is the 3-scalar affine blend
+`aJ̄+bR̄+cI`**, which beats J̄ at every layer and is stable across all four split levels.
+
+**Relative error, which cosine hid.** `relerr = ‖pred−true‖/‖true‖ = 1.0` is what predicting zero
+scores. `J̄` gets **0.96–1.00** at every layer. The released lens carries weak direction and
+essentially no magnitude.
+
+**Target ecology.** Primary target switched to the native one-sided patch; the normalised antithetic
+effect at 0.2·median‖h‖ is demoted to a diagnostic, since `h−δ` is an extrapolated state and
+0.2·median‖h‖ is not a natural magnitude.
+
+**B6 was killed mid-run** rather than finished. It compared released `J̄ + C̄` (mixing a released
+operator with a locally-estimated correction), built the sketch basis from all data including
+held-out, split by site rather than template/prefix, and estimated shared energy in a way biased
+toward "not shared" by Monte-Carlo noise. Rewrite spec is in the report's run order, including the
+cross-product estimator `⟨C̄^A,C̄^B⟩ / mean_i⟨C_i^A,C_i^B⟩`.
+
+**Reproducibility** (`B8_export_reproducibility.py`): compact metrics JSONs, per-delta split
+assignments at all four levels with category/template/arg/alt/position, hyperparameters, and
+sha256s of banks and artifacts are now committed under `research/artifacts/data/` (11 MB). The
+report's tables can be checked without the 4.5 GB banks.
+
+### What did not change
+
+G-SECANT still FAIL, for a better reason. G-CONDVIABLE still FAIL. G-CONTEXT still 2/3, but the
+wording is weakened to "the released fixed J-lens loses 2–4× to the input-specific estimator under
+this evaluation" — `J_own` is still missing, so context-averaging is not isolated from
+corpus/convention/estimation mismatch. The framework checks (exact `forward_from`, `T_IG` ≈ 0.95
+ceiling) are untouched.

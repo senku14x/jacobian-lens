@@ -1,0 +1,62 @@
+{
+ "J_mean_first_top10_layer": 43.450980392156865,
+ "J_n_ever_top10": 51,
+ "R_mean_first_top10_layer": 39.67272727272727,
+ "R_n_ever_top10": 55,
+ "lens_dir": "qwen3.6-27b",
+ "model": "Qwen/Qwen3.6-27B",
+ "n_calib_per_set": 10,
+ "n_items": 59,
+ "results": {
+  "ALL": {
+   "J_all": 0.4788135593220339,
+   "J_first_half": 0.08898305084745763,
+   "R_all": 0.5338983050847458,
+   "R_first_half": 0.1497175142926685,
+   "n": 59
+  },
+  "association": {
+   "J_all": 0.2,
+   "J_first_half": 0.1,
+   "R_all": 0.2,
+   "R_first_half": 0.1,
+   "n": 10
+  },
+  "multihop": {
+   "J_all": 0.6666666666666666,
+   "J_first_half": 0.2222222222222222,
+   "R_all": 0.6666666666666666,
+   "R_first_half": 0.2222222222222222,
+   "n": 9
+  },
+  "multilingual": {
+   "J_all": 0.675,
+   "J_first_half": 0.125,
+   "R_all": 0.7,
+   "R_first_half": 0.1833333343267441,
+   "n": 10
+  },
+  "order-ops": {
+   "J_all": 0.45,
+   "J_first_half": 0.0,
+   "R_all": 0.55,
+   "R_first_half": 0.0,
+   "n": 10
+  },
+  "poetry": {
+   "J_all": 0.2,
+   "J_first_half": 0.0,
+   "R_all": 0.3,
+   "R_first_half": 0.0,
+   "n": 10
+  },
+  "typo": {
+   "J_all": 0.7,
+   "J_first_half": 0.1,
+   "R_all": 0.8,
+   "R_first_half": 0.4,
+   "n": 10
+  }
+ },
+ "seed": 0
+}
