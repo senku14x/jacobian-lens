@@ -371,3 +371,62 @@ wording is weakened to "the released fixed J-lens loses 2–4× to the input-spe
 this evaluation" — `J_own` is still missing, so context-averaging is not isolated from
 corpus/convention/estimation mismatch. The framework checks (exact `forward_from`, `T_IG` ≈ 0.95
 ceiling) are untouched.
+
+---
+
+## 2026-08-12 (late) — four proposed lens improvements: three tested, three negative
+
+Full write-up: [`artifacts/008-2026-08-12-lens-improvements/report.md`](artifacts/008-2026-08-12-lens-improvements/report.md).
+Papers re-read to ground the choices: the workspace paper confirms `lens(h)=softmax(W_U norm(J h))`
+is applied to the **absolute** activation with no reference or intercept; it **already** formalises
+J-space as a union of cones solved by sparse nonnegative gradient pursuit (but uses it for
+decomposition/interventions, not the readout); and it **already** compared present-only vs
+future-inclusive aggregation and reports results robust to the choice — so lag separation was
+dropped rather than run.
+
+**Reference anchoring `μ_F + J(h−μ_h)` — negative on the metric that matters.** Motivation was real:
+‖μ_h‖=59.0 at L31 against median ‖h‖=74.4, so ~79% of a typical activation's norm is the corpus mean
+and `J·h` is dominated by the prompt-independent `J·μ_h`. But: at β=1 it destroys early-layer readout
+(first-half pass@10 → 0.0000) and three different operators collapse to an identical .4096, the
+signature of the anchor swamping the operator. At the best β=0.25 aggregate pass@10 rises to .5297
+(vs J .4788) **while first-half pass@10 more than halves** (.0890 → .0381) — buying late-layer
+accuracy by losing early-layer sensitivity, which is the wrong direction for the North Star.
+**The intercept control is clean**: `unembed(μ_F)` alone scores 0.0000 everywhere, so this is not
+the literal tuned-lens pathology. My error to record: β was swept on the same 59 items it was
+evaluated on, which the review explicitly warned against, so the aggregate gain is optimistic and
+needs an inner split. Centring alone is also worse than doing nothing (.3588 vs .4788).
+
+**Spectral shrinkage of J — negative, with a measurable reason.** Never beats J at any layer or
+split level. **(J−I) carries only 7.5–14.4% of its energy in the top 64 of 5120 modes**: the
+deviation from identity is extremely high-rank, so there is no concentrated unreliable-mode
+structure to collapse toward `cI`. The method's premise is not satisfied by this operator.
+
+**Mode-wise J/R fusion — negative, but it does give the mechanistic account.** The fit drives
+**~65–70% of R−J modes to α=1 and ~15–33% to α=0**, so R's correction is genuinely not uniformly
+useful — but the selection scores at or below simply taking all of R (L16/category .1238 vs R
+.1287). Random-basis control with the same 512 free coefficients gives no gain (.1018 vs J .1040),
+so the small fusion effect is basis-specific rather than free parameters.
+
+**Two properties worth keeping from the failures.** (i) Unlike `T_sec` (.43 → .01 base→category),
+every constrained operator here is nearly *flat* across split levels — cutting to d parameters did
+fix the leakage-driven overfitting, it just bought no accuracy. (ii) Every fixed operator stays at
+relerr 0.95–1.01, no better in magnitude than predicting zero; that limitation of the whole
+fixed-operator class survived every method tried.
+
+**Closed form worth reusing.** For `T = A + Σᵢ aᵢsᵢuᵢvᵢᵀ`, orthonormal U makes the normal equations
+diagonal, so `aᵢ = bᵢ/(Gᵢᵢ+λ)` and clipping to [0,1] is the *exact* box-constrained optimum. Whole
+sweep is 85 s for 3 layers × 3 split levels, no d×d solve.
+
+**Stress tests (`C5_stress_tests.py`, 12 checks, all pass).** Closed form == explicit least squares
+(1.9e-8); normal equations verified diagonal (5.9e-9 off/on); clipping == brute-force box optimum;
+planted-operator recovery to 4.7e-8 Frobenius; noise-floor held-out cos +0.005 so small margins are
+not estimator bias; determinism bitwise; the anchored-solve identity to 9.2e-16. And T4 quantifies
+the 007 leak directly: **608 reverse pairs sit on opposite sides of the base split**, while the
+template split leaks 0.
+
+**Where this leaves it.** The review's two strongest bets for a better *fixed* operator both fail,
+and the "cheapest possible win" fails on the metric that matters. `R̄` remains the best fixed
+operator tested and the 3-scalar blend `aJ̄+bR̄+cI` matches it; nothing with more parameters beats it
+under a category-disjoint split. The live hypotheses are now the ones that leave the
+single-fixed-matrix class — sparse-frame readout and the conditional atlas oracle test — plus the
+still-missing `J_own` baseline.

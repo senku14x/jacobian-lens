@@ -25,7 +25,7 @@
       "sha256_first_64MB": "76765e93c68dc16a5c1b2fd09b06aec0d605b448e73706215ba1726c69947d85"
     }
   },
-  "git": "df739bc",
+  "git": "0d652d9",
   "metrics": {
     "001_stage0": {
       "bytes": 7431,
@@ -112,10 +112,20 @@
       "sha256": "5133c64918ee937e90ef2f351bcb7146309150ec0824738e1f3b40e4650118b6",
       "source": "research/outputs/B7/qwen3.6-27b.json"
     },
+    "C1": {
+      "bytes": 2932,
+      "sha256": "5509da341febc814bc125c9a0cf9e7e72e32302f2679abfd9e9ba7abc269c20f",
+      "source": "research/outputs/C1/qwen3.6-27b.json"
+    },
     "C2": {
       "bytes": 3720,
       "sha256": "3a3a601b1f4cd6840f6cb1bf796e5c451032a1904f03983db55e957dc8104b46",
       "source": "research/outputs/C2/qwen3.6-27b.json"
+    },
+    "C3": {
+      "bytes": 79883,
+      "sha256": "33f583922c2e2f697df8097de2109994c4c10addb39f648b6dcfe52ca972df4a",
+      "source": "research/outputs/C3/qwen3.6-27b.json"
     }
   },
   "splits": {
