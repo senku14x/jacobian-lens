@@ -6,7 +6,21 @@ work.
 
 ---
 
-## Current state (2026-08-12, revised after external review)
+## Current state (2026-08-12, after the first fitted lens)
+
+**A lens was fitted.**  at the released convention: 183 s/prompt, n=25 in 1.3 h. It matches
+released  to within noise, so the long-standing uncontrolled-comparison caveat is empirically
+nil. The fit also produced the thing the project most needed: **a twin-fit noise floor of ≈0.01 cos**
+(two fits of the same estimator on disjoint halves). Against it, the released 's effect-prediction
+advantage over  (+0.006 to +0.016) does **not** clear the floor, while context averaging
+( = +0.17 to +0.41) clears it 15–47×. Backward-rule extensions tested at block level:
+Q/K-norm LN-rule negative at every ε, attention-gate half-rule nil, GatedDeltaNet gate rules nil;
+routing-desaturation rules show the predicted finite-ε crossover but at floor magnitude. Details in
+[artifact 009](artifacts/009-2026-08-12-jown-and-backward-rules/report.md).
+
+---
+
+## Superseded state (2026-08-12, revised after external review)
 
 **Three conclusions changed.** (1) The smoothing-mechanism claim is **retracted** — the orth-vs-iso
 discriminator is vacuous, since `cos(u_iso, u_orth) = 0.9999` in d=5120 (only 1/d of an isotropic
@@ -430,3 +444,64 @@ operator tested and the 3-scalar blend `aJ̄+bR̄+cI` matches it; nothing with m
 under a category-disjoint split. The live hypotheses are now the ones that leave the
 single-fixed-matrix class — sparse-frame readout and the conditional atlas oracle test — plus the
 still-missing `J_own` baseline.
+
+---
+
+## 2026-08-12 (night) — a lens was finally fitted, and it produced a noise floor
+
+Full write-up: [`artifacts/009-2026-08-12-jown-and-backward-rules/report.md`](artifacts/009-2026-08-12-jown-and-backward-rules/report.md).
+
+**The excuse was wrong.** `J_own` had been listed as outstanding three times and deferred each time
+on cost, without the cost ever being measured. It is **183 s/prompt**, n=25 ≈ 1.3 h on one H100. A
+first measurement reported OOM everywhere and nearly became "fitting is infeasible on this
+hardware" — a stale process was holding 72 GiB. Fitted at the released convention (confirmed
+against the released lens's own embedded provenance), halves merged for the full lens.
+
+**Finding 1 — the uncontrolled-comparison worry was empirically nil.** `J_own` matches released `J`
+to −0.0011 [−0.0025,+0.0001] (native) and +0.0001 (antithetic), neither CI-clear. Corpus and
+convention mismatch contributed nothing; every "vs released J" comparison in 007/008 stands as
+written. Worth stating plainly rather than quietly dropping.
+
+**Finding 2 — the noise floor, and it is the important one.** Two fits of the SAME estimator on
+disjoint halves of the SAME corpus differ by **0.0113 cos (native) / 0.0088 (antithetic)**, and by
+0.56 relative Frobenius (≈0.40 scaled to n=25). Against that:
+
+| L31 | value | vs floor |
+|---|---|---|
+| `R − J` (native / antithetic) | +0.0155 / +0.0059 | 1.4× / **below** |
+| `J_own − J_rel` | −0.0011 / +0.0001 | below |
+| `J_loc − J_own` | **+0.1741 / +0.4119** | 15× / 47× |
+
+**The R-lens advantage in effect prediction does not clear the noise of the estimator it modifies**,
+despite bootstrap CIs excluding zero — because the bootstrap resamples evaluation prompts, not the
+fit. Any margin under ≈0.01 in this project is inside estimator noise, which retires several minor
+claims in 007 and most of the spectral/fusion margins in 008. No verdict changes: the secant
+failures were −0.1 to −0.9 and context averaging is +0.17 to +0.41.
+
+**Finding 3 — context averaging isolated at last, and one correction.** `J_loc − J_own` and
+`J_loc − J_rel` agree to 0.001, so the gap is context dependence, not corpus mismatch. But on the
+**native one-sided** target the ratio is **1.82×**, not the 3.17× reported on the normalised
+antithetic target. The ecological target gives a markedly smaller context-averaging cost.
+
+**Finding 4 — backward rules, tested at block level before any lens fit.** The predicted finite-ε
+crossover is real: every routing-desaturating rule (value-only, tempered softmax, GDN gated-output
+half) loses below ε=0.2 and wins at ε=1.0. But the two cheapest bets are negative — the **Q/K-norm
+LN-rule is negative at every ε** (−0.002 to −0.004), the attention output-gate half-rule is nil
+(±0.0007), and the **GatedDeltaNet gate/state rules do nothing** (±0.0004) despite governing 48 of
+64 layers. All effects are ≤0.012 on a cos of ~0.99, i.e. floor-magnitude. No rule earns a
+full-stack fit on this evidence.
+
+**Three bugs that each silently produced a null**, recorded because they are the failure mode to
+watch for: SDPA/flash has no forward-mode derivative (every full-attention rule NaN'd until eager
+attention was forced); `Qwen3_5RMSNorm` uses `.eps` not `.variance_epsilon` and `(1.0 + weight)`;
+and `beta = b.sigmoid()` is a tensor *method*, so patching `torch.sigmoid` left every GDN gate rule
+scoring identically to autograd.
+
+**Finding 5 — a numerical result that bears back on 007.** Forward-mode AD works here (first
+autograd of any kind verified on this architecture). Comparing the finite-difference estimator
+against the true JVP: **at ε_ref=0.01, the bf16 central difference has cos ≈ 0.93 to the true JVP**,
+degrading to 0.26 at ε=0.001. `J_loc` is defined at ε_ref=0.01 throughout this project, so it
+carries ~7% direction error by construction — and SmoothGrad-J averages 8 such estimates, so part
+of its +0.17…+0.27 advantage may be variance reduction of the *measurement* rather than a property
+of the model. Decisive control: average `J_loc` over ε_ref ∈ {0.005, 0.01, 0.02} at the same point
+(Richardson-style), which cuts truncation error without any neighbourhood smoothing.

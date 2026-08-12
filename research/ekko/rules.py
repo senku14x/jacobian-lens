@@ -53,11 +53,15 @@ def _surrogate(true_val: torch.Tensor, backward_val: torch.Tensor) -> torch.Tens
 # RMSNorm: LN-rule (detach the normalisation denominator)
 # --------------------------------------------------------------------------
 def _rmsnorm_ln_rule(self, x):
-    dt = x.dtype
-    x32 = x.to(torch.float32)
-    var = x32.pow(2).mean(-1, keepdim=True)
-    inv = torch.rsqrt(var + self.variance_epsilon).detach()      # <-- detached
-    return (self.weight * (x32 * inv)).to(dt)
+    """LN-rule for Qwen3_5RMSNorm. Mirrors the real forward exactly:
+    output = x.float() * rsqrt(mean(x^2)+eps) * (1.0 + weight), cast back --
+    note the (1.0 + weight) form and the attribute name `eps` (NOT
+    variance_epsilon; using the wrong name silently disabled this rule).
+    Only the denominator is detached."""
+    x32 = x.float()
+    inv = torch.rsqrt(x32.pow(2).mean(-1, keepdim=True) + self.eps).detach()
+    out = (x32 * inv) * (1.0 + self.weight.float())
+    return out.type_as(x)
 
 
 # --------------------------------------------------------------------------
@@ -144,11 +148,19 @@ def _patch_elementwise(attn, *, gate_half=False, value_only=False, temper=None):
 # --------------------------------------------------------------------------
 @contextlib.contextmanager
 def _patch_gdn(mod, *, gate_frozen=False, out_half=False):
-    t_sig = torch.sigmoid
+    # GatedDeltaNet computes `beta = b.sigmoid()` -- a TENSOR METHOD. Patching
+    # torch.sigmoid does not intercept a method call, which silently disabled
+    # this rule in the first run (every gate rule scored identically to none).
+    # Patch Tensor.sigmoid and F.softplus as well.
+    t_sig, t_tsig = torch.sigmoid, torch.Tensor.sigmoid
     t_sp = torch.nn.functional.softplus
 
     def sig(x, *a, **k):
         s = t_sig(x, *a, **k)
+        return s.detach() if gate_frozen else s
+
+    def tsig(x, *a, **k):
+        s = t_tsig(x, *a, **k)
         return s.detach() if gate_frozen else s
 
     def sp(x, *a, **k):
@@ -166,11 +178,13 @@ def _patch_gdn(mod, *, gate_frozen=False, out_half=False):
                 return _surrogate(y, 0.5 * y + 0.5 * y.detach())
             stack.enter_context(_patch(gn, "forward", gated))
     torch.sigmoid, torch.nn.functional.softplus = sig, sp
+    torch.Tensor.sigmoid = tsig
     try:
         with stack:
             yield
     finally:
         torch.sigmoid, torch.nn.functional.softplus = t_sig, t_sp
+        torch.Tensor.sigmoid = t_tsig
 
 
 # --------------------------------------------------------------------------

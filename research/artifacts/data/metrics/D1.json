@@ -1,0 +1,54 @@
+{
+ "d_model": 5120,
+ "git": "e85a933",
+ "max_seq_len": 128,
+ "model": "Qwen/Qwen3.6-27B",
+ "n_timed": 2,
+ "runs": [
+  {
+   "dim_batch": 8,
+   "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 24.00 MiB. GPU 0 has a total capacity of 79.18 GiB of which 8.31 MiB is free. Including non-PyTorch memory, this process has 79.16 GiB memory in use. Of the alloc",
+   "n_source_layers": 3,
+   "ok": false,
+   "tag": "bank3"
+  },
+  {
+   "dim_batch": 32,
+   "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 40.00 MiB. GPU 0 has a total capacity of 79.18 GiB of which 18.31 MiB is free. Including non-PyTorch memory, this process has 79.15 GiB memory in use. Of the allo",
+   "n_source_layers": 3,
+   "ok": false,
+   "tag": "bank3"
+  },
+  {
+   "dim_batch": 128,
+   "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 544.00 MiB. GPU 0 has a total capacity of 79.18 GiB of which 466.31 MiB is free. Including non-PyTorch memory, this process has 78.71 GiB memory in use. Of the al",
+   "n_source_layers": 3,
+   "ok": false,
+   "tag": "bank3"
+  },
+  {
+   "dim_batch": 8,
+   "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 79.18 GiB of which 14.31 MiB is free. Including non-PyTorch memory, this process has 79.16 GiB memory in use. Of the allo",
+   "n_source_layers": 62,
+   "ok": false,
+   "tag": "alldepth"
+  },
+  {
+   "dim_batch": 32,
+   "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 36.00 MiB. GPU 0 has a total capacity of 79.18 GiB of which 4.31 MiB is free. Including non-PyTorch memory, this process has 79.17 GiB memory in use. Of the alloc",
+   "n_source_layers": 62,
+   "ok": false,
+   "tag": "alldepth"
+  },
+  {
+   "dim_batch": 128,
+   "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 384.00 MiB. GPU 0 has a total capacity of 79.18 GiB of which 376.31 MiB is free. Including non-PyTorch memory, this process has 78.80 GiB memory in use. Of the al",
+   "n_source_layers": 62,
+   "ok": false,
+   "tag": "alldepth"
+  }
+ ],
+ "skip_first": 4,
+ "target_layer": 62,
+ "utc": "2026-08-12T09:06:46Z"
+}

@@ -80,6 +80,18 @@ def main() -> None:
     git = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
                          capture_output=True, text=True).stdout.strip()
     model, hf, tok = H.load_model(MODEL)
+    # SDPA/flash kernels have no forward-mode (or double-backward) derivative:
+    # every full-attention rule failed with
+    #   "derivative for aten::_scaled_dot_product_flash_attention_backward is
+    #    not implemented".
+    # Eager attention also routes through nn.functional.softmax, which is what
+    # the value-only and tempered-softmax rules patch, so this is required for
+    # those rules to apply at all rather than merely to avoid the crash.
+    try:
+        hf.config._attn_implementation = "eager"
+        hf.set_attn_implementation("eager")
+    except Exception as e:
+        print(f"  could not force eager attention: {e}", flush=True)
     types_by_layer = {l: block_type(model, l) for l in range(model.n_layers)}
     n_full = sum(1 for v in types_by_layer.values() if v == "full_attention")
     print(f"{model!r}  full_attention={n_full}/{model.n_layers}  "

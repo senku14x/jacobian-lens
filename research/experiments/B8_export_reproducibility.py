@@ -35,7 +35,7 @@ LENS_DIR = "qwen3.6-27b"
 RUNS = ["A0", "A1_A6", "A2_A5", "A4_m2", "C2", "B2_A0", "B2_A1_A6", "B2_A2_A5",
         "B2_A4_m2", "B3", "B4", "B4_ctrl", "B6_smoke", "B7",
         "A0_recheck_003_bank", "A0_recheck_B1_bank", "002_calib", "001_stage0",
-        "C1", "C3"]
+        "C1", "C3", "D1", "D2", "D3", "D3_smoke", "D4"]
 
 HYPER = {
     "B1_bank_broad": {"MAX_BASES": 240, "EPS_GRID": [0.01, 0.05, 0.2, 1.0],

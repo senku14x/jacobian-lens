@@ -1,0 +1,63 @@
+{
+ "comparison": {
+  "31": {
+   "J_own_vs_released_J": {
+    "cos": 0.9494288563728333,
+    "rel_fro": 0.32803893089294434
+   },
+   "diag_mean_J_own": 0.15722817182540894,
+   "diag_mean_J_rel": 0.16089388728141785,
+   "released_R_vs_released_J": {
+    "cos": 0.866627037525177,
+    "rel_fro": 0.7941449880599976
+   },
+   "twin_fit_noise_floor": {
+    "cos": 0.854935884475708,
+    "rel_fro": 0.562325119972229
+   }
+  }
+ },
+ "dim_batch": 8,
+ "fits": {
+  "all": {
+   "n_prompts_used": 25,
+   "note": "n_prompts-weighted merge of halfA and halfB"
+  },
+  "halfA": {
+   "n_prompts_requested": 13,
+   "n_prompts_used": 13,
+   "sec_per_prompt": 182.89804669526907,
+   "seconds": 2377.674607038498
+  },
+  "halfB": {
+   "n_prompts_requested": 12,
+   "n_prompts_used": 12,
+   "sec_per_prompt": 182.64351908365884,
+   "seconds": 2191.7222290039062
+  }
+ },
+ "git": "e85a933",
+ "layers": [
+  31
+ ],
+ "max_seq_len": 128,
+ "model": "Qwen/Qwen3.6-27B",
+ "n_prompts": 25,
+ "released_provenance": {
+  "config_json": "{\"estimator\": \"standard\"}",
+  "corpus_mode": "pretrain",
+  "dataset_id": "NeelNanda/pile-10k",
+  "docs_consumed": 25,
+  "git_commit": "modal",
+  "model_id": "Qwen/Qwen3.6-27B",
+  "n_positions": 0.0,
+  "n_prompts": 25,
+  "skip_first": 4,
+  "t_max": 128,
+  "target_layer": 62,
+  "weighting": "uniform"
+ },
+ "skip_first": 4,
+ "target_layer": 62,
+ "utc": "2026-08-12T09:26:35Z"
+}
