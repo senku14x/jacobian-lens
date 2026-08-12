@@ -8,12 +8,12 @@ work.
 
 ## Current state (2026-08-12, after the first fitted lens)
 
-**A lens was fitted.**  at the released convention: 183 s/prompt, n=25 in 1.3 h. It matches
-released  to within noise, so the long-standing uncontrolled-comparison caveat is empirically
-nil. The fit also produced the thing the project most needed: **a twin-fit noise floor of ≈0.01 cos**
-(two fits of the same estimator on disjoint halves). Against it, the released 's effect-prediction
-advantage over  (+0.006 to +0.016) does **not** clear the floor, while context averaging
-( = +0.17 to +0.41) clears it 15–47×. Backward-rule extensions tested at block level:
+**A lens was fitted.** `J_own` at the released convention: 183 s/prompt, n=25 in 1.3 h. It
+matches released `J` to within noise, so the long-standing uncontrolled-comparison caveat is
+empirically nil. The fit also produced the thing the project most needed: **a twin-fit noise floor
+of ≈0.01 cos** (two fits of the same estimator on disjoint halves of the same corpus). Against it,
+the released `R`'s effect-prediction advantage over `J` (+0.006 to +0.016) does **not** clear the
+floor, while context averaging (`J_loc − J_own` = +0.17 to +0.41) clears it 15–47×. Backward-rule extensions tested at block level:
 Q/K-norm LN-rule negative at every ε, attention-gate half-rule nil, GatedDeltaNet gate rules nil;
 routing-desaturation rules show the predicted finite-ε crossover but at floor magnitude. Details in
 [artifact 009](artifacts/009-2026-08-12-jown-and-backward-rules/report.md).
