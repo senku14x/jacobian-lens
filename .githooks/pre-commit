@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Backstop against committing credentials. Enable with:
+#     git config core.hooksPath .githooks
+# This is a safety net, not a substitute for checking what you stage.
+set -uo pipefail
+
+fail=0
+note() { printf '\033[31mpre-commit: %s\033[0m\n' "$1" >&2; fail=1; }
+
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+[ -z "$staged" ] && exit 0
+
+# 1. Files that should never be tracked, by name.
+while IFS= read -r f; do
+  case "$f" in
+    .githooks/*) continue ;;
+    .env|.env.*|*/.env|*/.env.*) note "refusing to commit env file: $f" ;;
+    *.pem|*.p12|*.pfx|*.keystore) note "refusing to commit key material: $f" ;;
+    *id_rsa|*id_ed25519|*.ppk) note "refusing to commit private key: $f" ;;
+    *credentials.json|*client_secret*.json|.netrc|*/.netrc) note "refusing to commit credentials: $f" ;;
+    *.pt|*.safetensors|*.ckpt) note "large weight file staged: $f (belongs in research/outputs/)" ;;
+  esac
+done <<< "$staged"
+
+# 2. Credential-shaped strings in the staged content.
+#    Patterns are assembled so this file does not match itself.
+A='sk-ant-'; O='sk-proj-'; G='gh[pousr]_'; H='hf_'; W='AKIA'; S='xox[baprs]-'; K='AIza'
+pattern="${A}[A-Za-z0-9_-]{20,}|${O}[A-Za-z0-9_-]{20,}|${G}[A-Za-z0-9]{30,}|${H}[A-Za-z]{17,}|${W}[0-9A-Z]{16}|${S}[A-Za-z0-9-]{10,}|${K}[0-9A-Za-z_-]{35}|BEGIN [A-Z ]*PRIVATE KEY"
+
+hits=$(git diff --cached -U0 --diff-filter=ACMR -- . ':(exclude).githooks/*' \
+        | grep -nE '^\+' | grep -EI "$pattern" || true)
+if [ -n "$hits" ]; then
+  note "credential-shaped string in staged content:"
+  printf '%s\n' "$hits" | head -5 | sed 's/^/    /' >&2
+fi
+
+if [ "$fail" -ne 0 ]; then
+  printf 'Commit blocked. Unstage the offending content, or re-run with --no-verify if this is a false positive.\n' >&2
+  exit 1
+fi
+exit 0

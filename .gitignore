@@ -12,3 +12,23 @@ dist/
 *.pt
 slice*.html
 slices/
+
+# secrets and local config — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*.keystore
+id_rsa
+id_ed25519
+.netrc
+credentials.json
+client_secret*.json
+**/secrets.*
+
+# research outputs: large or regenerable, kept out of git
+research/outputs/
+*.safetensors
+*.ckpt
