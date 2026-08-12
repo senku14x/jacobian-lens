@@ -115,13 +115,7 @@ def _patch_elementwise(attn, *, gate_half=False, value_only=False, temper=None):
         s = t_sig(x, *a, **k)
         if not gate_half:
             return s
-        # y = g * c handled at the product; here we mark the gate so that the
-        # product below can split relevance. Implemented as: pass through a
-        # half-weighted surrogate, which for y = g*c gives
-        #   y* = 0.5*(g*sg(c) + sg(g)*c)   <=>   dy* = 0.5*(c dg + g dc)
-        # Scaling the gate's backward by 0.5 and the content's by 0.5 is exactly
-        # that split, and the content half is applied in the wrapper below.
-        return _surrogate(s, 0.5 * s + 0.5 * s.detach())
+        return s      # the half-rule is applied at the module output instead
 
     def sm(x, *a, **k):
         a_ = t_sm(x, *a, **k)
@@ -147,6 +141,28 @@ def _patch_elementwise(attn, *, gate_half=False, value_only=False, temper=None):
 # GatedDeltaNet: freeze the write/decay gates, half-rule on the gated output
 # --------------------------------------------------------------------------
 @contextlib.contextmanager
+def _patch_branch_half(mod):
+    """Exact half-rule for a branch whose output is a product y = g(x) * c(x).
+
+    Both factors depend on x, so the half-rule 0.5*(g*sg(c) + sg(g)*c) has JVP
+    exactly 0.5 * dy -- it is a scaling of THIS BRANCH's gradient, which then
+    re-weights the branch against the residual stream it is added to. Applying
+    it at the module output is exact and avoids patching torch.Tensor.__mul__
+    globally, which would also have caught RoPE's elementwise products.
+    """
+    orig = mod.forward
+
+    def fwd(*a, _o=orig, **k):
+        out = _o(*a, **k)
+        if torch.is_tensor(out):
+            return _surrogate(out, 0.5 * out)
+        head = _surrogate(out[0], 0.5 * out[0])
+        return (head, *out[1:])
+    with _patch(mod, "forward", fwd):
+        yield
+
+
+@contextlib.contextmanager
 def _patch_gdn(mod, *, gate_frozen=False, out_half=False):
     # GatedDeltaNet computes `beta = b.sigmoid()` -- a TENSOR METHOD. Patching
     # torch.sigmoid does not intercept a method call, which silently disabled
@@ -170,13 +186,8 @@ def _patch_gdn(mod, *, gate_frozen=False, out_half=False):
     stack = contextlib.ExitStack()
     if out_half:
         gn = getattr(mod, "norm", None)
-        if gn is not None and hasattr(gn, "forward"):
-            orig = gn.forward
-
-            def gated(hidden_states, gate=None, _o=orig):
-                y = _o(hidden_states, gate)
-                return _surrogate(y, 0.5 * y + 0.5 * y.detach())
-            stack.enter_context(_patch(gn, "forward", gated))
+        if gn is not None:
+            stack.enter_context(_patch_branch_half(gn))
     torch.sigmoid, torch.nn.functional.softplus = sig, sp
     torch.Tensor.sigmoid = tsig
     try:
@@ -188,11 +199,57 @@ def _patch_gdn(mod, *, gate_frozen=False, out_half=False):
 
 
 # --------------------------------------------------------------------------
+# R-lens BASELINE. Reproduces what the released R already does, so that new
+# rules can be tested as "R + rule" rather than "J + rule". Without this every
+# number answers the wrong question.
+#
+# Qwen3_5DecoderLayer applies input_layernorm and post_attention_layernorm
+# (both Qwen3_5RMSNorm) around the two residual branches, and
+# Qwen3_5MLP.forward is down_proj(act_fn(gate_proj(x)) * up_proj(x)).
+#   LN-rule       detach the RMSNorm denominator (both norms)
+#   identity-rule SiLU backward becomes sigmoid(z), not sigmoid(z)(1+z(1-sigmoid))
+#   half-rule     y = a*b  ->  0.5*(a*sg(b) + sg(a)*b): forward ab, backward
+#                 0.5*(b da + a db)
+# --------------------------------------------------------------------------
+def _half_product(a, b):
+    """Forward a*b; backward splits relevance evenly between the two factors."""
+    return 0.5 * (a * b.detach() + a.detach() * b)
+
+
+def _mlp_r_rule(self, x):
+    z = self.gate_proj(x)
+    # identity-rule: SiLU's backward becomes the (detached) sigmoid factor only
+    sig = torch.sigmoid(z).detach()
+    act = _surrogate(self.act_fn(z), sig * z)
+    return self.down_proj(_half_product(act, self.up_proj(x)))
+
+
+@contextlib.contextmanager
+def _patch_r_baseline(block):
+    stack = contextlib.ExitStack()
+    with stack:
+        for nm in ("input_layernorm", "post_attention_layernorm"):
+            m = getattr(block, nm, None)
+            if m is not None:
+                stack.enter_context(_patch(m, "forward",
+                                           types.MethodType(_rmsnorm_ln_rule, m)))
+        mlp = getattr(block, "mlp", None)
+        if mlp is not None:
+            stack.enter_context(_patch(mlp, "forward",
+                                       types.MethodType(_mlp_r_rule, mlp)))
+        yield
+
+
+# --------------------------------------------------------------------------
 # public API
 # --------------------------------------------------------------------------
-RULES = ("none", "qk_norm", "attn_gate_half", "cp_value_only", "softmax_temper2",
-         "softmax_temper4", "gdn_gate_frozen", "gdn_out_half", "gdn_qk_l2norm",
-         "gdn_gate_frozen+qk_l2norm", "qk_norm+gate_half")
+# "none" is plain autograd (= J). "R" is the released R-lens recipe. Every new
+# rule is offered BOTH standalone (J + rule) and composed on R (R + rule), since
+# the question is whether these complete R, not whether they help J.
+_NEW = ("qk_norm", "attn_gate_half", "cp_value_only", "softmax_temper2",
+        "softmax_temper4", "gdn_gate_frozen", "gdn_out_half", "gdn_qk_l2norm",
+        "gdn_gate_frozen+qk_l2norm", "qk_norm+gate_half")
+RULES = ("none", "R") + _NEW + tuple(f"R+{r}" for r in _NEW)
 
 
 @contextlib.contextmanager
@@ -224,6 +281,17 @@ def apply_rule(block, rule: str):
     if rule == "none":
         yield
         return
+    on_R = rule == "R" or rule.startswith("R+")
+    sub = rule[2:] if rule.startswith("R+") else ("" if rule == "R" else rule)
+    if on_R:
+        with _patch_r_baseline(block):
+            if not sub:
+                yield
+                return
+            with apply_rule(block, sub):
+                yield
+            return
+    rule = sub or rule
     attn = getattr(block, "self_attn", None) or getattr(block, "attn", None)
     gdn = getattr(block, "linear_attn", None)
     for cand in (attn, gdn):
@@ -258,8 +326,10 @@ def apply_rule(block, rule: str):
                 if m is not None:
                     stack.enter_context(_patch(m, "forward",
                                                types.MethodType(_rmsnorm_ln_rule, m)))
-        if kw["gate_half"] or kw["value_only"] or kw["temper"] is not None:
+        if kw["value_only"] or kw["temper"] is not None:
             stack.enter_context(_patch_elementwise(
-                attn, gate_half=kw["gate_half"], value_only=kw["value_only"],
+                attn, gate_half=False, value_only=kw["value_only"],
                 temper=kw["temper"]))
+        if kw["gate_half"]:
+            stack.enter_context(_patch_branch_half(attn))
         yield

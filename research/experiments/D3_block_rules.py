@@ -108,21 +108,33 @@ def main() -> None:
     pack = torch.load(f"{BANK}/{LENS_DIR}_L31.pt", weights_only=False)
     meta, base_ids = pack["meta"], pack["base_ids"]
     med = pack["median_h_norm"]
-    d4 = [i for i, m in enumerate(meta) if m["family"] == "D4" and m["eps"] < 0]
+    # BOTH delta families, as specified: native counterfactual deltas (D4) and
+    # small isotropic deltas (D1). The first run used D4 only.
     g = torch.Generator().manual_seed(5)
-    order = torch.randperm(len(d4), generator=g)[:N_SITES].tolist()
-    sites = [d4[i] for i in order]
+    fam_sites = {}
+    for fam, cond in (("D4_native", lambda m: m["family"] == "D4" and m["eps"] < 0),
+                      ("D1_isotropic", lambda m: m["family"] == "D1"
+                       and abs(m["eps"] - 0.05) < 1e-12)):
+        cand = [i for i, m in enumerate(meta) if cond(m)]
+        if not cand:
+            continue
+        o = torch.randperm(len(cand), generator=g)[:N_SITES].tolist()
+        fam_sites[fam] = [cand[i] for i in o]
+    print("delta families: " + ", ".join(f"{k}={len(v)}" for k, v in fam_sites.items()),
+          flush=True)
 
     rep = {"utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "git": git,
-           "blocks": picks, "n_sites": len(sites), "eps_mult": EPS_MULT,
+           "blocks": picks, "n_sites": {k: len(v) for k, v in fam_sites.items()}, "eps_mult": EPS_MULT,
            "layer_types": {"full_attention": n_full,
                            "linear_attention": model.n_layers - n_full},
            "results": {}}
 
     jvp_mode = None
     for btype, layer in picks.items():
+      for famname, sites in fam_sites.items():
         blk = model.layers[layer]
-        print(f"\n{'='*74}\n{btype}  block {layer}  ({time.time()-t0:.0f}s)", flush=True)
+        print(f"\n{'='*74}\n{btype}  block {layer}  deltas={famname}  "
+              f"({time.time()-t0:.0f}s)", flush=True)
         acc = {}
         for si, idx in enumerate(sites):
             m = meta[idx]
@@ -187,16 +199,20 @@ def main() -> None:
                 "cos": sum(a["cos"]) / len(a["cos"]),
                 "rel_err": sum(a["rel"]) / len(a["rel"]),
                 "mag_ratio": sum(a["mag"]) / len(a["mag"]), "n": len(a["cos"])}
-        rep["results"][btype] = {"layer": layer, "by_eps": res}
-
-        print(f"\n  {'rule':<20s}" + "".join(f"{('eps=' + e):>12s}" for e in
-                                             (f"{x:g}" for x in EPS_MULT)))
-        for rule in RU.RULES:
-            row = "".join(
-                f"{res.get(f'{e:g}', {}).get(rule, {}).get('cos', float('nan')):>12.4f}"
-                for e in EPS_MULT)
-            if row.strip():
-                print(f"  {rule:<20s}{row}", flush=True)
+        rep["results"][f"{btype}|{famname}"] = {"layer": layer, "family": famname,
+                                                "by_eps": res}
+        # all three metrics reported, not cosine alone
+        for metric, fmt in (("cos", "{:>11.4f}"), ("rel_err", "{:>11.3f}"),
+                            ("mag_ratio", "{:>11.3f}")):
+            print(f"\n  [{metric}] {'rule':<26s}"
+                  + "".join(f"{('e=' + f'{x:g}'):>11s}" for x in EPS_MULT))
+            for rule in RU.RULES:
+                if not any(rule in res.get(f"{e:g}", {}) for e in EPS_MULT):
+                    continue
+                row = "".join(
+                    fmt.format(res.get(f"{e:g}", {}).get(rule, {}).get(metric, float("nan")))
+                    for e in EPS_MULT)
+                print(f"           {rule:<26s}{row}", flush=True)
 
     rep["jvp_mode"] = jvp_mode
     with open(f"{OUT}/{LENS_DIR}.json", "w") as f:

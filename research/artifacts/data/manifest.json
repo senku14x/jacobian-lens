@@ -25,7 +25,7 @@
       "sha256_first_64MB": "76765e93c68dc16a5c1b2fd09b06aec0d605b448e73706215ba1726c69947d85"
     }
   },
-  "git": "e4714b6",
+  "git": "1b0c9aa",
   "metrics": {
     "001_stage0": {
       "bytes": 7431,
@@ -138,8 +138,8 @@
       "source": "research/outputs/D2/qwen3.6-27b.json"
     },
     "D3": {
-      "bytes": 17788,
-      "sha256": "9c528f4b9a187f6dfcab5fe2d1ee436db2a718fbbc2af17f550e50637ccf43c9",
+      "bytes": 70143,
+      "sha256": "0249e3afa5438452ba80eaf9d568b2cf6cc549be36f1fc2a117c58a824815d12",
       "source": "research/outputs/D3/qwen3.6-27b.json"
     },
     "D3_smoke": {

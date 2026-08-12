@@ -14,9 +14,10 @@ project that fits a lens rather than consuming released ones.
 | **Twin-fit noise floor** — two fits of the same estimator on disjoint halves | **0.0113 cos (native) / 0.0088 (antithetic)**; 0.56 relative Frobenius |
 | Released `R` vs released `J` advantage | **+0.0155 / +0.0059** — at or *below* the noise floor |
 | `J_loc` vs `J_own` (context averaging, isolated) | **+0.174 / +0.412**, 15–47× the noise floor — the one large, robust effect |
-| Q/K-norm LN-rule, attention output-gate half-rule | **negative or nil** at every ε |
-| Value-only / tempered-softmax rules | lose at ε≤0.2, **win at ε=1.0** — the predicted crossover, but small |
-| GatedDeltaNet gate/state rules (48 of 64 layers) | **nil** — ±0.0004 |
+| **`R` itself vs `J` at block level** | **worse at ε≤0.2, better at ε=1.0 by +0.020–0.023 in all 4 conditions** — R is a finite-ε operator |
+| Q/K-norm LN-rule, composed on R | **negative at every ε and both delta families** (−0.009 to −0.012 on natural deltas) |
+| GatedDeltaNet gate / Q-K-L2-norm rules (48 of 64 layers) | **nil** — ±0.0012 |
+| Routing-damping rules (value-only, tempered softmax, gate/output half) | +0.005…+0.010 at ε=1.0 on natural deltas, but **do not replicate on isotropic deltas** |
 | bf16 finite difference at ε_ref=0.01 vs true JVP | **cos ≈ 0.93** — `J_loc` carries ~7% direction error by construction |
 
 ---
@@ -107,46 +108,86 @@ markedly smaller context-averaging cost.
 
 ## 3. Backward rules at block level
 
-Per the review's own first experiment: test each rule on a single block before propagating
-anything through the stack. One block of each type, 24 sites, cos against the true finite effect.
+Per the review's own first experiment: test each rule on a single block before propagating anything
+through the stack. One block of each type, 24 sites, **both delta families** (native counterfactual
+D4 and small isotropic D1), all three metrics stored.
 
 **Design point that decides the reading.** The exact Jacobian is by definition the best linear
-predictor of the true effect as ε→0, so every LRP-style rule — which deliberately deviates from the
-true gradient — *must* lose at small ε; a ranking there is near-tautological. Rules can only win at
-finite ε, where the truth is a secant. So the table below is Δ against plain autograd, swept over ε.
+predictor of the true effect as ε→0, so every LRP-style rule -- which deliberately deviates from the
+true gradient -- *must* lose at small ε; a ranking there is near-tautological. Rules can only win at
+finite ε, where the truth is a secant.
 
-**Full attention (block 31, 16 of 64 layers):**
+### 3a. The headline: R-lens is a finite-ε operator
 
-| rule | ε=0.01 | ε=0.05 | ε=0.2 | **ε=1.0** |
+The first version of this test omitted the R baseline entirely, so every rule was scored as
+"J + rule" when the question was "does this complete R". With `R` implemented (LN-rule on both
+residual RMSNorms, identity-rule on the MLP SiLU, half-rule on the gated MLP product):
+
+| cos vs true effect | ε=0.01 | ε=0.05 | ε=0.2 | **ε=1.0** |
 |---|---|---|---|---|
-| `cp_value_only` | −0.0114 | −0.0124 | −0.0083 | **+0.0093** |
-| `softmax_temper4` | −0.0096 | −0.0104 | −0.0064 | **+0.0096** |
-| `softmax_temper2` | −0.0056 | −0.0060 | −0.0028 | **+0.0090** |
-| `qk_norm` (LN-rule on q/k) | −0.0021 | −0.0016 | −0.0021 | −0.0039 |
-| `attn_gate_half` | −0.0006 | −0.0005 | −0.0004 | +0.0006 |
+| full attn, D4 native — `J` | .9250 | .9949 | .9929 | .9264 |
+| full attn, D4 native — **`R`** | .9137 | .9833 | .9853 | **.9468** |
+| full attn, D1 isotropic — `J` | .9051 | .9936 | .9947 | .9428 |
+| full attn, D1 isotropic — **`R`** | .8868 | .9737 | .9776 | **.9634** |
+| GatedDeltaNet, D4 — `J` | .9282 | .9942 | .9942 | .9365 |
+| GatedDeltaNet, D4 — **`R`** | .9161 | .9801 | .9843 | **.9585** |
+| GatedDeltaNet, D1 — `J` | .9222 | .9933 | .9942 | .9403 |
+| GatedDeltaNet, D1 — **`R`** | .9037 | .9731 | .9773 | **.9629** |
 
-**GatedDeltaNet (block 30, 48 of 64 layers):**
+**R is worse than J at every ε ≤ 0.2 and better at ε = 1.0, by +0.020 to +0.023, in all four
+block × delta-family conditions.** This is the first mechanistic account in this project of what the
+R-lens recipe actually does: it trades tangent accuracy for secant accuracy. It is a finite-
+displacement operator, which is exactly the regime a lens reading a whole activation operates in --
+and it explains why R can help readability while (per §2) its effect-prediction advantage over J
+sits at the noise floor.
 
-| rule | ε=0.01 | ε=0.05 | ε=0.2 | ε=1.0 |
+### 3b. The new rules, composed on R
+
+Δ against the R baseline. Only rows that move by >2e-4 are shown.
+
+| full attention | D4 ε=0.05 | D4 **ε=1.0** | D1 ε=0.05 | D1 **ε=1.0** |
 |---|---|---|---|---|
-| `gdn_out_half` | −0.0051 | −0.0044 | −0.0037 | **+0.0041** |
-| `gdn_gate_frozen` | −0.0001 | −0.0002 | −0.0001 | −0.0001 |
-| `gdn_qk_l2norm` | −0.0003 | −0.0003 | −0.0002 | −0.0001 |
+| `R+qk_norm` | −0.0104 | **−0.0088** | −0.0006 | −0.0005 |
+| `R+attn_gate_half` | −0.0027 | **+0.0090** | −0.0034 | +0.0020 |
+| `R+cp_value_only` | −0.0109 | **+0.0096** | −0.0067 | −0.0012 |
+| `R+softmax_temper2` | −0.0051 | **+0.0093** | −0.0030 | +0.0012 |
+| `R+softmax_temper4` | −0.0091 | **+0.0100** | −0.0054 | −0.0000 |
 
-**The predicted crossover is real.** Every rule that detaches or desaturates *routing* — value-only,
-tempered softmax, and the GDN gated-output half-rule — loses below ε=0.2 and wins at ε=1.0. That is
-the signature of a modified backward implicitly behaving like a path average, and it is the same
-direction as the SmoothGrad result.
+| GatedDeltaNet (48 of 64 layers) | D4 ε=0.05 | D4 **ε=1.0** | D1 ε=0.05 | D1 **ε=1.0** |
+|---|---|---|---|---|
+| `R+gdn_out_half` | −0.0026 | **+0.0051** | −0.0069 | **+0.0054** |
+| `R+gdn_gate_frozen` | −0.0001 | −0.0001 | −0.0005 | −0.0000 |
+| `R+gdn_qk_l2norm` | −0.0012 | −0.0000 | −0.0004 | −0.0000 |
 
-**But the two cheapest bets are negative.** The Q/K-norm LN-rule — the most direct extension of
-R-lens's existing logic — is negative at *every* ε including ε=1.0. The attention output-gate
-half-rule is nil (±0.0007). And the GatedDeltaNet gate/state rules, predicted to have the highest
-upside because they govern 75% of the model, do **nothing** (±0.0004).
+Three conclusions, and two of them are negative for the highest-priority proposals.
 
-**Scale caveat.** The largest effect here is 0.012 on a cos of ~0.99, and the ε=1.0 wins are
-+0.009 — the same order as the §2 noise floor for fitted operators. D3 has no CIs (24 sites,
-deterministic per site), so these should be treated as suggestive, not established, and a rule
-should not be propagated through the stack on this evidence alone.
+**The Q/K-norm LN-rule is negative at every ε and both families** — the cheapest and most obvious
+extension of R's own logic (the same operation R already repairs in the residual stream) does not
+work. On natural deltas it costs −0.009 to −0.012.
+
+**The GatedDeltaNet gate and Q/K-L2-norm rules do nothing** (±0.0012), despite governing 48 of 64
+layers, which was the predicted highest-upside direction. Only `gdn_out_half` moves, and it is a
+branch-gradient scaling rather than a structural repair.
+
+**The rules that do help at ε=1 all damp routing sensitivity, and they do not replicate on
+isotropic deltas.** `attn_gate_half`, `cp_value_only`, `softmax_temper` and `gdn_out_half` add
++0.005 to +0.010 at ε=1 on natural deltas, but on isotropic deltas the same rules give +0.002 to
+−0.001. So the gain is specific to natural counterfactual directions, not a general property of the
+operator — which is exactly the distinction the two delta families were included to expose.
+
+Reading it together: **what pays is damping the routing/branch gradient, not repairing any
+particular normalisation.** Every rule that helps is a variation on that (halve a branch, detach the
+attention matrix, desaturate the softmax); every rule that targets a specific normalisation
+(`qk_norm`, `gdn_qk_l2norm`) or a specific gate (`gdn_gate_frozen`) does nothing or hurts.
+
+**Scale caveat.** The largest effect is ~0.011 on a cos of ~0.98, comparable to the §2 noise floor
+for fitted operators. D3 has no CIs (24 sites, deterministic per site). These are suggestive, not
+established, and no rule earns a full-stack lens fit on this evidence. `R` itself is the exception:
++0.020 replicated across four independent conditions.
+
+**Not implemented:** AttnLRP's bilinear rules on `AV` and `QK^T` with the Taylor softmax rule. It is
+the one item from the proposed list still missing; the composition trick (half-rule JVP on a product
+= ½ the ordinary JVP, so it can be assembled from one-sided detach runs) makes it cheap to add.
 
 ### Three bugs, all of which silently produced "no effect"
 

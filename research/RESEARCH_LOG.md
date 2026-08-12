@@ -505,3 +505,41 @@ carries ~7% direction error by construction — and SmoothGrad-J averages 8 such
 of its +0.17…+0.27 advantage may be variance reduction of the *measurement* rather than a property
 of the model. Decisive control: average `J_loc` over ε_ref ∈ {0.005, 0.01, 0.02} at the same point
 (Richardson-style), which cuts truncation error without any neighbourhood smoothing.
+
+### 2026-08-12 (addendum) — the block-rule test was run without the R baseline; redone
+
+The first D3 run answered the wrong question. The request was `J, R, R+QK-norm, R+attention-gate-half,
+R+CP-value-only, R+AttnLRP, R+tempered-softmax, R+GDN-gate-frozen, R+GDN-half`; what ran was
+`J, J+qk_norm, ...` with no R baseline implemented at all, on native deltas only, reporting cosine
+only. Four gaps, plus one bug: `attn_gate_half` halved only the gate path's gradient, where the
+half-rule for `y = g*c` halves both.
+
+Fixed and rerun with the R recipe implemented (LN-rule on both residual RMSNorms, identity-rule on
+the MLP SiLU, half-rule on the gated MLP product), both delta families, and all three metrics.
+
+**The headline is R itself.** In all four block x delta-family conditions, `R` is worse than `J` at
+every ε ≤ 0.2 and better at ε = 1.0 by **+0.020 to +0.023**. The R-lens recipe trades tangent
+accuracy for secant accuracy — it is a **finite-displacement operator**. That is the first
+mechanistic account this project has of what R actually does, it is consistent across full-attention
+and GatedDeltaNet blocks and across natural and isotropic deltas, and it sits alongside §2's finding
+that R's *effect-prediction* advantage over J is at the noise floor: R's value is at finite
+displacement, which is the regime a lens reading a whole activation actually operates in.
+
+**Both high-priority proposals are negative.** The Q/K-norm LN-rule — the most direct extension of
+R's own logic — is negative at every ε and both delta families (−0.009 to −0.012 on natural deltas).
+The GatedDeltaNet gate-freezing and Q/K-L2-norm rules do nothing (±0.0012) despite governing 48 of
+64 layers, which was the predicted highest-upside direction.
+
+**What does help is not structural.** `attn_gate_half`, `cp_value_only`, `softmax_temper` and
+`gdn_out_half` each add +0.005…+0.010 at ε=1 on natural deltas — but on isotropic deltas the same
+rules give +0.002 to −0.001, so the gain is specific to natural counterfactual directions. All four
+are variations on damping a branch's or the routing's gradient; every rule that repairs a specific
+normalisation or freezes a specific gate does nothing or hurts. **What pays is damping routing
+sensitivity, not repairing a particular normalisation.**
+
+Still not implemented: AttnLRP's bilinear rules on `AV` and `QK^T` with the Taylor softmax rule —
+the one item from the list still missing. The half-rule-as-half-JVP identity makes it assemblable
+from one-sided detach runs, so it is cheap to add.
+
+Effects are ≤0.011 on a cos of ~0.98 and D3 carries no CIs, so apart from `R` itself (+0.020,
+replicated 4/4) none of this earns a full-stack lens fit.
