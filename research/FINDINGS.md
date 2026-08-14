@@ -461,6 +461,55 @@ tangent scale (tautologically — the exact Jacobian is optimal as ε→0).
 
 ---
 
+## Appendix A — Plan-conformance audit (2026-08-14)
+
+The question this answers: independent of whether the numbers are bug-free, did the implementation
+cover what the two plan documents (`beyond_jlens_rlens_research_ideas.md`, `ekko_lens.md`)
+specified? Four buckets.
+
+**A.1 Implemented as designed (the trunk).** The perturbation bank (D4-primary/D1/D2, both
+targets, summed-over-future estimand), closed-form `T_sec`/`T_RC`, both mandated circularity
+controls, the `J_loc` and `J+λI` baselines, M1 with the full baseline set, prompt-level bootstrap,
+the pre-registered Stage-2 gate honestly evaluated and failed, Stages 3–4 correctly skipped per the
+decision tree, C2's cheap test before any conditional lens, effective-rank diagnostics, data
+separation (with the logged calibration-slice carve).
+
+**A.2 Deviations — all logged, all defensible.** Release convention (`skip_first=4`, pile-10k)
+over the doc's 16/WikiText so the R anchor lives in the right space; science directly on 27B
+(user-approved); judge-free Δlogp M2 instead of an autorater; twin floor from halves of one n=25
+rather than a disjoint FIT-25b; ε grid extended beyond spec (0.01 + native); J-anchoring added only
+after review; the noise floor arriving last despite "mandatory before any sweep comparison" (009
+owns this); Stage 5 executed as discrete block-level rules rather than the continuous θ wrapper.
+
+**A.3 Specified and never implemented.**
+1. **Swap and clamp interventions** (M2b + the paper-Methods battery) — ablation is the only
+   causal intervention in the codebase; no pinv-swap code exists. All "direction identification"
+   claims are ablation-only.
+2. **M4 skip-ahead guardrail** — never built; mandatory before any readout claim (O1/O6).
+3. **The D3 concept-vector delta family** — admitted "not built"; transfer ran on D1/D2 only.
+4. **Continuous α/β/γ/λ interpolation sweeps** (ideas doc Priority 1; "very strong result A") —
+   only endpoints and discrete rules were tested. The interior-optimum question is untested, not
+   refuted.
+5. γ_q/γ_k split; AttnLRP softmax rule.
+6. **Full-stack θ_R endpoint equivalence** — J side eventually verified (J_own ≈ released J); the
+   R recipe verified at block level only.
+7. Shuffled-J / random-matrix control on M1; the clean small-ε sanity check (the fit@0.01
+   stand-in uses the bf16 FD later shown to carry ~7% error at exactly that scale).
+8. §3.2 tiny-model brute-force test (upstream jlens tests only).
+9. Stage-6 items (content/routing, robust aggregation, joint-span ablation, sparse-frame readout),
+   logit-level causal endpoints, second model / fp32 replication.
+
+**A.4 Faithful to a spec that was wrong.** The probe fold `Tᵀ(γ⊙u_t)` is the plan's own formula,
+implemented to the letter; this architecture's `(1+w)` RMSNorm makes the correct fold
+`Tᵀ((1+γ)⊙u_t)` (F10.1). The implementation error is upstream, in the plan.
+
+**Net effect.** No missing item props up a headline negative — those rest on A.1 machinery. The
+gaps genuinely limit: M2-based claims (ablation-only), the interior-optimum hypothesis (still
+open), and any future positive result (currently lacking its specified M4 guardrail and the swap
+leg of the causal battery).
+
+---
+
 ## Bottom line
 
 **A strong causal-transport study; still no better lens.** What the project bought: an exact,
