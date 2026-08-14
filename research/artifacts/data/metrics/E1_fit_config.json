@@ -1,0 +1,70 @@
+{
+  "utc": "2026-08-14T11:01:56Z",
+  "git": "b7af29d",
+  "model": "Qwen/Qwen3.6-27B",
+  "target_layer": 62,
+  "n_prompts": 25,
+  "max_seq_len": 128,
+  "skip_first": 4,
+  "smoke": false,
+  "attn_implementation": "eager",
+  "variants": {
+    "H": {
+      "gate": {
+        "top1_agreement": 1.0,
+        "max_abs_dlogit": 0.0
+      },
+      "source_layers": [
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        31,
+        36,
+        40,
+        46,
+        52,
+        58,
+        60
+      ],
+      "dim_batch": 4,
+      "probe_sec_per_prompt": 592.5027356147766,
+      "probe_peak_gib": 68.50401830673218,
+      "halfA": {
+        "n_prompts": 13,
+        "seconds": 7662.336322546005,
+        "sec_per_prompt": 589.4104863496927
+      },
+      "halfB": {
+        "n_prompts": 12,
+        "seconds": 7071.190453529358,
+        "sec_per_prompt": 589.2658711274465
+      },
+      "all": {
+        "n_prompts": 25
+      },
+      "matrix_comparison": {
+        "16": {
+          "vs_released_J_relF": 0.6685358285903931,
+          "vs_released_R_relF": 0.44591501355171204,
+          "twin_floor_relF": 0.22740301489830017,
+          "diag_mean": 0.17329135537147522
+        },
+        "31": {
+          "vs_released_J_relF": 0.713838517665863,
+          "vs_released_R_relF": 0.36968186497688293,
+          "twin_floor_relF": 0.20215821266174316,
+          "diag_mean": 0.3606208264827728
+        },
+        "46": {
+          "vs_released_J_relF": 0.4126400351524353,
+          "vs_released_R_relF": 0.24983306229114532,
+          "twin_floor_relF": 0.12572632730007172,
+          "diag_mean": 0.8219162225723267
+        }
+      }
+    }
+  }
+}

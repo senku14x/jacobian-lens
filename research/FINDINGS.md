@@ -461,6 +461,61 @@ tangent scale (tautologically — the exact Jacobian is optimal as ε→0).
 
 ---
 
+## Part 5 — Same-day experiments (2026-08-14 evening; full detail in artifact 012)
+
+### F13 — The H-lens: F11's sharpest prediction, tested and falsified
+
+**Question.** Does completing the conservation recipe (R + frozen attention pattern +
+GDN output half-rule) improve early-layer readability?
+
+**Experiment.** Full-stack fit at the released convention (13 source layers L8–L60,
+n=25, twin halves; forward-invariance gate 1.0000/0.0000 on the 27B), evaluated on the
+59-item calibration slice against released J/R and logit lens on a matched grid
+(`E1_fit_homogenized.py`, `E2_eval_equal.py`).
+
+**Findings.** `H − R` first-half pass@10 = **−0.038 [−0.089, +0.000]** — sign against
+the pre-registered prediction, ~9× H's pass@10 twin floor (0.004); all-layers −0.006
+(null); H beats J (+0.088 CI-clear) only by being R-like. H is the least
+skip-ahead-prone operator tested (M4 answer-early 0.000). R_own control skipped by
+user decision (nothing to attribute).
+
+**Status.** Supported negative; branch closed without variant-shopping. The F11
+identities stand as the account of R's existing rules; what falsified is the
+composition claim — per-component conservation does not compound through
+attention/GDN, most plausibly because fitting averages the frozen coefficients across
+contexts (the F3 error mode, worst early).
+
+### F14 — Patchscopes is depth-flat where every linear lens collapses
+
+**Experiment.** Same-layer identity patchscope, same 60-item slice and grid
+(`E3_patchscope.py`); substring-in-8-tokens scoring (analogous to, not identical with,
+pass@10).
+
+**Findings.** ALL 0.283 / first-half **0.217** (beats every lens's first-half; R:
+0.140) with per-layer rates flat 0.07–0.20 from L8 to L60; typo **1.000/0.900**;
+zeros on multilingual/poetry/association are echo-template artifacts (wins strong
+evidence, zeros weak).
+
+**Status.** Recurring pattern (one template, n=60). Direct evidence that the early
+"sensory band" is partly instrument-limited: a decoder that runs the model reads early
+layers; no matrix does.
+
+### F15 — Close-out diagnosis: the early readout gap is computational
+
+Assembling F1–F14: probes read early concepts at ~0.99 (per-concept directions);
+every fixed linear map clusters at R̄ ± noise; the input-specific map beats the average
+1.8–4× worst early and the deviation is not low-rank-shared; a principled
+per-component fix (H) does not help; a model-running decoder is depth-flat. The
+consistent explanation: **there is no global linear correspondence between early
+feature directions and vocabulary directions — the early→vocabulary translation is
+itself the computation layers 8–30 perform.** Lenses ask a matrix to be those layers.
+The instrument families that cross the gap train per-concept (probes, causal
+dictionaries) or execute computation (patchscopes, NLA/AO). *Interpretation, at the
+strength of the combined evidence; the sharpest untested implication is the
+three-instrument comparison on a model with a released NLA.*
+
+---
+
 ## Appendix A — Plan-conformance audit (2026-08-14)
 
 The question this answers: independent of whether the numbers are bug-free, did the implementation
