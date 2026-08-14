@@ -232,12 +232,21 @@ def main() -> None:
     for variant in VARIANTS:
         print(f"\n{'='*74}\nVARIANT {variant}  ({time.time()-t0:.0f}s)", flush=True)
         v = {"gate": gate_forward_invariance(model, prompts, variant)}
-        sources, dim_batch, probe_s, peak = probe_config(
-            model, prompts[0], variant, target)
-        v.update({"source_layers": sources, "dim_batch": dim_batch,
-                  "probe_sec_per_prompt": probe_s, "probe_peak_gib": peak})
+        if os.environ.get("EKKO_SOURCES"):
+            sources = [int(x) for x in os.environ["EKKO_SOURCES"].split(",")]
+            dim_batch = int(os.environ.get("EKKO_DIMB", "4"))
+            v.update({"source_layers": sources, "dim_batch": dim_batch,
+                      "probe": "skipped (config from env)"})
+        else:
+            sources, dim_batch, probe_s, peak = probe_config(
+                model, prompts[0], variant, target)
+            v.update({"source_layers": sources, "dim_batch": dim_batch,
+                      "probe_sec_per_prompt": probe_s, "probe_peak_gib": peak})
 
         halves = {"halfA": prompts[0::2], "halfB": prompts[1::2]}
+        only = os.environ.get("EKKO_HALF", "")
+        if only in ("A", "B"):
+            halves = {f"half{only}": halves[f"half{only}"]}
         lens_objs = {}
         with install_variant(model, variant):
             for name, pr in halves.items():
@@ -259,12 +268,19 @@ def main() -> None:
                 print(f"  [{variant}/{name}] {lens.n_prompts} prompts in "
                       f"{dt/60:.1f} min ({time.time()-t0:.0f}s)", flush=True)
 
-        merged = jlens.JacobianLens.merge([lens_objs["halfA"], lens_objs["halfB"]])
-        torch.save({l: merged.jacobians[l].detach().cpu().half() for l in sources},
-                   f"{OUT}/{LENS_DIR}_{variant}_all.pt")
-        v["all"] = {"n_prompts": int(merged.n_prompts)}
+        if len(lens_objs) == 2:
+            merged = jlens.JacobianLens.merge(
+                [lens_objs["halfA"], lens_objs["halfB"]])
+            torch.save({l: merged.jacobians[l].detach().cpu().half()
+                        for l in sources},
+                       f"{OUT}/{LENS_DIR}_{variant}_all.pt")
+            v["all"] = {"n_prompts": int(merged.n_prompts)}
+        else:
+            merged = next(iter(lens_objs.values()))
+            v["all"] = {"note": f"single half only (n={int(merged.n_prompts)}); "
+                                "no merge"}
 
-        if not SMOKE:
+        if not SMOKE and len(lens_objs) == 2:
             jrel = H.load_released_lens(LENS_DIR, "j")
             rrel = H.load_released_lens(LENS_DIR, "r")
             cmpd = {}

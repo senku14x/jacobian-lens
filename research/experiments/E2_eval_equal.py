@@ -94,8 +94,11 @@ def main() -> None:
     tgt = jl.target_layer
     half = tgt // 2
 
-    e1 = json.load(open(f"{E1}/{LENS_DIR}.json"))
-    grid = e1["variants"]["H"]["source_layers"]
+    if os.environ.get("EKKO_GRID"):
+        grid = [int(x) for x in os.environ["EKKO_GRID"].split(",")]
+    else:
+        e1 = json.load(open(f"{E1}/{LENS_DIR}.json"))
+        grid = e1["variants"]["H"]["source_layers"]
     ops: dict[str, dict[int, torch.Tensor]] = {
         "logit": {l: None for l in grid},
         "J_rel": {l: jl.jacobians[l] for l in grid},
@@ -109,6 +112,10 @@ def main() -> None:
                 key = name if suffix == "all" else f"{name}_{suffix}"
                 ops[key] = {l: d[l] for l in grid if l in d}
     ops = {k: v for k, v in ops.items() if len(v) == len(grid)}
+    if "R_own" not in ops and "R_own_halfA" in ops:
+        # half-A-only R fit: same 13 prompts as H_halfA, so the paired
+        # comparison is H_halfA vs R_own (matched corpus and n).
+        ops["R_own"] = ops["R_own_halfA"]
     print(f"grid={grid}  operators={list(ops)}  ({time.time()-t0:.0f}s)", flush=True)
 
     # ---- calibration slice, exactly 002's draw --------------------------
@@ -239,8 +246,8 @@ def main() -> None:
                 "hi": float(torch.quantile(d, .975)),
                 "ci_clear": bool(torch.quantile(d, .025) > 0
                                  or torch.quantile(d, .975) < 0)}
-    for a, b in (("H", "R_own"), ("H", "R_rel"), ("R_own", "R_rel"),
-                 ("H", "J_rel"), ("R_rel", "J_rel")):
+    for a, b in (("H", "R_own"), ("H_halfA", "R_own"), ("H", "R_rel"),
+                 ("R_own", "R_rel"), ("H", "J_rel"), ("R_rel", "J_rel")):
         if a in ops and b in ops:
             for span in ("first_half", "all"):
                 rep["contrasts"][f"{a}-{b}|{span}"] = contrast(a, b, span)
