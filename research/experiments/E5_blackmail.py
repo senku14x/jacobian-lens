@@ -87,6 +87,7 @@ def main() -> None:
     response = tok.decode(full[0, r0:], skip_special_tokens=True)
     print(f"response ({full.shape[1]-r0} toks): {response[:200]!r}", flush=True)
 
+    torch.cuda.empty_cache()          # drop the generation KV cache
     _, acts = H.capture(model, full)
     T_seq = full.shape[1]
 
@@ -125,7 +126,11 @@ def main() -> None:
                 x = acts[l][0, s: s + CH].float().to(dev)
                 with torch.no_grad():
                     lg = model.unembed(x if Tm is None else x @ Tm.T).float()
-                    cr = (lg.unsqueeze(1) > lg[:, cids].unsqueeze(-1)).sum(-1)
+                    # per-token rank loop: the broadcast form materialises a
+                    # [CH, n_concern, vocab] tensor (~30 GiB at CH=512) and OOMs
+                    cr = torch.stack(
+                        [(lg > lg[:, int(c)].unsqueeze(-1)).sum(-1)
+                         for c in cids], dim=1)
                     hit = (cr <= RANK_FIRE).nonzero()
                     for pi, ci in hit.tolist():
                         p = s + pi
