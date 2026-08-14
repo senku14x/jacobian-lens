@@ -74,6 +74,9 @@ def main() -> None:
         print(f"chat template failed ({e}); concatenating raw", flush=True)
         ids = torch.tensor([tok.encode(sc["system"] + "\n\n" + sc["user"])],
                            device=dev)
+    if not torch.is_tensor(ids):        # transformers 5.x returns BatchEncoding
+        ids = ids["input_ids"]
+    ids = ids.to(dev)
     print(f"prompt: {ids.shape[1]} tokens  ({time.time()-t0:.0f}s)", flush=True)
 
     with torch.no_grad():
