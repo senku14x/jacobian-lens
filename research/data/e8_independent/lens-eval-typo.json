@@ -1,0 +1,61 @@
+{
+ "items": [
+  {
+   "name": "definately",
+   "prompt": "I promise I will definately",
+   "intermediates": [
+    "definitely"
+   ]
+  },
+  {
+   "name": "seperate",
+   "prompt": "Please keep the two files seperate",
+   "intermediates": [
+    "separate"
+   ]
+  },
+  {
+   "name": "tommorow",
+   "prompt": "The meeting is scheduled for tommorow",
+   "intermediates": [
+    "tomorrow"
+   ]
+  },
+  {
+   "name": "wierd",
+   "prompt": "That noise in the attic was really wierd",
+   "intermediates": [
+    "weird"
+   ]
+  },
+  {
+   "name": "beleive",
+   "prompt": "It is hard to beleive",
+   "intermediates": [
+    "believe"
+   ]
+  },
+  {
+   "name": "occured",
+   "prompt": "The accident occured",
+   "intermediates": [
+    "occurred"
+   ]
+  },
+  {
+   "name": "freind",
+   "prompt": "He has been my best freind",
+   "intermediates": [
+    "friend"
+   ]
+  },
+  {
+   "name": "enviroment",
+   "prompt": "The factory was harming the enviroment",
+   "intermediates": [
+    "environment"
+   ]
+  }
+ ],
+ "note": "E8 independent eval set, authored 2026-08-14, entity-disjoint from bundled data/evaluations by construction"
+}

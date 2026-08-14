@@ -1,0 +1,85 @@
+{
+ "items": [
+  {
+   "name": "tulip-capital",
+   "prompt": "Fact: The capital of the country famous for tulips and windmills is",
+   "intermediates": [
+    "Netherlands"
+   ],
+   "target": "Amsterdam"
+  },
+  {
+   "name": "kangaroo-capital",
+   "prompt": "Fact: The capital of the country where kangaroos live in the wild is",
+   "intermediates": [
+    "Australia"
+   ],
+   "target": "Canberra"
+  },
+  {
+   "name": "pharaoh-river",
+   "prompt": "Fact: The river flowing through the land of the pharaohs is the",
+   "intermediates": [
+    "Egypt"
+   ],
+   "target": "Nile"
+  },
+  {
+   "name": "fjord-capital",
+   "prompt": "Fact: The capital of the country known for fjords and vikings is",
+   "intermediates": [
+    "Norway"
+   ],
+   "target": "Oslo"
+  },
+  {
+   "name": "alps-currency",
+   "prompt": "Fact: The currency of the country famous for the Alps and luxury watches is the",
+   "intermediates": [
+    "Switzerland"
+   ],
+   "target": "franc"
+  },
+  {
+   "name": "samba-continent",
+   "prompt": "Fact: The continent of the country famous for samba is",
+   "intermediates": [
+    "samba"
+   ],
+   "target": "America"
+  },
+  {
+   "name": "olive-capital",
+   "prompt": "Fact: The capital of the country famous for olives and ancient philosophers is",
+   "intermediates": [
+    "Greece"
+   ],
+   "target": "Athens"
+  },
+  {
+   "name": "sauna-capital",
+   "prompt": "Fact: The capital of the country famous for saunas and thousands of lakes is",
+   "intermediates": [
+    "Finland"
+   ],
+   "target": "Helsinki"
+  },
+  {
+   "name": "waffle-capital",
+   "prompt": "Fact: The capital of the country famous for waffles and EU headquarters is",
+   "intermediates": [
+    "Belgium"
+   ],
+   "target": "Brussels"
+  },
+  {
+   "name": "kimchi-capital",
+   "prompt": "Fact: The capital of the country famous for kimchi is",
+   "intermediates": [
+    "Korea"
+   ],
+   "target": "Seoul"
+  }
+ ],
+ "note": "E8 independent eval set, authored 2026-08-14, entity-disjoint from bundled data/evaluations by construction"
+}

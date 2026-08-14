@@ -1,0 +1,75 @@
+{
+ "items": [
+  {
+   "name": "fr-dog",
+   "prompt": "En fran\u00e7ais, l'animal qui aboie s'appelle le",
+   "intermediates": [
+    "dog"
+   ]
+  },
+  {
+   "name": "de-vienna",
+   "prompt": "Die Hauptstadt von \u00d6sterreich ist",
+   "intermediates": [
+    "Vienna"
+   ]
+  },
+  {
+   "name": "es-tennis",
+   "prompt": "El deporte que se juega con raqueta y una red es el",
+   "intermediates": [
+    "tennis"
+   ]
+  },
+  {
+   "name": "es-milk",
+   "prompt": "La bebida blanca que producen las vacas es la",
+   "intermediates": [
+    "milk"
+   ]
+  },
+  {
+   "name": "fr-cheese",
+   "prompt": "Le produit laitier pr\u00e9f\u00e9r\u00e9 des souris est le",
+   "intermediates": [
+    "cheese"
+   ]
+  },
+  {
+   "name": "de-honey",
+   "prompt": "Die Bienen produzieren s\u00fc\u00dfen",
+   "intermediates": [
+    "honey"
+   ]
+  },
+  {
+   "name": "fr-window",
+   "prompt": "La partie de la maison par laquelle on regarde dehors est la",
+   "intermediates": [
+    "window"
+   ]
+  },
+  {
+   "name": "es-fish",
+   "prompt": "El animal que nada y vive en el agua es el",
+   "intermediates": [
+    "fish"
+   ]
+  },
+  {
+   "name": "de-butter",
+   "prompt": "Aufs frische Brot streicht man goldene",
+   "intermediates": [
+    "butter"
+   ]
+  },
+  {
+   "name": "es-rain",
+   "prompt": "El agua que cae de las nubes se llama",
+   "intermediates": [
+    "rain"
+   ]
+  }
+ ],
+ "note": "E8 independent eval set, authored 2026-08-14, entity-disjoint from bundled data/evaluations by construction"
+}

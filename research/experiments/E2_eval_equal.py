@@ -59,7 +59,9 @@ CALIB = os.environ.get("EKKO_CALIB", "0") == "1"
 N_CAL_DOCS = int(os.environ.get("EKKO_CAL_DOCS", "32"))
 N_BOOT = 2000
 SEED = 0
-SETS = ["multihop", "multilingual", "order-ops", "poetry", "typo", "association"]
+EVAL_DIR = os.environ.get("EKKO_EVAL_DIR", "data/evaluations")
+SETS = os.environ.get(
+    "EKKO_SETS", "multihop,multilingual,order-ops,poetry,typo,association").split(",")
 M4_SETS = {"multihop", "order-ops"}
 
 _ALNUM = re.compile(r"[A-Za-z0-9]")
@@ -171,7 +173,7 @@ def main() -> None:
     g = torch.Generator().manual_seed(SEED)
     work = []
     for slug in SETS:
-        items = json.load(open(f"data/evaluations/lens-eval-{slug}.json"))["items"]
+        items = json.load(open(f"{EVAL_DIR}/lens-eval-{slug}.json"))["items"]
         perm = torch.randperm(len(items), generator=g)[:N_CALIB].tolist()
         for i in perm:
             it = items[i]

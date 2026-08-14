@@ -1,0 +1,75 @@
+{
+ "items": [
+  {
+   "name": "sand-tide",
+   "prompt": "The waves crashed as she spread her towel on the warm sand and watched the tide roll in toward the",
+   "intermediates": [
+    "beach"
+   ]
+  },
+  {
+   "name": "hoses-sirens",
+   "prompt": "The sirens wailed as the crew unrolled hoses and aimed water at the burning",
+   "intermediates": [
+    "fire"
+   ]
+  },
+  {
+   "name": "baton-violins",
+   "prompt": "The conductor raised his baton, and the violins of the",
+   "intermediates": [
+    "orchestra"
+   ]
+  },
+  {
+   "name": "tombstones",
+   "prompt": "Rows of weathered tombstones stretched across the quiet grassy grounds of the",
+   "intermediates": [
+    "cemetery"
+   ]
+  },
+  {
+   "name": "dough-oven",
+   "prompt": "He kneaded the dough, dusted it with flour, and slid the loaf into the hot",
+   "intermediates": [
+    "oven"
+   ]
+  },
+  {
+   "name": "aisle-organ",
+   "prompt": "The organ began to play as the bride stepped slowly down the",
+   "intermediates": [
+    "aisle"
+   ]
+  },
+  {
+   "name": "saddle-mane",
+   "prompt": "She brushed the mane, tightened the saddle, and led the animal out of the",
+   "intermediates": [
+    "stable"
+   ]
+  },
+  {
+   "name": "net-goal",
+   "prompt": "The keeper dove as the striker kicked the ball toward the",
+   "intermediates": [
+    "goal"
+   ]
+  },
+  {
+   "name": "anchor-sails",
+   "prompt": "The sailors raised the anchor and unfurled the sails as the vessel slipped out of the",
+   "intermediates": [
+    "harbor"
+   ]
+  },
+  {
+   "name": "tent-flame",
+   "prompt": "They pitched the tent, lit a small flame, and roasted marshmallows at the",
+   "intermediates": [
+    "camp"
+   ]
+  }
+ ],
+ "note": "E8 independent eval set, authored 2026-08-14, entity-disjoint from bundled data/evaluations by construction"
+}
