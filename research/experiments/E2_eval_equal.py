@@ -51,6 +51,12 @@ LENS_DIR = os.environ.get("EKKO_LENS_DIR", "qwen3.6-27b")
 E1 = os.environ.get("EKKO_E1", "/home/ubuntu/ekko/outputs/E1")
 OUT = os.environ.get("EKKO_OUT", "/home/ubuntu/ekko/outputs/E2")
 N_CALIB = int(os.environ.get("EKKO_N_CALIB", "10"))
+# EKKO_CALIB=1: score tokens by their z-scored logit against a per-(operator,
+# layer, token) baseline estimated on generic pile text -- the diagonal /
+# empirical-Fisher version of metric-corrected readout. Answers "how unusual is
+# this token's activation HERE vs baseline text" instead of raw magnitude.
+CALIB = os.environ.get("EKKO_CALIB", "0") == "1"
+N_CAL_DOCS = int(os.environ.get("EKKO_CAL_DOCS", "32"))
 N_BOOT = 2000
 SEED = 0
 SETS = ["multihop", "multilingual", "order-ops", "poetry", "typo", "association"]
@@ -118,6 +124,49 @@ def main() -> None:
         ops["R_own"] = ops["R_own_halfA"]
     print(f"grid={grid}  operators={list(ops)}  ({time.time()-t0:.0f}s)", flush=True)
 
+    # ---- per-token baseline stats for calibrated scoring ----------------
+    stats = None
+    if CALIB:
+        from datasets import load_dataset
+        ds = load_dataset("NeelNanda/pile-10k", split="train", streaming=True)
+        docs, it_, seen = [], iter(ds), 0
+        while len(docs) < N_CAL_DOCS:
+            r = next(it_)
+            if len(r["text"]) > 2000:
+                seen += 1
+                if seen > 25:          # disjoint from the E1 fitting corpus
+                    docs.append(r["text"][:4000])
+        R_cal = {l: [] for l in grid}
+        for dtext in docs:
+            _, a_ = H.capture(model, dtext, max_length=128)
+            for l in grid:
+                R_cal[l].append(a_[l][0, 16:].float().cpu())
+        R_cal = {l: torch.cat(v) for l, v in R_cal.items()}
+        dev0 = model.input_device
+        stats = {}
+        for name, mats in ops.items():
+            for l in grid:
+                Tm = None if mats[l] is None else mats[l].to(dev0, torch.float32)
+                s0 = s1 = None
+                n_ = 0
+                for s in range(0, R_cal[l].shape[0], 1024):
+                    x = R_cal[l][s: s + 1024].to(dev0)
+                    with torch.no_grad():
+                        lg = model.unembed(
+                            x if Tm is None else x @ Tm.T).float()
+                    s0 = lg.sum(0) if s0 is None else s0 + lg.sum(0)
+                    s1 = (lg * lg).sum(0) if s1 is None else s1 + (lg * lg).sum(0)
+                    n_ += lg.shape[0]
+                mu = s0 / n_
+                sd = (s1 / n_ - mu * mu).clamp_min(1e-8).sqrt()
+                sd = sd.clamp_min(0.05 * float(sd.mean()))
+                stats[(name, l)] = (mu.half().cpu(), sd.half().cpu())
+                del Tm
+        print(f"calibrated-z stats from {len(docs)} docs "
+              f"({R_cal[grid[0]].shape[0]} positions)  ({time.time()-t0:.0f}s)",
+              flush=True)
+        del R_cal
+
     # ---- calibration slice, exactly 002's draw --------------------------
     g = torch.Generator().manual_seed(SEED)
     work = []
@@ -159,6 +208,9 @@ def main() -> None:
             with torch.no_grad():
                 x = resid[:, li].to(dev)
                 logits = model.unembed(x if T is None else x @ T.T).float()
+                if stats is not None:
+                    mu, sd = stats[(name, l)]
+                    logits = (logits - mu.to(dev).float()) / sd.to(dev).float()
                 top10 = logits.topk(10, dim=-1).indices
                 tr[li] = float(torch.tensor(
                     [sum(is_trash(tok.decode([int(t)])) for t in row) / 10.0
@@ -182,6 +234,7 @@ def main() -> None:
 
     # ---- assemble report -------------------------------------------------
     rep = {"utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+           "scoring": "calibrated-z" if CALIB else "raw",
            "grid": grid, "first_half_grid": [grid[i] for i in first_idx],
            "n_items": len(work), "operators": list(ops), "results": {}, "m4": {},
            "contrasts": {}, "twin_floor_pass10": {}}
