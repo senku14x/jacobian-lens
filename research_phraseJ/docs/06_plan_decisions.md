@@ -58,6 +58,20 @@ reviews themselves may be added verbatim as `docs/06a_review_1.md`, `docs/06b_re
 - Template vocabulary is lowercase-normalized (2,647 rows multi-token only for that reason); flagged
   and checked in 001.
 
+## Learned in 001 (2026-09-16)
+
+- Random k-fold CV is invalid for frame-matched latent designs (identical frames across classes):
+  use grouped leave-one-cue/frame/route-out. Pooled out-of-fold scores need fold-standardization.
+- Released template passages leak the first word of multi-word phrases in 12–16% of cases; filter.
+- Only United States / United Nations exists as a two-member family in the released template
+  vocabulary; the vocabulary is lowercase-normalized (1,298 lowercase-artifact rows).
+- `blackmail` is a single Qwen token. Los Angeles / Las Vegas share no token.
+- Σ from 74k positions gives covariance-duals with split-half cosine 0.78–0.92; not usable for
+  intervention yet.
+- J rows and released template rows are near-orthogonal on Qwen3.6-27B (cos 0.01–0.15).
+- Qwen3.6 emits `<think>` after `Q: … A:` frames; avoid that frame. The second-word-letter-count
+  route does not elicit name content; drop it.
+
 ## Order
 
 001 template geometry → 002 exact compat → 003 gradient-template 2×2 + multi-token readout →
