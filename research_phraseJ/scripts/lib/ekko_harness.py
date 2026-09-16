@@ -26,7 +26,9 @@ import torch
 
 import jlens
 
-os.environ.setdefault("HF_HOME", "/home/ubuntu/cot-oracle/hf_home")
+# phrase_J edit 2026-09-16: the ekko-lens HF_HOME default is stale on this machine; only apply if it exists.
+if os.path.isdir("/home/ubuntu/cot-oracle/hf_home"):
+    os.environ.setdefault("HF_HOME", "/home/ubuntu/cot-oracle/hf_home")
 
 
 # --------------------------------------------------------------------------

@@ -1,0 +1,2551 @@
+{
+ "model": "/content/models/Qwen3.6-27B",
+ "template_stack": "templates+phrases_v3",
+ "boundary_convention": "tok.encode(\" \" + phrase)",
+ "families": [
+  {
+   "name": "New",
+   "prefix_ids": [
+    1478
+   ],
+   "prefix_len": 1,
+   "members": [
+    {
+     "phrase": "New York",
+     "ids": [
+      1478,
+      4121
+     ],
+     "tokens": [
+      " New",
+      " York"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      491,
+      47905
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 1218,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "New Zealand",
+     "ids": [
+      1478,
+      16416
+     ],
+     "tokens": [
+      " New",
+      " Zealand"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      491,
+      13309,
+      14891
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": true,
+     "template_text": "New Zealand",
+     "template_row": 13730,
+     "passages": [
+      [
+       "tl-registry-v3-passages.json",
+       150
+      ]
+     ],
+     "n_passages": 150,
+     "pile10k_natural_occurrences": 158,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "New Delhi",
+     "ids": [
+      1478,
+      21318
+     ],
+     "tokens": [
+      " New",
+      " Delhi"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      491,
+      1538,
+      5834
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 11,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "New Jersey",
+     "ids": [
+      1478,
+      15383
+     ],
+     "tokens": [
+      " New",
+      " Jersey"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      491,
+      34917
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 199,
+     "suffix_len": 1
+    }
+   ],
+   "n_T": 1,
+   "usable_for_template_eval": false
+  },
+  {
+   "name": "South",
+   "prefix_ids": [
+    4725
+   ],
+   "prefix_len": 1,
+   "members": [
+    {
+     "phrase": "South Africa",
+     "ids": [
+      4725,
+      9871
+     ],
+     "tokens": [
+      " South",
+      " Africa"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      9514,
+      42811
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 157,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "South Korea",
+     "ids": [
+      4725,
+      11523
+     ],
+     "tokens": [
+      " South",
+      " Korea"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      9514,
+      580,
+      58021
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 102,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "South Dakota",
+     "ids": [
+      4725,
+      26967
+     ],
+     "tokens": [
+      " South",
+      " Dakota"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      9514,
+      93708,
+      5899
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 37,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "South Carolina",
+     "ids": [
+      4725,
+      12375
+     ],
+     "tokens": [
+      " South",
+      " Carolina"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      9514,
+      1740,
+      55960
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 50,
+     "suffix_len": 1
+    }
+   ],
+   "n_T": 0,
+   "usable_for_template_eval": false
+  },
+  {
+   "name": "North",
+   "prefix_ids": [
+    4634
+   ],
+   "prefix_len": 1,
+   "members": [
+    {
+     "phrase": "North Korea",
+     "ids": [
+      4634,
+      11523
+     ],
+     "tokens": [
+      " North",
+      " Korea"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      9897,
+      580,
+      58021
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 100,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "North Carolina",
+     "ids": [
+      4634,
+      12375
+     ],
+     "tokens": [
+      " North",
+      " Carolina"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      9897,
+      1740,
+      55960
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 115,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "North Dakota",
+     "ids": [
+      4634,
+      26967
+     ],
+     "tokens": [
+      " North",
+      " Dakota"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      9897,
+      93708,
+      5899
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 17,
+     "suffix_len": 1
+    }
+   ],
+   "n_T": 0,
+   "usable_for_template_eval": false
+  },
+  {
+   "name": "United",
+   "prefix_ids": [
+    3516
+   ],
+   "prefix_len": 1,
+   "members": [
+    {
+     "phrase": "United States",
+     "ids": [
+      3516,
+      4042
+     ],
+     "tokens": [
+      " United",
+      " States"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      27276,
+      5134
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": true,
+     "template_text": "united states",
+     "template_row": 13352,
+     "passages": [
+      [
+       "tl-registry-v1-passages.json",
+       141
+      ]
+     ],
+     "n_passages": 141,
+     "pile10k_natural_occurrences": 1794,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "United Kingdom",
+     "ids": [
+      3516,
+      14634
+     ],
+     "tokens": [
+      " United",
+      " Kingdom"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      27276,
+      24284
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 135,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "United Nations",
+     "ids": [
+      3516,
+      18561
+     ],
+     "tokens": [
+      " United",
+      " Nations"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      27276,
+      16185
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": true,
+     "template_text": "united nations",
+     "template_row": 13198,
+     "passages": [
+      [
+       "tl-registry-v1-passages.json",
+       141
+      ]
+     ],
+     "n_passages": 141,
+     "pile10k_natural_occurrences": 62,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "United Arab Emirates",
+     "ids": [
+      3516,
+      10440,
+      47075
+     ],
+     "tokens": [
+      " United",
+      " Arab",
+      " Emirates"
+     ],
+     "n_tokens": 3,
+     "lowercase_ids": [
+      27276,
+      49586,
+      945,
+      23782
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 10,
+     "suffix_len": 2
+    }
+   ],
+   "n_T": 2,
+   "usable_for_template_eval": true
+  },
+  {
+   "name": "San",
+   "prefix_ids": [
+    5655
+   ],
+   "prefix_len": 1,
+   "members": [
+    {
+     "phrase": "San Francisco",
+     "ids": [
+      5655,
+      12510
+     ],
+     "tokens": [
+      " San",
+      " Francisco"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      8104,
+      42042,
+      9185
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 186,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "San Diego",
+     "ids": [
+      5655,
+      17790
+     ],
+     "tokens": [
+      " San",
+      " Diego"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      8104,
+      2659,
+      3237
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 153,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "San Antonio",
+     "ids": [
+      5655,
+      21738
+     ],
+     "tokens": [
+      " San",
+      " Antonio"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      8104,
+      3094,
+      78608
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 44,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "San Jose",
+     "ids": [
+      5655,
+      10543
+     ],
+     "tokens": [
+      " San",
+      " Jose"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      8104,
+      86563
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 32,
+     "suffix_len": 1
+    }
+   ],
+   "n_T": 0,
+   "usable_for_template_eval": false
+  },
+  {
+   "name": "Saint",
+   "prefix_ids": [
+    13799
+   ],
+   "prefix_len": 1,
+   "members": [
+    {
+     "phrase": "Saint Petersburg",
+     "ids": [
+      13799,
+      52138
+     ],
+     "tokens": [
+      " Saint",
+      " Petersburg"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      34670,
+      280,
+      2345,
+      9963
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 4,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "Saint Louis",
+     "ids": [
+      13799,
+      11537
+     ],
+     "tokens": [
+      " Saint",
+      " Louis"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      34670,
+      92805
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 6,
+     "suffix_len": 1
+    }
+   ],
+   "n_T": 0,
+   "usable_for_template_eval": false
+  },
+  {
+   "name": "Golden",
+   "prefix_ids": [
+    17278
+   ],
+   "prefix_len": 1,
+   "members": [
+    {
+     "phrase": "Golden Gate Bridge",
+     "ids": [
+      17278,
+      28286,
+      19269
+     ],
+     "tokens": [
+      " Golden",
+      " Gate",
+      " Bridge"
+     ],
+     "n_tokens": 3,
+     "lowercase_ids": [
+      20117,
+      17587,
+      13759
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": true,
+     "template_text": "Golden Gate Bridge",
+     "template_row": 13700,
+     "passages": [
+      [
+       "tl-registry-v2-passages.json",
+       120
+      ]
+     ],
+     "n_passages": 120,
+     "pile10k_natural_occurrences": 2,
+     "suffix_len": 2
+    },
+    {
+     "phrase": "Golden Retriever",
+     "ids": [
+      17278,
+      10082,
+      452,
+      1986
+     ],
+     "tokens": [
+      " Golden",
+      " Ret",
+      "ri",
+      "ever"
+     ],
+     "n_tokens": 4,
+     "lowercase_ids": [
+      20117,
+      10443,
+      415
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 0,
+     "suffix_len": 3
+    }
+   ],
+   "n_T": 1,
+   "usable_for_template_eval": false
+  },
+  {
+   "name": "ice",
+   "prefix_ids": [
+    9561
+   ],
+   "prefix_len": 1,
+   "members": [
+    {
+     "phrase": "ice cream",
+     "ids": [
+      9561,
+      12281
+     ],
+     "tokens": [
+      " ice",
+      " cream"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      9561,
+      12281
+     ],
+     "lowercase_tokenizes_differently": false,
+     "in_template_vocab": true,
+     "template_text": "ice cream",
+     "template_row": 13726,
+     "passages": [
+      [
+       "tl-registry-v3-passages.json",
+       125
+      ]
+     ],
+     "n_passages": 125,
+     "pile10k_natural_occurrences": 81,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "ice age",
+     "ids": [
+      9561,
+      4092
+     ],
+     "tokens": [
+      " ice",
+      " age"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      9561,
+      4092
+     ],
+     "lowercase_tokenizes_differently": false,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 4,
+     "suffix_len": 1
+    }
+   ],
+   "n_T": 1,
+   "usable_for_template_eval": false
+  },
+  {
+   "name": "credit",
+   "prefix_ids": [
+    6459
+   ],
+   "prefix_len": 1,
+   "members": [
+    {
+     "phrase": "credit card",
+     "ids": [
+      6459,
+      3575
+     ],
+     "tokens": [
+      " credit",
+      " card"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      6459,
+      3575
+     ],
+     "lowercase_tokenizes_differently": false,
+     "in_template_vocab": true,
+     "template_text": "credit card",
+     "template_row": 13724,
+     "passages": [
+      [
+       "tl-registry-v3-passages.json",
+       148
+      ]
+     ],
+     "n_passages": 148,
+     "pile10k_natural_occurrences": 128,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "credit score",
+     "ids": [
+      6459,
+      5284
+     ],
+     "tokens": [
+      " credit",
+      " score"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      6459,
+      5284
+     ],
+     "lowercase_tokenizes_differently": false,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 7,
+     "suffix_len": 1
+    }
+   ],
+   "n_T": 1,
+   "usable_for_template_eval": false
+  },
+  {
+   "name": "general",
+   "prefix_ids": [
+    4437
+   ],
+   "prefix_len": 1,
+   "members": [
+    {
+     "phrase": "general relativity",
+     "ids": [
+      4437,
+      1303,
+      41979
+     ],
+     "tokens": [
+      " general",
+      " rel",
+      "ativity"
+     ],
+     "n_tokens": 3,
+     "lowercase_ids": [
+      4437,
+      1303,
+      41979
+     ],
+     "lowercase_tokenizes_differently": false,
+     "in_template_vocab": true,
+     "template_text": "general relativity",
+     "template_row": 13699,
+     "passages": [
+      [
+       "tl-registry-v2-passages.json",
+       144
+      ]
+     ],
+     "n_passages": 144,
+     "pile10k_natural_occurrences": 1,
+     "suffix_len": 2
+    },
+    {
+     "phrase": "general election",
+     "ids": [
+      4437,
+      6028
+     ],
+     "tokens": [
+      " general",
+      " election"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      4437,
+      6028
+     ],
+     "lowercase_tokenizes_differently": false,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 77,
+     "suffix_len": 1
+    }
+   ],
+   "n_T": 1,
+   "usable_for_template_eval": false
+  },
+  {
+   "name": "World",
+   "prefix_ids": [
+    4196
+   ],
+   "prefix_len": 1,
+   "members": [
+    {
+     "phrase": "World Cup",
+     "ids": [
+      4196,
+      10544
+     ],
+     "tokens": [
+      " World",
+      " Cup"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      1814,
+      10212
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": true,
+     "template_text": "World Cup",
+     "template_row": 13727,
+     "passages": [
+      [
+       "tl-registry-v3-passages.json",
+       98
+      ]
+     ],
+     "n_passages": 98,
+     "pile10k_natural_occurrences": 51,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "World War",
+     "ids": [
+      4196,
+      4843
+     ],
+     "tokens": [
+      " World",
+      " War"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      1814,
+      3980
+     ],
+     "lowercase_tokenizes_differently": true,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 170,
+     "suffix_len": 1
+    }
+   ],
+   "n_T": 1,
+   "usable_for_template_eval": false
+  },
+  {
+   "name": "hot",
+   "prefix_ids": [
+    3882
+   ],
+   "prefix_len": 1,
+   "members": [
+    {
+     "phrase": "hot dog",
+     "ids": [
+      3882,
+      5388
+     ],
+     "tokens": [
+      " hot",
+      " dog"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      3882,
+      5388
+     ],
+     "lowercase_tokenizes_differently": false,
+     "in_template_vocab": true,
+     "template_text": "hot dog",
+     "template_row": 13725,
+     "passages": [
+      [
+       "tl-registry-v3-passages.json",
+       135
+      ]
+     ],
+     "n_passages": 135,
+     "pile10k_natural_occurrences": 26,
+     "suffix_len": 1
+    },
+    {
+     "phrase": "hot water",
+     "ids": [
+      3882,
+      2919
+     ],
+     "tokens": [
+      " hot",
+      " water"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      3882,
+      2919
+     ],
+     "lowercase_tokenizes_differently": false,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 32,
+     "suffix_len": 1
+    }
+   ],
+   "n_T": 1,
+   "usable_for_template_eval": false
+  }
+ ],
+ "dropped": [
+  {
+   "members": [
+    "Los Angeles",
+    "Las Vegas"
+   ],
+   "reason": "no shared token prefix",
+   "ids": [
+    [
+     9368,
+     11563
+    ],
+    [
+     15292,
+     17072
+    ]
+   ]
+  },
+  {
+   "members": [
+    "blackmail",
+    "blackboard",
+    "blacksmith"
+   ],
+   "reason": "no shared token prefix",
+   "ids": [
+    [
+     84156
+    ],
+    [
+     3565,
+     2402
+    ],
+    [
+     3565,
+     31923
+    ]
+   ]
+  }
+ ],
+ "non_family_pairs": [
+  {
+   "members": [
+    {
+     "phrase": "blackmail",
+     "ids": [
+      84156
+     ],
+     "tokens": [
+      " blackmail"
+     ],
+     "n_tokens": 1,
+     "lowercase_ids": [
+      84156
+     ],
+     "lowercase_tokenizes_differently": false,
+     "in_template_vocab": true,
+     "template_text": "blackmail",
+     "template_row": 12917,
+     "passages": [
+      [
+       "passages.json",
+       111
+      ]
+     ],
+     "n_passages": 111,
+     "pile10k_natural_occurrences": 18
+    },
+    {
+     "phrase": "extortion",
+     "ids": [
+      92084
+     ],
+     "tokens": [
+      " extortion"
+     ],
+     "n_tokens": 1,
+     "lowercase_ids": [
+      92084
+     ],
+     "lowercase_tokenizes_differently": false,
+     "in_template_vocab": false,
+     "template_text": null,
+     "template_row": null,
+     "passages": [],
+     "n_passages": 0,
+     "pile10k_natural_occurrences": 7
+    }
+   ],
+   "prefix_len": 0
+  },
+  {
+   "members": [
+    {
+     "phrase": "photosynthesis",
+     "ids": [
+      7022,
+      71163
+     ],
+     "tokens": [
+      " photos",
+      "ynthesis"
+     ],
+     "n_tokens": 2,
+     "lowercase_ids": [
+      7022,
+      71163
+     ],
+     "lowercase_tokenizes_differently": false,
+     "in_template_vocab": true,
+     "template_text": "photosynthesis",
+     "template_row": 12916,
+     "passages": [
+      [
+       "passages.json",
+       245
+      ]
+     ],
+     "n_passages": 245,
+     "pile10k_natural_occurrences": 13
+    },
+    {
+     "phrase": "photograph",
+     "ids": [
+      9994
+     ],
+     "tokens": [
+      " photograph"
+     ],
+     "n_tokens": 1,
+     "lowercase_ids": [
+      9994
+     ],
+     "lowercase_tokenizes_differently": false,
+     "in_template_vocab": true,
+     "template_text": "photograph",
+     "template_row": 4512,
+     "passages": [
+      [
+       "passages.json",
+       248
+      ]
+     ],
+     "n_passages": 248,
+     "pile10k_natural_occurrences": 483
+    }
+   ],
+   "prefix_len": 0
+  }
+ ],
+ "controls": {
+  "random_same_prefix": [
+   {
+    "members": [
+     {
+      "phrase": "cyanobacteria",
+      "template_row": 12997,
+      "ids": [
+       55945,
+       656,
+       75094
+      ]
+     },
+     {
+      "phrase": "cyanobacterium",
+      "template_row": 13023,
+      "ids": [
+       55945,
+       656,
+       2401,
+       2280
+      ]
+     }
+    ],
+    "prefix_len": 2
+   },
+   {
+    "members": [
+     {
+      "phrase": "backtracking after dead end",
+      "template_row": 13649,
+      "ids": [
+       1142,
+       43075,
+       1238,
+       5418,
+       809
+      ]
+     },
+     {
+      "phrase": "back channel negotiations",
+      "template_row": 13660,
+      "ids": [
+       1142,
+       5323,
+       22717
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "fibromyoma",
+      "template_row": 13074,
+      "ids": [
+       15336,
+       433,
+       88,
+       7540
+      ]
+     },
+     {
+      "phrase": "fibrosis",
+      "template_row": 13058,
+      "ids": [
+       15336,
+       60213
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "ussr",
+      "template_row": 9141,
+      "ids": [
+       586,
+       14653
+      ]
+     },
+     {
+      "phrase": "usd",
+      "template_row": 7055,
+      "ids": [
+       586,
+       67
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "Akkad",
+      "template_row": 12908,
+      "ids": [
+       15878,
+       90061
+      ]
+     },
+     {
+      "phrase": "Akhmatova",
+      "template_row": 12665,
+      "ids": [
+       15878,
+       71,
+       8210,
+       12297
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "electric vehicles",
+      "template_row": 13272,
+      "ids": [
+       8799,
+       11145
+      ]
+     },
+     {
+      "phrase": "electric guitar",
+      "template_row": 13229,
+      "ids": [
+       8799,
+       16488
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "protein interactions",
+      "template_row": 13418,
+      "ids": [
+       12465,
+       21207
+      ]
+     },
+     {
+      "phrase": "protein folding",
+      "template_row": 13309,
+      "ids": [
+       12465,
+       43254
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "myosin va",
+      "template_row": 13235,
+      "ids": [
+       821,
+       428,
+       258,
+       10840
+      ]
+     },
+     {
+      "phrase": "mycobacteria tuberculosis",
+      "template_row": 13502,
+      "ids": [
+       821,
+       82601,
+       75094,
+       84129
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "Nagasaki",
+      "template_row": 12801,
+      "ids": [
+       28113,
+       54515
+      ]
+     },
+     {
+      "phrase": "Nagoya",
+      "template_row": 12830,
+      "ids": [
+       28113,
+       44525
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "united nations",
+      "template_row": 13198,
+      "ids": [
+       27276,
+       16185
+      ]
+     },
+     {
+      "phrase": "united states",
+      "template_row": 13352,
+      "ids": [
+       27276,
+       5134
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "osmium",
+      "template_row": 12970,
+      "ids": [
+       2556,
+       48531
+      ]
+     },
+     {
+      "phrase": "osmoregulation",
+      "template_row": 12991,
+      "ids": [
+       2556,
+       6183,
+       70,
+       2820
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "stem cell differentiation",
+      "template_row": 13299,
+      "ids": [
+       18526,
+       2691,
+       56944
+      ]
+     },
+     {
+      "phrase": "stem cell therapy",
+      "template_row": 13281,
+      "ids": [
+       18526,
+       2691,
+       14631
+      ]
+     }
+    ],
+    "prefix_len": 2
+   },
+   {
+    "members": [
+     {
+      "phrase": "Heidegger",
+      "template_row": 12681,
+      "ids": [
+       1216,
+       562,
+       88613
+      ]
+     },
+     {
+      "phrase": "Heaviside",
+      "template_row": 12613,
+      "ids": [
+       1216,
+       21658,
+       562
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "criminal court proceedings",
+      "template_row": 13227,
+      "ids": [
+       8885,
+       5300,
+       27388
+      ]
+     },
+     {
+      "phrase": "criminal prosecution",
+      "template_row": 13500,
+      "ids": [
+       8885,
+       30560
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "Vavilov",
+      "template_row": 12641,
+      "ids": [
+       629,
+       394,
+       319,
+       833
+      ]
+     },
+     {
+      "phrase": "Vivaldi",
+      "template_row": 12536,
+      "ids": [
+       629,
+       3803,
+       8317
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "Antananarivo",
+      "template_row": 12731,
+      "ids": [
+       6543,
+       27683,
+       277,
+       6293
+      ]
+     },
+     {
+      "phrase": "Antioch",
+      "template_row": 12888,
+      "ids": [
+       6543,
+       789,
+       329
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "generalizing from examples",
+      "template_row": 13638,
+      "ids": [
+       4437,
+       4694,
+       494,
+       9989
+      ]
+     },
+     {
+      "phrase": "general relativity",
+      "template_row": 13699,
+      "ids": [
+       4437,
+       1303,
+       41979
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "rite",
+      "template_row": 11822,
+      "ids": [
+       427,
+       614
+      ]
+     },
+     {
+      "phrase": "rhenium",
+      "template_row": 12969,
+      "ids": [
+       427,
+       11689,
+       2280
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "death penalty",
+      "template_row": 13351,
+      "ids": [
+       4397,
+       15866
+      ]
+     },
+     {
+      "phrase": "death and dying",
+      "template_row": 13359,
+      "ids": [
+       4397,
+       321,
+       21582
+      ]
+     }
+    ],
+    "prefix_len": 1
+   },
+   {
+    "members": [
+     {
+      "phrase": "Volturno",
+      "template_row": 12869,
+      "ids": [
+       10564,
+       404,
+       78
+      ]
+     },
+     {
+      "phrase": "Volga",
+      "template_row": 12848,
+      "ids": [
+       10564,
+       6531
+      ]
+     }
+    ],
+    "prefix_len": 1
+   }
+  ],
+  "random_unrelated": [
+   {
+    "members": [
+     {
+      "phrase": "entertained",
+      "template_row": 11576,
+      "ids": [
+       62273
+      ]
+     },
+     {
+      "phrase": "thousand",
+      "template_row": 2044,
+      "ids": [
+       15706
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "planting",
+      "template_row": 8969,
+      "ids": [
+       45445
+      ]
+     },
+     {
+      "phrase": "valve",
+      "template_row": 5451,
+      "ids": [
+       30396
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "clinical trial randomization",
+      "template_row": 13344,
+      "ids": [
+       14075,
+       8818,
+       4055,
+       1954
+      ]
+     },
+     {
+      "phrase": "reckless",
+      "template_row": 8852,
+      "ids": [
+       51429
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "printed",
+      "template_row": 3329,
+      "ids": [
+       16218
+      ]
+     },
+     {
+      "phrase": "phosphorescence",
+      "template_row": 13097,
+      "ids": [
+       30935,
+       4440,
+       34359
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "sundays",
+      "template_row": 9882,
+      "ids": [
+       48879,
+       912
+      ]
+     },
+     {
+      "phrase": "nets",
+      "template_row": 8965,
+      "ids": [
+       50692
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "dice",
+      "template_row": 9627,
+      "ids": [
+       21434
+      ]
+     },
+     {
+      "phrase": "skip",
+      "template_row": 4712,
+      "ids": [
+       10390
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "troy",
+      "template_row": 7290,
+      "ids": [
+       259,
+       3243
+      ]
+     },
+     {
+      "phrase": "drugs",
+      "template_row": 1501,
+      "ids": [
+       10654
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "bum",
+      "template_row": 9769,
+      "ids": [
+       70399
+      ]
+     },
+     {
+      "phrase": "electrocardiogram",
+      "template_row": 13073,
+      "ids": [
+       23622,
+       4791,
+       72,
+       12586
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "shitty",
+      "template_row": 6306,
+      "ids": [
+       74809
+      ]
+     },
+     {
+      "phrase": "cattle",
+      "template_row": 5194,
+      "ids": [
+       34664
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "africans",
+      "template_row": 9431,
+      "ids": [
+       82033,
+       36137
+      ]
+     },
+     {
+      "phrase": "hillary",
+      "template_row": 3966,
+      "ids": [
+       23198,
+       640
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "experiments",
+      "template_row": 4756,
+      "ids": [
+       20554
+      ]
+     },
+     {
+      "phrase": "passes",
+      "template_row": 3012,
+      "ids": [
+       15734
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "clock",
+      "template_row": 3102,
+      "ids": [
+       8598
+      ]
+     },
+     {
+      "phrase": "software malfunctions",
+      "template_row": 13458,
+      "ids": [
+       3061,
+       8377,
+       20752
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "ideal",
+      "template_row": 3059,
+      "ids": [
+       10194
+      ]
+     },
+     {
+      "phrase": "evidence",
+      "template_row": 540,
+      "ids": [
+       5721
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "subsidies",
+      "template_row": 10039,
+      "ids": [
+       40631
+      ]
+     },
+     {
+      "phrase": "explosions",
+      "template_row": 10758,
+      "ids": [
+       53546
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "missouri",
+      "template_row": 4260,
+      "ids": [
+       3016,
+       20809
+      ]
+     },
+     {
+      "phrase": "gif",
+      "template_row": 7807,
+      "ids": [
+       37189
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "male",
+      "template_row": 1131,
+      "ids": [
+       8330
+      ]
+     },
+     {
+      "phrase": "impossible",
+      "template_row": 1471,
+      "ids": [
+       11656
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "panties",
+      "template_row": 11120,
+      "ids": [
+       53497
+      ]
+     },
+     {
+      "phrase": "cdc",
+      "template_row": 12412,
+      "ids": [
+       272,
+       7385
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "tiny",
+      "template_row": 2133,
+      "ids": [
+       13280
+      ]
+     },
+     {
+      "phrase": "mate",
+      "template_row": 2450,
+      "ids": [
+       28222
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "french",
+      "template_row": 633,
+      "ids": [
+       39832
+      ]
+     },
+     {
+      "phrase": "fourth",
+      "template_row": 1314,
+      "ids": [
+       11400
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "negligence",
+      "template_row": 11457,
+      "ids": [
+       56298
+      ]
+     },
+     {
+      "phrase": "tentative acceptance of claim",
+      "template_row": 13588,
+      "ids": [
+       72560,
+       24693,
+       314,
+       3591
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "replay",
+      "template_row": 8857,
+      "ids": [
+       33341
+      ]
+     },
+     {
+      "phrase": "balloons",
+      "template_row": 11198,
+      "ids": [
+       67128
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "threshold",
+      "template_row": 6410,
+      "ids": [
+       11823
+      ]
+     },
+     {
+      "phrase": "World Cup",
+      "template_row": 13727,
+      "ids": [
+       4196,
+       10544
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "cooled",
+      "template_row": 11555,
+      "ids": [
+       62139
+      ]
+     },
+     {
+      "phrase": "typing",
+      "template_row": 8594,
+      "ids": [
+       18904
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "quarters",
+      "template_row": 4515,
+      "ids": [
+       30439
+      ]
+     },
+     {
+      "phrase": "norfolk",
+      "template_row": 8549,
+      "ids": [
+       6130,
+       39580
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "pcr cycling",
+      "template_row": 13297,
+      "ids": [
+       280,
+       4920,
+       31005
+      ]
+     },
+     {
+      "phrase": "trends",
+      "template_row": 3858,
+      "ids": [
+       17793
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "waves",
+      "template_row": 3525,
+      "ids": [
+       16382
+      ]
+     },
+     {
+      "phrase": "puppies",
+      "template_row": 11132,
+      "ids": [
+       54730
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "logging",
+      "template_row": 9663,
+      "ids": [
+       8132
+      ]
+     },
+     {
+      "phrase": "organized crime",
+      "template_row": 13521,
+      "ids": [
+       16155,
+       9486
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "compelling",
+      "template_row": 6871,
+      "ids": [
+       27687
+      ]
+     },
+     {
+      "phrase": "herd",
+      "template_row": 9497,
+      "ids": [
+       56162
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "outdoor",
+      "template_row": 4509,
+      "ids": [
+       15325
+      ]
+     },
+     {
+      "phrase": "spice",
+      "template_row": 7382,
+      "ids": [
+       40308
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "mapping",
+      "template_row": 8071,
+      "ids": [
+       12366
+      ]
+     },
+     {
+      "phrase": "poetic",
+      "template_row": 10817,
+      "ids": [
+       72860
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "scripts",
+      "template_row": 10505,
+      "ids": [
+       18910
+      ]
+     },
+     {
+      "phrase": "qaeda",
+      "template_row": 11472,
+      "ids": [
+       2715,
+       33512
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "cyanobacteria",
+      "template_row": 12997,
+      "ids": [
+       55945,
+       656,
+       75094
+      ]
+     },
+     {
+      "phrase": "merchant",
+      "template_row": 5855,
+      "ids": [
+       28282
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "fashion",
+      "template_row": 1349,
+      "ids": [
+       10829
+      ]
+     },
+     {
+      "phrase": "lean",
+      "template_row": 5313,
+      "ids": [
+       15192
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "subsidies",
+      "template_row": 10039,
+      "ids": [
+       40631
+      ]
+     },
+     {
+      "phrase": "heads",
+      "template_row": 1889,
+      "ids": [
+       14208
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "obamacare",
+      "template_row": 7969,
+      "ids": [
+       1454,
+       32705
+      ]
+     },
+     {
+      "phrase": "crab",
+      "template_row": 9618,
+      "ids": [
+       57406
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "razor",
+      "template_row": 10324,
+      "ids": [
+       57131
+      ]
+     },
+     {
+      "phrase": "journalism",
+      "template_row": 5493,
+      "ids": [
+       28057
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "gym",
+      "template_row": 3119,
+      "ids": [
+       18244
+      ]
+     },
+     {
+      "phrase": "rated",
+      "template_row": 3981,
+      "ids": [
+       20965
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "close",
+      "template_row": 265,
+      "ids": [
+       3160
+      ]
+     },
+     {
+      "phrase": "presumed",
+      "template_row": 11984,
+      "ids": [
+       59190
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "susan",
+      "template_row": 4440,
+      "ids": [
+       4333,
+       276
+      ]
+     },
+     {
+      "phrase": "angry",
+      "template_row": 1919,
+      "ids": [
+       17960
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "corpus",
+      "template_row": 11556,
+      "ids": [
+       40701
+      ]
+     },
+     {
+      "phrase": "fancy",
+      "template_row": 3612,
+      "ids": [
+       25611
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "reforms",
+      "template_row": 6095,
+      "ids": [
+       29257
+      ]
+     },
+     {
+      "phrase": "endoplasmic",
+      "template_row": 13018,
+      "ids": [
+       809,
+       53228,
+       10217,
+       291
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "vast",
+      "template_row": 2793,
+      "ids": [
+       12401
+      ]
+     },
+     {
+      "phrase": "surgeon",
+      "template_row": 5448,
+      "ids": [
+       43495
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "convincing",
+      "template_row": 6981,
+      "ids": [
+       38252
+      ]
+     },
+     {
+      "phrase": "immune signaling",
+      "template_row": 13367,
+      "ids": [
+       21395,
+       40593
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "stock",
+      "template_row": 1018,
+      "ids": [
+       5416
+      ]
+     },
+     {
+      "phrase": "medicine",
+      "template_row": 1648,
+      "ids": [
+       15251
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "Nagoya",
+      "template_row": 12830,
+      "ids": [
+       28113,
+       44525
+      ]
+     },
+     {
+      "phrase": "latter",
+      "template_row": 2397,
+      "ids": [
+       14827
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "jerseys",
+      "template_row": 11430,
+      "ids": [
+       51270
+      ]
+     },
+     {
+      "phrase": "tube",
+      "template_row": 3584,
+      "ids": [
+       13311
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "district",
+      "template_row": 741,
+      "ids": [
+       9014
+      ]
+     },
+     {
+      "phrase": "research ethics",
+      "template_row": 13387,
+      "ids": [
+       3302,
+       29895
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "sociology",
+      "template_row": 9402,
+      "ids": [
+       74472
+      ]
+     },
+     {
+      "phrase": "beck",
+      "template_row": 10390,
+      "ids": [
+       87949
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "bats",
+      "template_row": 8752,
+      "ids": [
+       40808
+      ]
+     },
+     {
+      "phrase": "rom",
+      "template_row": 9865,
+      "ids": [
+       9589
+      ]
+     }
+    ]
+   },
+   {
+    "members": [
+     {
+      "phrase": "roberto",
+      "template_row": 11150,
+      "ids": [
+       85836,
+       78
+      ]
+     },
+     {
+      "phrase": "heat",
+      "template_row": 1212,
+      "ids": [
+       8364
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "n_lowercase_artifact_rows": 1298
+}

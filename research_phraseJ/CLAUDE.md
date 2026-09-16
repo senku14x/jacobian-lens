@@ -94,7 +94,7 @@ agreed to it. The design states:
 
 | file | from | what |
 |---|---|---|
-| `ekko_harness.py` | ekko-lens `research/ekko/harness.py` @89ae076 | `load_model`, `load_released_lens`, `capture`, exact `forward_from(h, layer)` replay (0 error verified there), `lens_ranks`, `lens_topk`, `single_token_id` |
+| `ekko_harness.py` (edited: stale `HF_HOME` default now conditional) | ekko-lens `research/ekko/harness.py` @89ae076 | `load_model`, `load_released_lens`, `capture`, exact `forward_from(h, layer)` replay (0 error verified there), `lens_ranks`, `lens_topk`, `single_token_id` |
 | `ekko_rules.py` | ekko-lens `research/ekko/rules.py` @89ae076 | LRP stop-gradient surrogates for Qwen3_5 blocks (R-lens arm only) |
 | `ekko_002_calib_passk_reference.py` | ekko-lens `002_calib_passk.py` | reference for the 59-item calibration-slice carve (seed 0, 10/category) and pass@10 |
 | `ekko_E2_eval_equal_reference.py` | ekko-lens `E2_eval_equal.py` | reference for the matched-grid evaluator and the M4 skip-ahead guardrail |

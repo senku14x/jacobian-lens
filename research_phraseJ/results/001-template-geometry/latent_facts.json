@@ -1,0 +1,376 @@
+{
+ "facts": {
+  "New York": {
+   "cues": [
+    "the Statue of Liberty",
+    "Times Square",
+    "Wall Street",
+    "the Empire State Building",
+    "the city of Albany"
+   ],
+   "continent": "North America",
+   "language": "English",
+   "currency": "dollar",
+   "hemisphere": "Northern",
+   "second_word_letters": "4"
+  },
+  "New Zealand": {
+   "cues": [
+    "the city of Wellington",
+    "the All Blacks rugby team",
+    "the kiwi bird",
+    "the city of Auckland",
+    "the Maori people"
+   ],
+   "continent": "Oceania",
+   "language": "English",
+   "currency": "dollar",
+   "hemisphere": "Southern",
+   "second_word_letters": "7"
+  },
+  "New Delhi": {
+   "cues": [
+    "India Gate",
+    "the Red Fort",
+    "Rashtrapati Bhavan",
+    "Connaught Place",
+    "the Lotus Temple"
+   ],
+   "continent": "Asia",
+   "language": "Hindi",
+   "currency": "rupee",
+   "hemisphere": "Northern",
+   "second_word_letters": "5"
+  },
+  "New Jersey": {
+   "cues": [
+    "the city of Trenton",
+    "Atlantic City",
+    "Princeton University",
+    "the city of Newark",
+    "the city of Hoboken"
+   ],
+   "continent": "North America",
+   "language": "English",
+   "currency": "dollar",
+   "hemisphere": "Northern",
+   "second_word_letters": "6"
+  },
+  "South Africa": {
+   "cues": [
+    "Cape Town",
+    "Table Mountain",
+    "Nelson Mandela",
+    "Kruger National Park",
+    "Johannesburg"
+   ],
+   "continent": "Africa",
+   "language": "Zulu",
+   "currency": "rand",
+   "hemisphere": "Southern",
+   "second_word_letters": "6"
+  },
+  "South Korea": {
+   "cues": [
+    "the city of Seoul",
+    "the Samsung company",
+    "K-pop music",
+    "the city of Busan",
+    "Gyeongbokgung Palace"
+   ],
+   "continent": "Asia",
+   "language": "Korean",
+   "currency": "won",
+   "hemisphere": "Northern",
+   "second_word_letters": "5"
+  },
+  "South Dakota": {
+   "cues": [
+    "Mount Rushmore",
+    "the city of Pierre",
+    "Sioux Falls",
+    "the Badlands",
+    "Rapid City"
+   ],
+   "continent": "North America",
+   "language": "English",
+   "currency": "dollar",
+   "hemisphere": "Northern",
+   "second_word_letters": "6"
+  },
+  "South Carolina": {
+   "cues": [
+    "the city of Charleston",
+    "Myrtle Beach",
+    "Fort Sumter",
+    "Hilton Head Island",
+    "Clemson University"
+   ],
+   "continent": "North America",
+   "language": "English",
+   "currency": "dollar",
+   "hemisphere": "Northern",
+   "second_word_letters": "8"
+  },
+  "North Korea": {
+   "cues": [
+    "the city of Pyongyang",
+    "Kim Jong Un",
+    "the Juche ideology",
+    "the Ryugyong Hotel",
+    "the Kim dynasty"
+   ],
+   "continent": "Asia",
+   "language": "Korean",
+   "currency": "won",
+   "hemisphere": "Northern",
+   "second_word_letters": "5"
+  },
+  "North Carolina": {
+   "cues": [
+    "the city of Raleigh",
+    "the city of Charlotte",
+    "Duke University",
+    "the Outer Banks",
+    "Chapel Hill"
+   ],
+   "continent": "North America",
+   "language": "English",
+   "currency": "dollar",
+   "hemisphere": "Northern",
+   "second_word_letters": "8"
+  },
+  "North Dakota": {
+   "cues": [
+    "the city of Bismarck",
+    "the city of Fargo",
+    "Theodore Roosevelt National Park",
+    "Grand Forks",
+    "the city of Minot"
+   ],
+   "continent": "North America",
+   "language": "English",
+   "currency": "dollar",
+   "hemisphere": "Northern",
+   "second_word_letters": "6"
+  },
+  "United States": {
+   "cues": [
+    "Washington, D.C.",
+    "Hollywood",
+    "the Grand Canyon",
+    "the Fourth of July holiday",
+    "the U.S. Congress"
+   ],
+   "continent": "North America",
+   "language": "English",
+   "currency": "dollar",
+   "hemisphere": "Northern",
+   "second_word_letters": "6"
+  },
+  "United Kingdom": {
+   "cues": [
+    "Buckingham Palace",
+    "the city of Manchester",
+    "Big Ben",
+    "the Houses of Parliament at Westminster",
+    "the city of Edinburgh"
+   ],
+   "continent": "Europe",
+   "language": "English",
+   "currency": "pound",
+   "hemisphere": "Northern",
+   "second_word_letters": "7"
+  },
+  "United Nations": {
+   "cues": [
+    "the Security Council",
+    "the Secretary-General",
+    "the General Assembly",
+    "UNESCO",
+    "peacekeeping blue helmets"
+   ],
+   "continent": null,
+   "language": "English",
+   "currency": null,
+   "hemisphere": "Northern",
+   "second_word_letters": "7"
+  },
+  "United Arab Emirates": {
+   "cues": [
+    "Dubai",
+    "Abu Dhabi",
+    "the Burj Khalifa",
+    "Sharjah",
+    "the Palm Jumeirah"
+   ],
+   "continent": "Asia",
+   "language": "Arabic",
+   "currency": "dirham",
+   "hemisphere": "Northern",
+   "second_word_letters": "4"
+  },
+  "San Francisco": {
+   "cues": [
+    "the Golden Gate Bridge",
+    "Alcatraz Island",
+    "the cable cars on Powell Street",
+    "the 49ers football team",
+    "Fisherman's Wharf"
+   ],
+   "continent": "North America",
+   "language": "English",
+   "currency": "dollar",
+   "hemisphere": "Northern",
+   "second_word_letters": "9",
+   "state": "California"
+  },
+  "San Diego": {
+   "cues": [
+    "Balboa Park",
+    "Coronado Island",
+    "the Padres baseball team",
+    "Comic-Con",
+    "the SeaWorld park near Mission Bay"
+   ],
+   "continent": "North America",
+   "language": "English",
+   "currency": "dollar",
+   "hemisphere": "Northern",
+   "second_word_letters": "5",
+   "state": "California"
+  },
+  "San Antonio": {
+   "cues": [
+    "the Alamo",
+    "the River Walk",
+    "the Spurs basketball team",
+    "the Tower of the Americas",
+    "the Alamodome"
+   ],
+   "continent": "North America",
+   "language": "English",
+   "currency": "dollar",
+   "hemisphere": "Northern",
+   "second_word_letters": "7",
+   "state": "Texas"
+  },
+  "San Jose": {
+   "cues": [
+    "the Sharks hockey team",
+    "the Winchester Mystery House",
+    "the SAP Center arena",
+    "the Tech Interactive museum",
+    "the headquarters of Adobe"
+   ],
+   "continent": "North America",
+   "language": "English",
+   "currency": "dollar",
+   "hemisphere": "Northern",
+   "second_word_letters": "4",
+   "state": "California"
+  }
+ },
+ "routes": {
+  "continent": [
+   "Fact: The continent containing the place where {cue} is located is",
+   "The place associated with {cue} lies on the continent of",
+   "Q: On which continent is the place known for {cue}? A:",
+   "Geography note: {cue} can be found on the continent called"
+  ],
+  "language": [
+   "Fact: The language most widely spoken in the place where {cue} is located is",
+   "People living where {cue} is located mostly speak",
+   "Q: What language is mainly spoken in the place known for {cue}? A:",
+   "Travel note: around {cue}, the main language you will hear is"
+  ],
+  "currency": [
+   "Fact: The currency used in the place where {cue} is located is the",
+   "Visitors to {cue} pay for things using the",
+   "Q: Which currency is used in the place known for {cue}? A: The",
+   "Travel note: near {cue}, prices are listed in the local currency, the"
+  ],
+  "hemisphere": [
+   "Fact: The hemisphere in which the place where {cue} is located lies is the",
+   "The place associated with {cue} is in the",
+   "Q: Is the place known for {cue} in the Northern or Southern hemisphere? A: The",
+   "Geography note: {cue} is located in the"
+  ],
+  "second_word_letters": [
+   "Fact: The number of letters in the second word of the name of the place where {cue} is located is",
+   "Count the letters in the second word of the name of the place associated with {cue}. The count is",
+   "Q: How many letters are in the second word of the name of the place known for {cue}? A:",
+   "Puzzle: the place where {cue} is located has a two-word name; its second word has this many letters:"
+  ]
+ },
+ "aliases": {
+  "New York": [
+   "NYC",
+   "York"
+  ],
+  "New Zealand": [
+   "Zealand",
+   "NZ",
+   "Kiwi"
+  ],
+  "New Delhi": [
+   "Delhi"
+  ],
+  "New Jersey": [
+   "Jersey"
+  ],
+  "South Africa": [
+   "Africa"
+  ],
+  "South Korea": [
+   "Korea"
+  ],
+  "South Dakota": [
+   "Dakota"
+  ],
+  "South Carolina": [
+   "Carolina"
+  ],
+  "North Korea": [
+   "Korea"
+  ],
+  "North Carolina": [
+   "Carolina"
+  ],
+  "North Dakota": [
+   "Dakota"
+  ],
+  "United States": [
+   "States",
+   "USA",
+   "America"
+  ],
+  "United Kingdom": [
+   "Kingdom",
+   "UK",
+   "Britain"
+  ],
+  "United Nations": [
+   "Nations",
+   "UN"
+  ],
+  "United Arab Emirates": [
+   "Emirates",
+   "UAE",
+   "Arab"
+  ],
+  "San Francisco": [
+   "Francisco",
+   "SF"
+  ],
+  "San Diego": [
+   "Diego"
+  ],
+  "San Antonio": [
+   "Antonio"
+  ],
+  "San Jose": [
+   "Jose"
+  ]
+ }
+}
