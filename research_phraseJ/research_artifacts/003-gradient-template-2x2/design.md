@@ -74,13 +74,14 @@ cap; phrases that never stabilize are reported and excluded from accuracy, not s
 
 ### 3.6 Methods compared
 
-first-token J (released); summed-constituent J; released R (first token); logit lens; released
+first-token J (released); constituent-aggregation baselines J-sum and J-mean (and R-sum/R-mean, logit-sum); released R (first token); logit lens; released
 template t_w; gradient template (`v_seq`, `v_cond`, `v_PB` on passages); phrase-J regime (ii)
 objects; word head (FF) as an optional readout-only baseline trained with same-first-token hard
 negatives, if time permits.
 
 ## 4. What we will learn (pre-registered)
 
+- Phrase objects must beat **J-sum/J-mean**, not only first-token J (001 establishes whether aggregation already suffices).
 - `v_seq` beats first-token J on ordinary multi-token items but `v_cond` does not beat chance
   within families → the gain is first-token evidence; multi-token information is not linearly
   present in the gradient. Labelling branch.

@@ -15,7 +15,7 @@ Updated 2026-09-16 (evening).
 
 | # | slug | state |
 |---|---|---|
-| 001 | template-geometry | v2 draft — awaiting agreement |
+| 001 | template-geometry | v3 frozen; code in progress |
 | 002 | phraseJ-exact-compat | draft — awaiting agreement |
 | 003 | gradient-template-2x2 | draft — awaiting agreement |
 | 004 | causal-geometry | stub — full design after 003 |
@@ -29,9 +29,8 @@ Verified 2026-09-16: model + released J load; web-spinner → `spider` rank 4 @L
 
 ## Running
 
-Nothing.
+001 implementation (families → Σ → contexts → capture → analysis).
 
 ## Next
 
-Agree 001–003; build `001_build_families.py` (tokenizer-verified families) and the latent two-hop
-prompts; then run 001.
+Run 001; write report; then 002.

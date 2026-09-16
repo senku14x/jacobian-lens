@@ -41,6 +41,23 @@ reviews themselves may be added verbatim as `docs/06a_review_1.md`, `docs/06b_re
 - **Stein diagnostic (K) deferred to 001b** with matched estimands and ESS reported.
 - **Lemma/concept merging:** report exact-phrase rank and class rank separately.
 
+## Added after review round 3 (001 v3)
+
+- **Cross-validated linear-probe ceiling** (Σ+λI)⁻¹(μ_a−μ_b) alongside the template direction, so
+  a template failure is not read as absence of linear information. Template-low / probe-high is the
+  highest-value phrase-J target.
+- **Emission-natural** condition from corpus occurrences (marked missing when unavailable, never
+  replaced by synthetic text); emission-template = held-out passages with a prefix-leak filter.
+- **Covariance-aware pair geometry** ρ_ab and D_ab; Euclidean cosine alone is not "same direction".
+- **Constituent-aggregation baselines** J-sum/J-mean (and R, logit) in 001 and 003.
+- **≥ 20 latent prompts per member** from ≥ 5 independent clue routes; leave-one-route-out AUC;
+  correctness as a post-hoc stratum.
+- **Covariance halves split by sequence**; frequency-stratified row sampling for stability checks.
+- **Template scoring convention locked** before any full-universe rank; within-family accuracy is
+  primary.
+- Template vocabulary is lowercase-normalized (2,647 rows multi-token only for that reason); flagged
+  and checked in 001.
+
 ## Order
 
 001 template geometry → 002 exact compat → 003 gradient-template 2×2 + multi-token readout →
