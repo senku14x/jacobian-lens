@@ -170,7 +170,8 @@ def probe_multiclass_cv(H, y, l, k=5):
 
 def group_of(i, kind):
     r = index[i]
-    if kind == "frame": return (r["route"], r["frame"])
+    if kind == "frame": return r["frame"]                     # true frame-out: hold a frame style out across all routes
+    if kind == "rf":    return (r["route"], r["frame"])       # paired same-text comparison (was mislabelled "frame" before 2026-09-16 fix)
     if kind == "route": return r["route"]
     if kind == "cue":   return (r["frame"] + list(ROUTE_ORDER).index(r["route"])) % 5   # cue index shared across members
     return None
@@ -220,7 +221,7 @@ for F in (fam["families"] if 'B' in PARTS else []) + ([{"name": "nonfamily:" + "
                         sa, sb = (ha @ d).numpy(), (hb @ d).numpy(); pr["template"] = {"auc": auc(sa, sb), "ci": auc_ci(sa, sb)}
                     if cond == "latent":
                         ia_, ib_ = rows_for(cond, a["phrase"], pos), rows_for(cond, b["phrase"], pos); pr["probe"] = {}
-                        for kind in ("cue", "frame", "route"):
+                        for kind in ("cue", "frame", "route", "rf"):
                             per, mean_ = probe_pair_grouped(ia_, ib_, l, kind)
                             rng = np.random.default_rng(0); boots = [float(np.mean(rng.choice(per, len(per)))) for _ in range(NBOOT)] if per else []
                             pr["probe"][f"loo_{kind}"] = {"auc": mean_, "n_groups": len(per), "ci": [float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))] if boots else [float("nan")] * 2}
@@ -274,7 +275,7 @@ for F in (fam["families"] if 'B' in PARTS else []) + ([{"name": "nonfamily:" + "
                     loro[str(l)] = {"mean": float(np.mean(per_route)) if per_route else float("nan"), "per_route": dict(zip(routes, per_route))}
                 disc[Fn][key]["probe_leave_one_route_out"] = loro
                 corr = {m["phrase"]: [index[i]["greedy_id"] == answer_id(index[i]["answer"]) for i in rows_for(cond, m["phrase"], pos)] for m in mem}
-                disc[Fn][key]["greedy_correct_rate"] = {k: float(np.mean(v)) for k, v in corr.items()}
+                disc[Fn][key]["first_token_match_rate"] = {k: float(np.mean(v)) for k, v in corr.items()}  # first predicted token == first token of answer; NOT full-answer correctness
 if 'B' in PARTS: json.dump(disc, open(f"{RES}/discrimination.json", "w"))
 
 # ------------------------------------------------------------------ full-universe template rank (secondary)

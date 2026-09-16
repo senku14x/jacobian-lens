@@ -140,3 +140,50 @@ blank next token; `Q: … A:` frames trigger Qwen's `<think>` token.
   Grouped leave-one-frame/cue/route-out is required; recorded in `docs/06_plan_decisions.md`.
 - Pooled out-of-fold scores from different discriminants must be fold-standardized before AUC.
 - Passage prefix leakage (first word of a multi-word phrase at the passage tail) must be filtered.
+
+
+---
+
+## Addendum (2026-09-16, after external review): 001f transfer, and two corrections
+
+### 001f — emission → latent transfer (`scripts/001f_transfer.py`, `results/.../transfer.json`, `plots/.../transfer_emission_latent.png`)
+
+Direction (Σ_λ+τλI)⁻¹(μ_a − μ_b) fit **only on emission-natural contexts** (text right before the phrase is
+spoken), evaluated with no refitting on the latent two-hop prompts; and the reverse.
+
+| family (members) | emission→latent AUC [95% CI] (best L) | latent→emission best | multiclass emission→latent best (chance) | emission→latent mean over L8–L32 |
+|---|---|---|---|---|
+| New (3) | 0.98 [0.95, 1.00] (L56) | 0.98 | 0.74 (0.33) | 0.65 |
+| South (4) | 1.00 [1.00, 1.00] (L62) | 0.99 | 0.87 (0.25) | 0.70 |
+| North (2) | 1.00 [1.00, 1.00] (L62) | 1.00 | 0.92 (0.50) | 0.82 |
+| United (3) | 0.96 [0.89, 1.00] (L62) | 0.97 | 0.78 (0.33) | 0.68 |
+| San (4) | 0.96 [0.91, 0.99] (L62) | 0.89 | 0.55 (0.25) | 0.51 |
+
+Layer profile of emission→latent pairwise AUC, mean over families (L8 … L62): 0.65 | 0.64 | 0.59 | 0.73 | 0.76 | 0.69 | 0.64 | 0.77 | 0.81 | 0.79 | 0.79 | 0.93 | 0.97 | 0.97 | 0.98.
+
+**Reading.** At L52–62 a direction learned from "about to say the phrase" separates "silently
+thinking the phrase" at 0.96–1.00, in both directions, for every geographic family. So at late
+layers there is one shared linear phrase representation across emission and latent use, which is
+the object phrase-J should match causally. In the mid band (L8–L32) transfer is 0.6–0.8, below the
+in-condition cue-out probe (0.72–0.83): part of the early latent signal is entity information that
+is not yet in verbalization form, consistent with the cue-category caveat. Supported claim, scoped
+to this model, these families, n≈19 latent / 29–40 emission per member; not causal.
+
+### Corrections to §3–§5
+
+- **"frame-out" was mislabelled.** The reported `loo_frame` held out one (route, frame) *pair*, a
+  paired same-text comparison, not a frame style across routes. It is now stored as `loo_rf`; a
+  true `loo_frame` (hold out a frame across all routes) is reported alongside after the rerun.
+- **"greedy correctness" is first-token match.** The field is renamed `first_token_match_rate`; it
+  compares the model's first predicted token with the first token of the expected answer. Full
+  answer generation is scored in 003.
+- **United States / United Nations is not a clean two-hop family.** The UN cues ("the place where
+  the Security Council is located") point to New York as the *place*, and the second-word-letter
+  route targets the string "United Nations" while the frame asks about a place. The template AUC
+  0.97 there is an observation that the UN-associated direction fires on UN-associated prompts, not
+  a replication of the paper's latent-template result. The country and city families are the clean
+  ones.
+- **Mid-band wording.** The probe–J-sum gap is concentrated in L8–L32 (0.72–0.83 vs 0.55–0.71); by
+  L36–48 J-sum has caught up (0.80–0.83 vs 0.79–0.83); after L52 both are strong. Phrase-J's
+  opportunity is earlier than §4 stated, and at late layers its job is cleaner readout or better
+  intervention, not recovering something J-sum cannot read.
