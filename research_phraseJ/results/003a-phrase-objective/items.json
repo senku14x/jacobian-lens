@@ -1,0 +1,542 @@
+[
+ {
+  "name": "New Zealand",
+  "ids": [
+   1478,
+   16416
+  ],
+  "tokens": [
+   " New",
+   " Zealand"
+  ],
+  "prefix_len": 1,
+  "kind": "primary",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "South Korea",
+  "ids": [
+   4725,
+   11523
+  ],
+  "tokens": [
+   " South",
+   " Korea"
+  ],
+  "prefix_len": 1,
+  "kind": "primary",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "San Diego",
+  "ids": [
+   5655,
+   17790
+  ],
+  "tokens": [
+   " San",
+   " Diego"
+  ],
+  "prefix_len": 1,
+  "kind": "primary",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "North Carolina",
+  "ids": [
+   4634,
+   12375
+  ],
+  "tokens": [
+   " North",
+   " Carolina"
+  ],
+  "prefix_len": 1,
+  "kind": "primary",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "ice cream",
+  "ids": [
+   9561,
+   12281
+  ],
+  "tokens": [
+   " ice",
+   " cream"
+  ],
+  "prefix_len": 1,
+  "kind": "primary",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "credit card",
+  "ids": [
+   6459,
+   3575
+  ],
+  "tokens": [
+   " credit",
+   " card"
+  ],
+  "prefix_len": 1,
+  "kind": "primary",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "New York",
+  "ids": [
+   1478,
+   4121
+  ],
+  "tokens": [
+   " New",
+   " York"
+  ],
+  "prefix_len": 1,
+  "kind": "sibling",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "New Delhi",
+  "ids": [
+   1478,
+   21318
+  ],
+  "tokens": [
+   " New",
+   " Delhi"
+  ],
+  "prefix_len": 1,
+  "kind": "sibling",
+  "regime": "natural",
+  "n_contexts": 5
+ },
+ {
+  "name": "New Jersey",
+  "ids": [
+   1478,
+   15383
+  ],
+  "tokens": [
+   " New",
+   " Jersey"
+  ],
+  "prefix_len": 1,
+  "kind": "sibling",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "South Africa",
+  "ids": [
+   4725,
+   9871
+  ],
+  "tokens": [
+   " South",
+   " Africa"
+  ],
+  "prefix_len": 1,
+  "kind": "sibling",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "South Dakota",
+  "ids": [
+   4725,
+   26967
+  ],
+  "tokens": [
+   " South",
+   " Dakota"
+  ],
+  "prefix_len": 1,
+  "kind": "sibling",
+  "regime": "natural",
+  "n_contexts": 17
+ },
+ {
+  "name": "South Carolina",
+  "ids": [
+   4725,
+   12375
+  ],
+  "tokens": [
+   " South",
+   " Carolina"
+  ],
+  "prefix_len": 1,
+  "kind": "sibling",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "San Francisco",
+  "ids": [
+   5655,
+   12510
+  ],
+  "tokens": [
+   " San",
+   " Francisco"
+  ],
+  "prefix_len": 1,
+  "kind": "sibling",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "San Antonio",
+  "ids": [
+   5655,
+   21738
+  ],
+  "tokens": [
+   " San",
+   " Antonio"
+  ],
+  "prefix_len": 1,
+  "kind": "sibling",
+  "regime": "natural",
+  "n_contexts": 18
+ },
+ {
+  "name": "San Jose",
+  "ids": [
+   5655,
+   10543
+  ],
+  "tokens": [
+   " San",
+   " Jose"
+  ],
+  "prefix_len": 1,
+  "kind": "sibling",
+  "regime": "natural",
+  "n_contexts": 14
+ },
+ {
+  "name": "North Korea",
+  "ids": [
+   4634,
+   11523
+  ],
+  "tokens": [
+   " North",
+   " Korea"
+  ],
+  "prefix_len": 1,
+  "kind": "sibling",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "North Dakota",
+  "ids": [
+   4634,
+   26967
+  ],
+  "tokens": [
+   " North",
+   " Dakota"
+  ],
+  "prefix_len": 1,
+  "kind": "sibling",
+  "regime": "natural",
+  "n_contexts": 8
+ },
+ {
+  "name": "New Zealand",
+  "ids": [
+   1478,
+   16416
+  ],
+  "tokens": [
+   " New",
+   " Zealand"
+  ],
+  "prefix_len": 1,
+  "kind": "primary",
+  "regime": "generic_medium",
+  "n_contexts": 20
+ },
+ {
+  "name": "South Korea",
+  "ids": [
+   4725,
+   11523
+  ],
+  "tokens": [
+   " South",
+   " Korea"
+  ],
+  "prefix_len": 1,
+  "kind": "primary",
+  "regime": "generic_medium",
+  "n_contexts": 20
+ },
+ {
+  "name": "San Diego",
+  "ids": [
+   5655,
+   17790
+  ],
+  "tokens": [
+   " San",
+   " Diego"
+  ],
+  "prefix_len": 1,
+  "kind": "primary",
+  "regime": "generic_medium",
+  "n_contexts": 20
+ },
+ {
+  "name": "North Carolina",
+  "ids": [
+   4634,
+   12375
+  ],
+  "tokens": [
+   " North",
+   " Carolina"
+  ],
+  "prefix_len": 1,
+  "kind": "primary",
+  "regime": "generic_medium",
+  "n_contexts": 20
+ },
+ {
+  "name": "ice cream",
+  "ids": [
+   9561,
+   12281
+  ],
+  "tokens": [
+   " ice",
+   " cream"
+  ],
+  "prefix_len": 1,
+  "kind": "primary",
+  "regime": "generic_medium",
+  "n_contexts": 20
+ },
+ {
+  "name": "credit card",
+  "ids": [
+   6459,
+   3575
+  ],
+  "tokens": [
+   " credit",
+   " card"
+  ],
+  "prefix_len": 1,
+  "kind": "primary",
+  "regime": "generic_medium",
+  "n_contexts": 20
+ },
+ {
+  "name": "null:part of@New Zealand",
+  "ids": [
+   919,
+   314
+  ],
+  "tokens": [
+   " part",
+   " of"
+  ],
+  "prefix_len": 1,
+  "kind": "null_for:New Zealand",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "null:into the@New Zealand",
+  "ids": [
+   1083,
+   279
+  ],
+  "tokens": [
+   " into",
+   " the"
+  ],
+  "prefix_len": 1,
+  "kind": "null_for:New Zealand",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "null:part of@South Korea",
+  "ids": [
+   919,
+   314
+  ],
+  "tokens": [
+   " part",
+   " of"
+  ],
+  "prefix_len": 1,
+  "kind": "null_for:South Korea",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "null:due to@South Korea",
+  "ids": [
+   4016,
+   310
+  ],
+  "tokens": [
+   " due",
+   " to"
+  ],
+  "prefix_len": 1,
+  "kind": "null_for:South Korea",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "null:more than@San Diego",
+  "ids": [
+   777,
+   1056
+  ],
+  "tokens": [
+   " more",
+   " than"
+  ],
+  "prefix_len": 1,
+  "kind": "null_for:San Diego",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "null:due to@San Diego",
+  "ids": [
+   4016,
+   310
+  ],
+  "tokens": [
+   " due",
+   " to"
+  ],
+  "prefix_len": 1,
+  "kind": "null_for:San Diego",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "null:due to@North Carolina",
+  "ids": [
+   4016,
+   310
+  ],
+  "tokens": [
+   " due",
+   " to"
+  ],
+  "prefix_len": 1,
+  "kind": "null_for:North Carolina",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "null:part of@North Carolina",
+  "ids": [
+   919,
+   314
+  ],
+  "tokens": [
+   " part",
+   " of"
+  ],
+  "prefix_len": 1,
+  "kind": "null_for:North Carolina",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "null:into the@ice cream",
+  "ids": [
+   1083,
+   279
+  ],
+  "tokens": [
+   " into",
+   " the"
+  ],
+  "prefix_len": 1,
+  "kind": "null_for:ice cream",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "null:at the@ice cream",
+  "ids": [
+   506,
+   279
+  ],
+  "tokens": [
+   " at",
+   " the"
+  ],
+  "prefix_len": 1,
+  "kind": "null_for:ice cream",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "null:into the@credit card",
+  "ids": [
+   1083,
+   279
+  ],
+  "tokens": [
+   " into",
+   " the"
+  ],
+  "prefix_len": 1,
+  "kind": "null_for:credit card",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "null:due to@credit card",
+  "ids": [
+   4016,
+   310
+  ],
+  "tokens": [
+   " due",
+   " to"
+  ],
+  "prefix_len": 1,
+  "kind": "null_for:credit card",
+  "regime": "natural",
+  "n_contexts": 20
+ },
+ {
+  "name": "null:junk",
+  "ids": [
+   33213,
+   33137
+  ],
+  "tokens": [
+   " spider",
+   "\u00fcnd"
+  ],
+  "prefix_len": 1,
+  "kind": "null_junk",
+  "regime": "natural",
+  "n_contexts": 20
+ }
+]

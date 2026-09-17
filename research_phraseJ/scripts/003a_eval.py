@@ -78,7 +78,7 @@ for (name, regime), d in G.items():
                 rel[key]["per"][f"{o}|{red}|{l}"] = e
 xreg = {}
 for it in items:
-    if it["regime"] != "generic_medium" or (it["name"], "natural") not in G: continue
+    if it["regime"] != "generic_medium" or (it["name"], "natural") not in G or (it["name"], "generic_medium") not in G: continue
     dn, dg = G[(it["name"], "natural")], G[(it["name"], "generic_medium")]; k = dn["prefix_len"]
     xreg[it["name"]] = {f"{o}|{red}|{l}": {"cond": cos(avg(dn["recs"], o, l, red, "cond", k), avg(dg["recs"], o, l, red, "cond", k)),
                                           "seq": cos(avg(dn["recs"], o, l, red, "seq", k), avg(dg["recs"], o, l, red, "seq", k))} for o in OBJ for red in RED for l in LAYERS}

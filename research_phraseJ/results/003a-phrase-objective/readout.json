@@ -1,0 +1,4731 @@
+{
+ "readout": {
+  "New Zealand": {
+   "logp|at|36": {
+    "New Zealand|New York": {
+     "own_latent": 0.6491228070175439,
+     "diff_latent": 0.6947368421052632,
+     "own_emission_heldout": 0.69
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.5824561403508772,
+     "diff_latent": 0.5824561403508772,
+     "own_emission_heldout": 0.77
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.6456140350877193,
+     "diff_latent": 0.6385964912280702,
+     "own_emission_heldout": 0.765
+    },
+    "within_family_acc_z": 0.2916666666666667,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.6257309941520468,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.01753363572061062
+   },
+   "logp|at|44": {
+    "New Zealand|New York": {
+     "own_latent": 0.7859649122807018,
+     "diff_latent": 0.856140350877193,
+     "own_emission_heldout": 0.8175
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.775438596491228,
+     "diff_latent": 0.7719298245614035,
+     "own_emission_heldout": 0.92
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.7508771929824561,
+     "diff_latent": 0.5017543859649123,
+     "own_emission_heldout": 0.8425
+    },
+    "within_family_acc_z": 0.4027777777777778,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.7707602339181286,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.051404308527708054
+   },
+   "logp|at|52": {
+    "New Zealand|New York": {
+     "own_latent": 0.9087719298245615,
+     "diff_latent": 0.9263157894736842,
+     "own_emission_heldout": 0.86
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.8070175438596491,
+     "diff_latent": 0.8105263157894737,
+     "own_emission_heldout": 0.92
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.8701754385964913,
+     "diff_latent": 0.8596491228070176,
+     "own_emission_heldout": 0.835
+    },
+    "within_family_acc_z": 0.5833333333333334,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.8619883040935673,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.018899809569120407
+   },
+   "logp|at|56": {
+    "New Zealand|New York": {
+     "own_latent": 0.8140350877192982,
+     "diff_latent": 0.9192982456140351,
+     "own_emission_heldout": 0.7725
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.7789473684210526,
+     "diff_latent": 0.7824561403508772,
+     "own_emission_heldout": 0.85
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.7543859649122807,
+     "diff_latent": 0.8947368421052632,
+     "own_emission_heldout": 0.705
+    },
+    "within_family_acc_z": 0.5972222222222222,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.7824561403508773,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.015338228084146976
+   },
+   "logp|at|60": {
+    "New Zealand|New York": {
+     "own_latent": 0.8666666666666667,
+     "diff_latent": 0.9052631578947369,
+     "own_emission_heldout": 0.9225
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.9333333333333333,
+     "diff_latent": 0.9368421052631579,
+     "own_emission_heldout": 1.0
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.7929824561403509,
+     "diff_latent": 0.9192982456140351,
+     "own_emission_heldout": 0.825
+    },
+    "within_family_acc_z": 0.5277777777777778,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.8643274853801169,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.05064637213945389
+   },
+   "logp|mean|36": {
+    "New Zealand|New York": {
+     "own_latent": 0.7298245614035088,
+     "diff_latent": 0.8,
+     "own_emission_heldout": 0.775
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.7263157894736842,
+     "diff_latent": 0.7263157894736842,
+     "own_emission_heldout": 0.87
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.7052631578947368,
+     "diff_latent": 0.6175438596491228,
+     "own_emission_heldout": 0.83
+    },
+    "within_family_acc_z": 0.4027777777777778,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.7204678362573099,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.03489752113819122
+   },
+   "logp|mean|44": {
+    "New Zealand|New York": {
+     "own_latent": 0.8666666666666667,
+     "diff_latent": 0.9263157894736842,
+     "own_emission_heldout": 0.8725
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.8807017543859649,
+     "diff_latent": 0.8947368421052632,
+     "own_emission_heldout": 0.93
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.8385964912280702,
+     "diff_latent": 0.5403508771929825,
+     "own_emission_heldout": 0.8725
+    },
+    "within_family_acc_z": 0.4861111111111111,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.8619883040935673,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.09469598531723022
+   },
+   "logp|mean|52": {
+    "New Zealand|New York": {
+     "own_latent": 0.9368421052631579,
+     "diff_latent": 0.9719298245614035,
+     "own_emission_heldout": 0.87
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.8982456140350877,
+     "diff_latent": 0.8982456140350877,
+     "own_emission_heldout": 0.93
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.9017543859649123,
+     "diff_latent": 0.9052631578947369,
+     "own_emission_heldout": 0.865
+    },
+    "within_family_acc_z": 0.6666666666666666,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.912280701754386,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.035916779190301895
+   },
+   "logp|mean|56": {
+    "New Zealand|New York": {
+     "own_latent": 0.8245614035087719,
+     "diff_latent": 0.9298245614035088,
+     "own_emission_heldout": 0.81
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.8456140350877193,
+     "diff_latent": 0.856140350877193,
+     "own_emission_heldout": 0.91
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.8035087719298246,
+     "diff_latent": 0.8842105263157894,
+     "own_emission_heldout": 0.785
+    },
+    "within_family_acc_z": 0.6388888888888888,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.8245614035087719,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.023275192826986313
+   },
+   "logp|mean|60": {
+    "New Zealand|New York": {
+     "own_latent": 0.9087719298245615,
+     "diff_latent": 0.9403508771929825,
+     "own_emission_heldout": 0.9175
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.9543859649122807,
+     "diff_latent": 0.9614035087719298,
+     "own_emission_heldout": 1.0
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.9228070175438596,
+     "diff_latent": 0.8701754385964913,
+     "own_emission_heldout": 0.8725
+    },
+    "within_family_acc_z": 0.6666666666666666,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.9286549707602338,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.04018503054976463
+   },
+   "lin|at|36": {
+    "New Zealand|New York": {
+     "own_latent": 0.6877192982456141,
+     "diff_latent": 0.7929824561403509,
+     "own_emission_heldout": 0.845
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.7298245614035088,
+     "diff_latent": 0.7684210526315789,
+     "own_emission_heldout": 0.91
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.6666666666666666,
+     "diff_latent": 0.6912280701754386,
+     "own_emission_heldout": 0.8825
+    },
+    "within_family_acc_z": 0.4166666666666667,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.6947368421052631,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.04163927584886551
+   },
+   "lin|at|44": {
+    "New Zealand|New York": {
+     "own_latent": 0.9087719298245615,
+     "diff_latent": 0.9192982456140351,
+     "own_emission_heldout": 0.91
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.9403508771929825,
+     "diff_latent": 0.887719298245614,
+     "own_emission_heldout": 0.95
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.9122807017543859,
+     "diff_latent": 0.8315789473684211,
+     "own_emission_heldout": 0.925
+    },
+    "within_family_acc_z": 0.4583333333333333,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.92046783625731,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.11508902907371521
+   },
+   "lin|at|52": {
+    "New Zealand|New York": {
+     "own_latent": 0.9543859649122807,
+     "diff_latent": 0.9649122807017544,
+     "own_emission_heldout": 0.89
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.9859649122807017,
+     "diff_latent": 0.9859649122807017,
+     "own_emission_heldout": 0.98
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.9578947368421052,
+     "diff_latent": 0.8280701754385965,
+     "own_emission_heldout": 0.8575
+    },
+    "within_family_acc_z": 0.5416666666666666,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.9660818713450291,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.057460084557533264
+   },
+   "lin|at|56": {
+    "New Zealand|New York": {
+     "own_latent": 0.6105263157894737,
+     "diff_latent": 0.9614035087719298,
+     "own_emission_heldout": 0.695
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.8070175438596491,
+     "diff_latent": 0.9894736842105263,
+     "own_emission_heldout": 0.95
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.624561403508772,
+     "diff_latent": 0.9719298245614035,
+     "own_emission_heldout": 0.515
+    },
+    "within_family_acc_z": 0.625,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": true,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.6807017543859649,
+    "own_latent_mean_headline": 0.6807017543859649,
+    "frac_in_constituent_span": 0.04297539219260216
+   },
+   "lin|at|60": {
+    "New Zealand|New York": {
+     "own_latent": 0.8596491228070176,
+     "diff_latent": 0.9473684210526315,
+     "own_emission_heldout": 0.8975
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.9473684210526315,
+     "diff_latent": 1.0,
+     "own_emission_heldout": 0.98
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.7929824561403509,
+     "diff_latent": 0.9508771929824561,
+     "own_emission_heldout": 0.6225
+    },
+    "within_family_acc_z": 0.6388888888888888,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": true,
+     "New Zealand": true,
+     "New Delhi": false,
+     "New Jersey": true
+    },
+    "own_latent_mean": 0.8666666666666666,
+    "own_latent_mean_headline": 0.8666666666666666,
+    "frac_in_constituent_span": 0.0927092432975769
+   },
+   "lin|mean|36": {
+    "New Zealand|New York": {
+     "own_latent": 0.712280701754386,
+     "diff_latent": 0.8315789473684211,
+     "own_emission_heldout": 0.7725
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.7684210526315789,
+     "diff_latent": 0.7263157894736842,
+     "own_emission_heldout": 0.8
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.7017543859649122,
+     "diff_latent": 0.6526315789473685,
+     "own_emission_heldout": 0.825
+    },
+    "within_family_acc_z": 0.4305555555555556,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.727485380116959,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.07062866538763046
+   },
+   "lin|mean|44": {
+    "New Zealand|New York": {
+     "own_latent": 0.8596491228070176,
+     "diff_latent": 0.9403508771929825,
+     "own_emission_heldout": 0.8925
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.9368421052631579,
+     "diff_latent": 0.9157894736842105,
+     "own_emission_heldout": 0.92
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.887719298245614,
+     "diff_latent": 0.8035087719298246,
+     "own_emission_heldout": 0.8975
+    },
+    "within_family_acc_z": 0.5555555555555556,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.8947368421052632,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.1392046958208084
+   },
+   "lin|mean|52": {
+    "New Zealand|New York": {
+     "own_latent": 0.9473684210526315,
+     "diff_latent": 0.9894736842105263,
+     "own_emission_heldout": 0.9025
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.9929824561403509,
+     "diff_latent": 0.9894736842105263,
+     "own_emission_heldout": 0.99
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.9508771929824561,
+     "diff_latent": 0.9228070175438596,
+     "own_emission_heldout": 0.8525
+    },
+    "within_family_acc_z": 0.6388888888888888,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": true,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.9637426900584795,
+    "own_latent_mean_headline": 0.9637426900584795,
+    "frac_in_constituent_span": 0.1038421094417572
+   },
+   "lin|mean|56": {
+    "New Zealand|New York": {
+     "own_latent": 0.7263157894736842,
+     "diff_latent": 0.9754385964912281,
+     "own_emission_heldout": 0.7875
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.8736842105263158,
+     "diff_latent": 0.9614035087719298,
+     "own_emission_heldout": 0.95
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.7649122807017544,
+     "diff_latent": 0.9859649122807017,
+     "own_emission_heldout": 0.67
+    },
+    "within_family_acc_z": 0.6666666666666666,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": true,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.7883040935672515,
+    "own_latent_mean_headline": 0.7883040935672515,
+    "frac_in_constituent_span": 0.12188720703125
+   },
+   "lin|mean|60": {
+    "New Zealand|New York": {
+     "own_latent": 0.9403508771929825,
+     "diff_latent": 0.9824561403508771,
+     "own_emission_heldout": 0.9425
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.9859649122807017,
+     "diff_latent": 1.0,
+     "own_emission_heldout": 1.0
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.9052631578947369,
+     "diff_latent": 0.9578947368421052,
+     "own_emission_heldout": 0.7175
+    },
+    "within_family_acc_z": 0.6805555555555556,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": true,
+     "New Zealand": true,
+     "New Delhi": false,
+     "New Jersey": true
+    },
+    "own_latent_mean": 0.943859649122807,
+    "own_latent_mean_headline": 0.943859649122807,
+    "frac_in_constituent_span": 0.15494582056999207
+   },
+   "logit|at|36": {
+    "New Zealand|New York": {
+     "own_latent": 0.6210526315789474,
+     "diff_latent": 0.7298245614035088,
+     "own_emission_heldout": 0.6075
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.6,
+     "diff_latent": 0.6736842105263158,
+     "own_emission_heldout": 0.81
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.6035087719298246,
+     "diff_latent": 0.6491228070175439,
+     "own_emission_heldout": 0.805
+    },
+    "within_family_acc_z": 0.3611111111111111,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.6081871345029239,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.01331677008420229
+   },
+   "logit|at|44": {
+    "New Zealand|New York": {
+     "own_latent": 0.7157894736842105,
+     "diff_latent": 0.9228070175438596,
+     "own_emission_heldout": 0.84
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.6385964912280702,
+     "diff_latent": 0.7368421052631579,
+     "own_emission_heldout": 0.93
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.6912280701754386,
+     "diff_latent": 0.6771929824561403,
+     "own_emission_heldout": 0.9
+    },
+    "within_family_acc_z": 0.4166666666666667,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.6818713450292399,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.05623772367835045
+   },
+   "logit|at|52": {
+    "New Zealand|New York": {
+     "own_latent": 0.543859649122807,
+     "diff_latent": 0.8491228070175438,
+     "own_emission_heldout": 0.775
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.5333333333333333,
+     "diff_latent": 0.7368421052631579,
+     "own_emission_heldout": 0.85
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.512280701754386,
+     "diff_latent": 0.6385964912280702,
+     "own_emission_heldout": 0.7275
+    },
+    "within_family_acc_z": 0.4444444444444444,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.5298245614035088,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.039907731115818024
+   },
+   "logit|at|56": {
+    "New Zealand|New York": {
+     "own_latent": 0.4,
+     "diff_latent": 0.7859649122807018,
+     "own_emission_heldout": 0.58
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.5333333333333333,
+     "diff_latent": 0.7052631578947368,
+     "own_emission_heldout": 0.76
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.41403508771929826,
+     "diff_latent": 0.9228070175438596,
+     "own_emission_heldout": 0.6025
+    },
+    "within_family_acc_z": 0.4861111111111111,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.44912280701754387,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.034319501370191574
+   },
+   "logit|at|60": {
+    "New Zealand|New York": {
+     "own_latent": 0.6701754385964912,
+     "diff_latent": 0.9719298245614035,
+     "own_emission_heldout": 0.855
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.6385964912280702,
+     "diff_latent": 0.9859649122807017,
+     "own_emission_heldout": 0.95
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.6140350877192983,
+     "diff_latent": 0.8315789473684211,
+     "own_emission_heldout": 0.655
+    },
+    "within_family_acc_z": 0.5138888888888888,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": true,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.6409356725146199,
+    "own_latent_mean_headline": 0.6409356725146199,
+    "frac_in_constituent_span": 0.045189980417490005
+   },
+   "logit|mean|36": {
+    "New Zealand|New York": {
+     "own_latent": 0.5929824561403508,
+     "diff_latent": 0.7192982456140351,
+     "own_emission_heldout": 0.7475
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.6070175438596491,
+     "diff_latent": 0.7543859649122807,
+     "own_emission_heldout": 0.81
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.5614035087719298,
+     "diff_latent": 0.7333333333333333,
+     "own_emission_heldout": 0.75
+    },
+    "within_family_acc_z": 0.4027777777777778,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.5871345029239766,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.02552100457251072
+   },
+   "logit|mean|44": {
+    "New Zealand|New York": {
+     "own_latent": 0.6070175438596491,
+     "diff_latent": 0.8491228070175438,
+     "own_emission_heldout": 0.81
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.5929824561403508,
+     "diff_latent": 0.8070175438596491,
+     "own_emission_heldout": 0.88
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.5754385964912281,
+     "diff_latent": 0.7052631578947368,
+     "own_emission_heldout": 0.855
+    },
+    "within_family_acc_z": 0.4305555555555556,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.591812865497076,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.03685300424695015
+   },
+   "logit|mean|52": {
+    "New Zealand|New York": {
+     "own_latent": 0.5964912280701754,
+     "diff_latent": 0.9403508771929825,
+     "own_emission_heldout": 0.74
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.5508771929824562,
+     "diff_latent": 0.8280701754385965,
+     "own_emission_heldout": 0.82
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.5368421052631579,
+     "diff_latent": 0.7789473684210526,
+     "own_emission_heldout": 0.7575
+    },
+    "within_family_acc_z": 0.5972222222222222,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": true,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.5614035087719298,
+    "own_latent_mean_headline": 0.5614035087719298,
+    "frac_in_constituent_span": 0.035342633724212646
+   },
+   "logit|mean|56": {
+    "New Zealand|New York": {
+     "own_latent": 0.5298245614035088,
+     "diff_latent": 0.887719298245614,
+     "own_emission_heldout": 0.6725
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.5543859649122806,
+     "diff_latent": 0.9438596491228071,
+     "own_emission_heldout": 0.83
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.5052631578947369,
+     "diff_latent": 0.9614035087719298,
+     "own_emission_heldout": 0.7325
+    },
+    "within_family_acc_z": 0.5972222222222222,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": true,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.5298245614035088,
+    "own_latent_mean_headline": 0.5298245614035088,
+    "frac_in_constituent_span": 0.03540181741118431
+   },
+   "logit|mean|60": {
+    "New Zealand|New York": {
+     "own_latent": 0.6947368421052632,
+     "diff_latent": 0.9894736842105263,
+     "own_emission_heldout": 0.815
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.7298245614035088,
+     "diff_latent": 1.0,
+     "own_emission_heldout": 0.93
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.6526315789473685,
+     "diff_latent": 0.9192982456140351,
+     "own_emission_heldout": 0.7675
+    },
+    "within_family_acc_z": 0.6388888888888888,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": true,
+     "New Zealand": true,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.6923976608187136,
+    "own_latent_mean_headline": 0.6923976608187136,
+    "frac_in_constituent_span": 0.025047756731510162
+   },
+   "odds|at|36": {
+    "New Zealand|New York": {
+     "own_latent": 0.775438596491228,
+     "diff_latent": 0.8421052631578947,
+     "own_emission_heldout": 0.6925
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.6807017543859649,
+     "diff_latent": 0.6421052631578947,
+     "own_emission_heldout": 0.83
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.7368421052631579,
+     "diff_latent": 0.6842105263157895,
+     "own_emission_heldout": 0.8425
+    },
+    "within_family_acc_z": 0.3472222222222222,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.7309941520467836,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.02554408833384514
+   },
+   "odds|at|44": {
+    "New Zealand|New York": {
+     "own_latent": 0.8631578947368421,
+     "diff_latent": 0.8701754385964913,
+     "own_emission_heldout": 0.91
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.8140350877192982,
+     "diff_latent": 0.7789473684210526,
+     "own_emission_heldout": 0.97
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.8175438596491228,
+     "diff_latent": 0.6877192982456141,
+     "own_emission_heldout": 0.935
+    },
+    "within_family_acc_z": 0.4027777777777778,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.831578947368421,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.09224550426006317
+   },
+   "odds|at|52": {
+    "New Zealand|New York": {
+     "own_latent": 0.7508771929824561,
+     "diff_latent": 0.9403508771929825,
+     "own_emission_heldout": 0.8075
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.7087719298245614,
+     "diff_latent": 0.8701754385964913,
+     "own_emission_heldout": 0.9
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.7228070175438597,
+     "diff_latent": 0.8175438596491228,
+     "own_emission_heldout": 0.865
+    },
+    "within_family_acc_z": 0.5833333333333334,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.7274853801169591,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.032061342149972916
+   },
+   "odds|at|56": {
+    "New Zealand|New York": {
+     "own_latent": 0.543859649122807,
+     "diff_latent": 0.8947368421052632,
+     "own_emission_heldout": 0.585
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.5754385964912281,
+     "diff_latent": 0.6771929824561403,
+     "own_emission_heldout": 0.72
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.5017543859649123,
+     "diff_latent": 0.9543859649122807,
+     "own_emission_heldout": 0.705
+    },
+    "within_family_acc_z": 0.5138888888888888,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.5403508771929825,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.03853509575128555
+   },
+   "odds|at|60": {
+    "New Zealand|New York": {
+     "own_latent": 0.7684210526315789,
+     "diff_latent": 0.8771929824561403,
+     "own_emission_heldout": 0.8675
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.8385964912280702,
+     "diff_latent": 0.9754385964912281,
+     "own_emission_heldout": 0.95
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.7263157894736842,
+     "diff_latent": 0.8596491228070176,
+     "own_emission_heldout": 0.78
+    },
+    "within_family_acc_z": 0.6111111111111112,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": true,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.7777777777777778,
+    "own_latent_mean_headline": 0.7777777777777778,
+    "frac_in_constituent_span": 0.05558278411626816
+   },
+   "odds|mean|36": {
+    "New Zealand|New York": {
+     "own_latent": 0.7649122807017544,
+     "diff_latent": 0.8105263157894737,
+     "own_emission_heldout": 0.75
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.6947368421052632,
+     "diff_latent": 0.7157894736842105,
+     "own_emission_heldout": 0.77
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.7228070175438597,
+     "diff_latent": 0.7403508771929824,
+     "own_emission_heldout": 0.755
+    },
+    "within_family_acc_z": 0.4166666666666667,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.7274853801169591,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.037104811519384384
+   },
+   "odds|mean|44": {
+    "New Zealand|New York": {
+     "own_latent": 0.8245614035087719,
+     "diff_latent": 0.8596491228070176,
+     "own_emission_heldout": 0.865
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.8,
+     "diff_latent": 0.8771929824561403,
+     "own_emission_heldout": 0.98
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.8105263157894737,
+     "diff_latent": 0.7333333333333333,
+     "own_emission_heldout": 0.885
+    },
+    "within_family_acc_z": 0.5138888888888888,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.8116959064327486,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.07657825946807861
+   },
+   "odds|mean|52": {
+    "New Zealand|New York": {
+     "own_latent": 0.8140350877192982,
+     "diff_latent": 0.9789473684210527,
+     "own_emission_heldout": 0.8625
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.7473684210526316,
+     "diff_latent": 0.9614035087719298,
+     "own_emission_heldout": 0.93
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.7649122807017544,
+     "diff_latent": 0.856140350877193,
+     "own_emission_heldout": 0.895
+    },
+    "within_family_acc_z": 0.6944444444444444,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.7754385964912281,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.056786347180604935
+   },
+   "odds|mean|56": {
+    "New Zealand|New York": {
+     "own_latent": 0.7087719298245614,
+     "diff_latent": 0.9122807017543859,
+     "own_emission_heldout": 0.7675
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.7473684210526316,
+     "diff_latent": 0.9368421052631579,
+     "own_emission_heldout": 0.92
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.712280701754386,
+     "diff_latent": 0.9578947368421052,
+     "own_emission_heldout": 0.8275
+    },
+    "within_family_acc_z": 0.5833333333333334,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": false,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.7228070175438597,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.06135283783078194
+   },
+   "odds|mean|60": {
+    "New Zealand|New York": {
+     "own_latent": 0.8947368421052632,
+     "diff_latent": 0.9578947368421052,
+     "own_emission_heldout": 0.895
+    },
+    "New Zealand|New Delhi": {
+     "own_latent": 0.9298245614035088,
+     "diff_latent": 0.9929824561403509,
+     "own_emission_heldout": 0.97
+    },
+    "New Zealand|New Jersey": {
+     "own_latent": 0.856140350877193,
+     "diff_latent": 0.9157894736842105,
+     "own_emission_heldout": 0.8425
+    },
+    "within_family_acc_z": 0.6666666666666666,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "New York": false,
+     "New Zealand": true,
+     "New Delhi": false,
+     "New Jersey": false
+    },
+    "own_latent_mean": 0.8935672514619882,
+    "own_latent_mean_headline": 0.8935672514619882,
+    "frac_in_constituent_span": 0.05215322971343994
+   }
+  },
+  "South Korea": {
+   "logp|at|36": {
+    "South Korea|South Africa": {
+     "own_latent": 0.7839335180055401,
+     "diff_latent": 0.7950138504155124,
+     "own_emission_heldout": 0.7425
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.6620498614958449,
+     "diff_latent": 0.6565096952908587,
+     "own_emission_heldout": 0.7264705882352941
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.6925207756232687,
+     "diff_latent": 0.8587257617728532,
+     "own_emission_heldout": 0.84
+    },
+    "within_family_acc_z": 0.4342105263157895,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.7128347183748845,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.019941112026572227
+   },
+   "logp|at|44": {
+    "South Korea|South Africa": {
+     "own_latent": 0.7894736842105263,
+     "diff_latent": 0.8642659279778393,
+     "own_emission_heldout": 0.8575
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.7479224376731302,
+     "diff_latent": 0.7479224376731302,
+     "own_emission_heldout": 0.8676470588235294
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.7479224376731302,
+     "diff_latent": 0.7811634349030471,
+     "own_emission_heldout": 0.8325
+    },
+    "within_family_acc_z": 0.39473684210526316,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.7617728531855956,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.03434383124113083
+   },
+   "logp|at|52": {
+    "South Korea|South Africa": {
+     "own_latent": 0.9889196675900277,
+     "diff_latent": 0.9556786703601108,
+     "own_emission_heldout": 0.925
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.9833795013850416,
+     "diff_latent": 0.9861495844875346,
+     "own_emission_heldout": 0.9352941176470588
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.9861495844875346,
+     "diff_latent": 0.9473684210526315,
+     "own_emission_heldout": 0.9525
+    },
+    "within_family_acc_z": 0.5657894736842105,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.9861495844875346,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.08819463104009628
+   },
+   "logp|at|56": {
+    "South Korea|South Africa": {
+     "own_latent": 0.997229916897507,
+     "diff_latent": 0.9916897506925207,
+     "own_emission_heldout": 0.8975
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.997229916897507,
+     "diff_latent": 0.9944598337950139,
+     "own_emission_heldout": 0.8676470588235294
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.9944598337950139,
+     "diff_latent": 0.9889196675900277,
+     "own_emission_heldout": 0.865
+    },
+    "within_family_acc_z": 0.5263157894736842,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.9963065558633426,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.08152056485414505
+   },
+   "logp|at|60": {
+    "South Korea|South Africa": {
+     "own_latent": 0.7313019390581718,
+     "diff_latent": 0.8587257617728532,
+     "own_emission_heldout": 0.6625
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.5124653739612188,
+     "diff_latent": 0.556786703601108,
+     "own_emission_heldout": 0.4264705882352941
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.5623268698060941,
+     "diff_latent": 0.5207756232686981,
+     "own_emission_heldout": 0.67
+    },
+    "within_family_acc_z": 0.35526315789473684,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.6020313942751615,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.026132352650165558
+   },
+   "logp|mean|36": {
+    "South Korea|South Africa": {
+     "own_latent": 0.8587257617728532,
+     "diff_latent": 0.8365650969529086,
+     "own_emission_heldout": 0.8775
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.8393351800554016,
+     "diff_latent": 0.8476454293628809,
+     "own_emission_heldout": 0.9029411764705882
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.8365650969529086,
+     "diff_latent": 0.8448753462603878,
+     "own_emission_heldout": 0.915
+    },
+    "within_family_acc_z": 0.5657894736842105,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.8448753462603878,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.09196281433105469
+   },
+   "logp|mean|44": {
+    "South Korea|South Africa": {
+     "own_latent": 0.8864265927977839,
+     "diff_latent": 0.9335180055401662,
+     "own_emission_heldout": 0.86
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.8476454293628809,
+     "diff_latent": 0.8559556786703602,
+     "own_emission_heldout": 0.9647058823529412
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.850415512465374,
+     "diff_latent": 0.8808864265927978,
+     "own_emission_heldout": 0.9275
+    },
+    "within_family_acc_z": 0.5657894736842105,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.8614958448753463,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.16575859487056732
+   },
+   "logp|mean|52": {
+    "South Korea|South Africa": {
+     "own_latent": 1.0,
+     "diff_latent": 1.0,
+     "own_emission_heldout": 0.99
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.9916897506925207,
+     "diff_latent": 0.9944598337950139,
+     "own_emission_heldout": 0.9970588235294118
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.9916897506925207,
+     "diff_latent": 1.0,
+     "own_emission_heldout": 0.9825
+    },
+    "within_family_acc_z": 0.7631578947368421,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.9944598337950138,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.15388256311416626
+   },
+   "logp|mean|56": {
+    "South Korea|South Africa": {
+     "own_latent": 1.0,
+     "diff_latent": 1.0,
+     "own_emission_heldout": 0.9475
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 1.0,
+     "diff_latent": 1.0,
+     "own_emission_heldout": 0.9441176470588235
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 1.0,
+     "diff_latent": 1.0,
+     "own_emission_heldout": 0.8825
+    },
+    "within_family_acc_z": 0.6578947368421053,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 1.0,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.10397583246231079
+   },
+   "logp|mean|60": {
+    "South Korea|South Africa": {
+     "own_latent": 0.9529085872576177,
+     "diff_latent": 0.9861495844875346,
+     "own_emission_heldout": 0.9425
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.8919667590027701,
+     "diff_latent": 0.9224376731301939,
+     "own_emission_heldout": 0.8941176470588236
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.9196675900277008,
+     "diff_latent": 0.8642659279778393,
+     "own_emission_heldout": 0.8575
+    },
+    "within_family_acc_z": 0.5526315789473685,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.9215143120960296,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.04688476398587227
+   },
+   "lin|at|36": {
+    "South Korea|South Africa": {
+     "own_latent": 0.7479224376731302,
+     "diff_latent": 0.8781163434903048,
+     "own_emission_heldout": 0.9
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.7285318559556787,
+     "diff_latent": 0.6814404432132964,
+     "own_emission_heldout": 0.9176470588235294
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.778393351800554,
+     "diff_latent": 0.8254847645429363,
+     "own_emission_heldout": 0.9025
+    },
+    "within_family_acc_z": 0.39473684210526316,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.7516158818097876,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.07450061291456223
+   },
+   "lin|at|44": {
+    "South Korea|South Africa": {
+     "own_latent": 0.778393351800554,
+     "diff_latent": 0.9002770083102493,
+     "own_emission_heldout": 0.9
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.7894736842105263,
+     "diff_latent": 0.7977839335180056,
+     "own_emission_heldout": 0.9147058823529411
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.7839335180055401,
+     "diff_latent": 0.814404432132964,
+     "own_emission_heldout": 0.8925
+    },
+    "within_family_acc_z": 0.47368421052631576,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.7839335180055401,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.1298035830259323
+   },
+   "lin|at|52": {
+    "South Korea|South Africa": {
+     "own_latent": 0.9556786703601108,
+     "diff_latent": 0.9556786703601108,
+     "own_emission_heldout": 0.85
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.9473684210526315,
+     "diff_latent": 0.9667590027700831,
+     "own_emission_heldout": 0.9411764705882353
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.9445983379501385,
+     "diff_latent": 0.9556786703601108,
+     "own_emission_heldout": 0.955
+    },
+    "within_family_acc_z": 0.5921052631578947,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.9492151431209602,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.09102547913789749
+   },
+   "lin|at|56": {
+    "South Korea|South Africa": {
+     "own_latent": 0.961218836565097,
+     "diff_latent": 0.9833795013850416,
+     "own_emission_heldout": 0.845
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.961218836565097,
+     "diff_latent": 1.0,
+     "own_emission_heldout": 0.8352941176470589
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.925207756232687,
+     "diff_latent": 0.9916897506925207,
+     "own_emission_heldout": 0.8375
+    },
+    "within_family_acc_z": 0.7368421052631579,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.9492151431209604,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.10521333664655685
+   },
+   "lin|at|60": {
+    "South Korea|South Africa": {
+     "own_latent": 0.7728531855955678,
+     "diff_latent": 0.8642659279778393,
+     "own_emission_heldout": 0.7675
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.7506925207756233,
+     "diff_latent": 0.9861495844875346,
+     "own_emission_heldout": 0.7382352941176471
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.739612188365651,
+     "diff_latent": 0.6149584487534626,
+     "own_emission_heldout": 0.725
+    },
+    "within_family_acc_z": 0.4473684210526316,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": true,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.7543859649122808,
+    "own_latent_mean_headline": 0.7543859649122808,
+    "frac_in_constituent_span": 0.06340811401605606
+   },
+   "lin|mean|36": {
+    "South Korea|South Africa": {
+     "own_latent": 0.8116343490304709,
+     "diff_latent": 0.8310249307479224,
+     "own_emission_heldout": 0.93
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.7423822714681441,
+     "diff_latent": 0.7950138504155124,
+     "own_emission_heldout": 0.9029411764705882
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.7922437673130194,
+     "diff_latent": 0.8864265927977839,
+     "own_emission_heldout": 0.92
+    },
+    "within_family_acc_z": 0.5263157894736842,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.7820867959372114,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.11539473384618759
+   },
+   "lin|mean|44": {
+    "South Korea|South Africa": {
+     "own_latent": 0.8199445983379502,
+     "diff_latent": 0.8975069252077562,
+     "own_emission_heldout": 0.92
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.8088642659279779,
+     "diff_latent": 0.8365650969529086,
+     "own_emission_heldout": 0.9117647058823529
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.7839335180055401,
+     "diff_latent": 0.8642659279778393,
+     "own_emission_heldout": 0.9175
+    },
+    "within_family_acc_z": 0.5657894736842105,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.804247460757156,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.1920630782842636
+   },
+   "lin|mean|52": {
+    "South Korea|South Africa": {
+     "own_latent": 0.9529085872576177,
+     "diff_latent": 0.997229916897507,
+     "own_emission_heldout": 0.955
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.9196675900277008,
+     "diff_latent": 0.9889196675900277,
+     "own_emission_heldout": 0.9823529411764705
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.9085872576177285,
+     "diff_latent": 0.9501385041551247,
+     "own_emission_heldout": 0.97
+    },
+    "within_family_acc_z": 0.6710526315789473,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.9270544783010157,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.12793229520320892
+   },
+   "lin|mean|56": {
+    "South Korea|South Africa": {
+     "own_latent": 0.9833795013850416,
+     "diff_latent": 0.9889196675900277,
+     "own_emission_heldout": 0.9175
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.9695290858725761,
+     "diff_latent": 0.9916897506925207,
+     "own_emission_heldout": 0.9
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.9362880886426593,
+     "diff_latent": 1.0,
+     "own_emission_heldout": 0.8625
+    },
+    "within_family_acc_z": 0.7631578947368421,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": true,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.9630655586334257,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.1413835883140564
+   },
+   "lin|mean|60": {
+    "South Korea|South Africa": {
+     "own_latent": 0.9750692520775623,
+     "diff_latent": 0.9501385041551247,
+     "own_emission_heldout": 0.9525
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.9307479224376731,
+     "diff_latent": 0.9833795013850416,
+     "own_emission_heldout": 0.9
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.9196675900277008,
+     "diff_latent": 0.7867036011080333,
+     "own_emission_heldout": 0.8425
+    },
+    "within_family_acc_z": 0.6447368421052632,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": true,
+     "South Korea": true,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.9418282548476454,
+    "own_latent_mean_headline": 0.9418282548476454,
+    "frac_in_constituent_span": 0.12600089609622955
+   },
+   "logit|at|36": {
+    "South Korea|South Africa": {
+     "own_latent": 0.6398891966759003,
+     "diff_latent": 0.8698060941828255,
+     "own_emission_heldout": 0.85
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.6759002770083102,
+     "diff_latent": 0.6703601108033241,
+     "own_emission_heldout": 0.888235294117647
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.6481994459833795,
+     "diff_latent": 0.8393351800554016,
+     "own_emission_heldout": 0.8825
+    },
+    "within_family_acc_z": 0.47368421052631576,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.6546629732225301,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.0611320324242115
+   },
+   "logit|at|44": {
+    "South Korea|South Africa": {
+     "own_latent": 0.6260387811634349,
+     "diff_latent": 0.889196675900277,
+     "own_emission_heldout": 0.835
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.6814404432132964,
+     "diff_latent": 0.7423822714681441,
+     "own_emission_heldout": 0.9
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.6786703601108033,
+     "diff_latent": 0.9224376731301939,
+     "own_emission_heldout": 0.8625
+    },
+    "within_family_acc_z": 0.5263157894736842,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.6620498614958449,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.08438574522733688
+   },
+   "logit|at|52": {
+    "South Korea|South Africa": {
+     "own_latent": 0.8088642659279779,
+     "diff_latent": 0.9224376731301939,
+     "own_emission_heldout": 0.8025
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.8060941828254847,
+     "diff_latent": 0.9002770083102493,
+     "own_emission_heldout": 0.8941176470588236
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.778393351800554,
+     "diff_latent": 0.9362880886426593,
+     "own_emission_heldout": 0.8775
+    },
+    "within_family_acc_z": 0.5526315789473685,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.7977839335180055,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.06105193495750427
+   },
+   "logit|at|56": {
+    "South Korea|South Africa": {
+     "own_latent": 0.8642659279778393,
+     "diff_latent": 0.9667590027700831,
+     "own_emission_heldout": 0.775
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.8421052631578947,
+     "diff_latent": 0.961218836565097,
+     "own_emission_heldout": 0.8264705882352941
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.7894736842105263,
+     "diff_latent": 0.96398891966759,
+     "own_emission_heldout": 0.83
+    },
+    "within_family_acc_z": 0.6710526315789473,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.8319482917820867,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.031891632825136185
+   },
+   "logit|at|60": {
+    "South Korea|South Africa": {
+     "own_latent": 0.6066481994459834,
+     "diff_latent": 0.850415512465374,
+     "own_emission_heldout": 0.675
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.5789473684210527,
+     "diff_latent": 0.8781163434903048,
+     "own_emission_heldout": 0.7441176470588236
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.4376731301939058,
+     "diff_latent": 0.6648199445983379,
+     "own_emission_heldout": 0.675
+    },
+    "within_family_acc_z": 0.4342105263157895,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.541089566020314,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.010733107104897499
+   },
+   "logit|mean|36": {
+    "South Korea|South Africa": {
+     "own_latent": 0.7368421052631579,
+     "diff_latent": 0.8421052631578947,
+     "own_emission_heldout": 0.835
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.7063711911357341,
+     "diff_latent": 0.8254847645429363,
+     "own_emission_heldout": 0.9058823529411765
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.7146814404432132,
+     "diff_latent": 0.8753462603878116,
+     "own_emission_heldout": 0.885
+    },
+    "within_family_acc_z": 0.4605263157894737,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.7192982456140351,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.07824418693780899
+   },
+   "logit|mean|44": {
+    "South Korea|South Africa": {
+     "own_latent": 0.6786703601108033,
+     "diff_latent": 0.9501385041551247,
+     "own_emission_heldout": 0.8175
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.6731301939058172,
+     "diff_latent": 0.8698060941828255,
+     "own_emission_heldout": 0.9205882352941176
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.6814404432132964,
+     "diff_latent": 0.8808864265927978,
+     "own_emission_heldout": 0.9125
+    },
+    "within_family_acc_z": 0.5921052631578947,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.677746999076639,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.07866651564836502
+   },
+   "logit|mean|52": {
+    "South Korea|South Africa": {
+     "own_latent": 0.850415512465374,
+     "diff_latent": 0.961218836565097,
+     "own_emission_heldout": 0.905
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.850415512465374,
+     "diff_latent": 0.96398891966759,
+     "own_emission_heldout": 0.9588235294117647
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.8199445983379502,
+     "diff_latent": 0.9916897506925207,
+     "own_emission_heldout": 0.92
+    },
+    "within_family_acc_z": 0.6842105263157895,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.840258541089566,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.0556456595659256
+   },
+   "logit|mean|56": {
+    "South Korea|South Africa": {
+     "own_latent": 0.9279778393351801,
+     "diff_latent": 0.9889196675900277,
+     "own_emission_heldout": 0.8975
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.8781163434903048,
+     "diff_latent": 1.0,
+     "own_emission_heldout": 0.9470588235294117
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.8227146814404432,
+     "diff_latent": 0.997229916897507,
+     "own_emission_heldout": 0.8575
+    },
+    "within_family_acc_z": 0.7894736842105263,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.876269621421976,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.03667888045310974
+   },
+   "logit|mean|60": {
+    "South Korea|South Africa": {
+     "own_latent": 0.7368421052631579,
+     "diff_latent": 0.9224376731301939,
+     "own_emission_heldout": 0.855
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.6869806094182825,
+     "diff_latent": 0.9556786703601108,
+     "own_emission_heldout": 0.9088235294117647
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.5817174515235457,
+     "diff_latent": 0.8448753462603878,
+     "own_emission_heldout": 0.7325
+    },
+    "within_family_acc_z": 0.5789473684210527,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": true,
+     "South Korea": true,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.6685133887349953,
+    "own_latent_mean_headline": 0.6685133887349953,
+    "frac_in_constituent_span": 0.007192565128207207
+   },
+   "odds|at|36": {
+    "South Korea|South Africa": {
+     "own_latent": 0.7922437673130194,
+     "diff_latent": 0.9030470914127424,
+     "own_emission_heldout": 0.9175
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.6537396121883656,
+     "diff_latent": 0.6204986149584487,
+     "own_emission_heldout": 0.7941176470588235
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.6537396121883656,
+     "diff_latent": 0.7340720221606648,
+     "own_emission_heldout": 0.805
+    },
+    "within_family_acc_z": 0.40789473684210525,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.6999076638965835,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.09230023622512817
+   },
+   "odds|at|44": {
+    "South Korea|South Africa": {
+     "own_latent": 0.889196675900277,
+     "diff_latent": 0.925207756232687,
+     "own_emission_heldout": 0.8475
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.8005540166204986,
+     "diff_latent": 0.8614958448753463,
+     "own_emission_heldout": 0.8
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.8116343490304709,
+     "diff_latent": 0.9224376731301939,
+     "own_emission_heldout": 0.81
+    },
+    "within_family_acc_z": 0.5,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.8337950138504154,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.1745455116033554
+   },
+   "odds|at|52": {
+    "South Korea|South Africa": {
+     "own_latent": 0.9750692520775623,
+     "diff_latent": 0.997229916897507,
+     "own_emission_heldout": 0.88
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.9224376731301939,
+     "diff_latent": 0.9556786703601108,
+     "own_emission_heldout": 0.8382352941176471
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.9030470914127424,
+     "diff_latent": 0.9667590027700831,
+     "own_emission_heldout": 0.875
+    },
+    "within_family_acc_z": 0.6052631578947368,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.9335180055401663,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.1194312646985054
+   },
+   "odds|at|56": {
+    "South Korea|South Africa": {
+     "own_latent": 0.9778393351800554,
+     "diff_latent": 0.997229916897507,
+     "own_emission_heldout": 0.785
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.9695290858725761,
+     "diff_latent": 0.9473684210526315,
+     "own_emission_heldout": 0.8147058823529412
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.9418282548476454,
+     "diff_latent": 0.9722991689750693,
+     "own_emission_heldout": 0.7975
+    },
+    "within_family_acc_z": 0.5789473684210527,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.9630655586334256,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.09013106673955917
+   },
+   "odds|at|60": {
+    "South Korea|South Africa": {
+     "own_latent": 0.5955678670360111,
+     "diff_latent": 0.9279778393351801,
+     "own_emission_heldout": 0.56
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.48753462603878117,
+     "diff_latent": 0.703601108033241,
+     "own_emission_heldout": 0.5941176470588235
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.4903047091412742,
+     "diff_latent": 0.6149584487534626,
+     "own_emission_heldout": 0.62
+    },
+    "within_family_acc_z": 0.3684210526315789,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.5244690674053555,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.024607552215456963
+   },
+   "odds|mean|36": {
+    "South Korea|South Africa": {
+     "own_latent": 0.850415512465374,
+     "diff_latent": 0.8614958448753463,
+     "own_emission_heldout": 0.8975
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.7202216066481995,
+     "diff_latent": 0.8448753462603878,
+     "own_emission_heldout": 0.9058823529411765
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.7700831024930748,
+     "diff_latent": 0.8947368421052632,
+     "own_emission_heldout": 0.905
+    },
+    "within_family_acc_z": 0.42105263157894735,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.7802400738688826,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.17234954237937927
+   },
+   "odds|mean|44": {
+    "South Korea|South Africa": {
+     "own_latent": 0.9030470914127424,
+     "diff_latent": 0.9501385041551247,
+     "own_emission_heldout": 0.8875
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.8254847645429363,
+     "diff_latent": 0.8975069252077562,
+     "own_emission_heldout": 0.888235294117647
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.8476454293628809,
+     "diff_latent": 0.9058171745152355,
+     "own_emission_heldout": 0.8725
+    },
+    "within_family_acc_z": 0.5263157894736842,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.8587257617728531,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.2877393960952759
+   },
+   "odds|mean|52": {
+    "South Korea|South Africa": {
+     "own_latent": 0.9944598337950139,
+     "diff_latent": 1.0,
+     "own_emission_heldout": 0.9575
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.9556786703601108,
+     "diff_latent": 0.9806094182825484,
+     "own_emission_heldout": 0.9352941176470588
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.9529085872576177,
+     "diff_latent": 0.9861495844875346,
+     "own_emission_heldout": 0.925
+    },
+    "within_family_acc_z": 0.6842105263157895,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.9676823638042474,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.1657317578792572
+   },
+   "odds|mean|56": {
+    "South Korea|South Africa": {
+     "own_latent": 1.0,
+     "diff_latent": 0.997229916897507,
+     "own_emission_heldout": 0.885
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.9944598337950139,
+     "diff_latent": 0.9806094182825484,
+     "own_emission_heldout": 0.9
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.9889196675900277,
+     "diff_latent": 0.9944598337950139,
+     "own_emission_heldout": 0.865
+    },
+    "within_family_acc_z": 0.7105263157894737,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.9944598337950139,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.10855834186077118
+   },
+   "odds|mean|60": {
+    "South Korea|South Africa": {
+     "own_latent": 0.7257617728531855,
+     "diff_latent": 0.9916897506925207,
+     "own_emission_heldout": 0.81
+    },
+    "South Korea|South Dakota": {
+     "own_latent": 0.6232686980609419,
+     "diff_latent": 0.8919667590027701,
+     "own_emission_heldout": 0.8
+    },
+    "South Korea|South Carolina": {
+     "own_latent": 0.6011080332409973,
+     "diff_latent": 0.7506925207756233,
+     "own_emission_heldout": 0.755
+    },
+    "within_family_acc_z": 0.5131578947368421,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "South Africa": false,
+     "South Korea": false,
+     "South Dakota": false,
+     "South Carolina": false
+    },
+    "own_latent_mean": 0.6500461680517082,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.031892843544483185
+   }
+  },
+  "San Diego": {
+   "logp|at|36": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.703601108033241,
+     "diff_latent": 0.7174515235457064,
+     "own_emission_heldout": 0.5575
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5346260387811634,
+     "diff_latent": 0.6260387811634349,
+     "own_emission_heldout": 0.4763157894736842
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.6454293628808865,
+     "diff_latent": 0.6620498614958449,
+     "own_emission_heldout": 0.56
+    },
+    "within_family_acc_z": 0.39473684210526316,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6278855032317636,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.029466524720191956
+   },
+   "logp|at|44": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.8254847645429363,
+     "diff_latent": 0.7977839335180056,
+     "own_emission_heldout": 0.8325
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5263157894736842,
+     "diff_latent": 0.6786703601108033,
+     "own_emission_heldout": 0.6894736842105263
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.7423822714681441,
+     "diff_latent": 0.8005540166204986,
+     "own_emission_heldout": 0.7866666666666666
+    },
+    "within_family_acc_z": 0.4342105263157895,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6980609418282548,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.07118142396211624
+   },
+   "logp|at|52": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.9695290858725761,
+     "diff_latent": 0.9750692520775623,
+     "own_emission_heldout": 0.945
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.7700831024930748,
+     "diff_latent": 0.8393351800554016,
+     "own_emission_heldout": 0.6631578947368421
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.8947368421052632,
+     "diff_latent": 0.8753462603878116,
+     "own_emission_heldout": 0.84
+    },
+    "within_family_acc_z": 0.5526315789473685,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.8781163434903047,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.0362231507897377
+   },
+   "logp|at|56": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.8836565096952909,
+     "diff_latent": 0.8642659279778393,
+     "own_emission_heldout": 0.88
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5650969529085873,
+     "diff_latent": 0.6869806094182825,
+     "own_emission_heldout": 0.5473684210526316
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.8808864265927978,
+     "diff_latent": 0.9279778393351801,
+     "own_emission_heldout": 0.8133333333333334
+    },
+    "within_family_acc_z": 0.4868421052631579,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.7765466297322253,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.044551026076078415
+   },
+   "logp|at|60": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.775623268698061,
+     "diff_latent": 0.7451523545706371,
+     "own_emission_heldout": 0.8425
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5789473684210527,
+     "diff_latent": 0.7008310249307479,
+     "own_emission_heldout": 0.6026315789473684
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.7063711911357341,
+     "diff_latent": 0.7423822714681441,
+     "own_emission_heldout": 0.77
+    },
+    "within_family_acc_z": 0.3157894736842105,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6869806094182827,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.03541998192667961
+   },
+   "logp|mean|36": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7229916897506925,
+     "diff_latent": 0.778393351800554,
+     "own_emission_heldout": 0.6625
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5734072022160664,
+     "diff_latent": 0.7617728531855956,
+     "own_emission_heldout": 0.5052631578947369
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.667590027700831,
+     "diff_latent": 0.7479224376731302,
+     "own_emission_heldout": 0.7733333333333333
+    },
+    "within_family_acc_z": 0.4605263157894737,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6546629732225301,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.05329446867108345
+   },
+   "logp|mean|44": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.8116343490304709,
+     "diff_latent": 0.778393351800554,
+     "own_emission_heldout": 0.8325
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5650969529085873,
+     "diff_latent": 0.775623268698061,
+     "own_emission_heldout": 0.6894736842105263
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.739612188365651,
+     "diff_latent": 0.778393351800554,
+     "own_emission_heldout": 0.8033333333333333
+    },
+    "within_family_acc_z": 0.4342105263157895,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.7054478301015698,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.07904483377933502
+   },
+   "logp|mean|52": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.9722991689750693,
+     "diff_latent": 0.9806094182825484,
+     "own_emission_heldout": 0.95
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.8254847645429363,
+     "diff_latent": 0.9501385041551247,
+     "own_emission_heldout": 0.7026315789473684
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.9362880886426593,
+     "diff_latent": 0.889196675900277,
+     "own_emission_heldout": 0.8833333333333333
+    },
+    "within_family_acc_z": 0.618421052631579,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.9113573407202216,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.0354270413517952
+   },
+   "logp|mean|56": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.9030470914127424,
+     "diff_latent": 0.8476454293628809,
+     "own_emission_heldout": 0.805
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5872576177285319,
+     "diff_latent": 0.6869806094182825,
+     "own_emission_heldout": 0.4131578947368421
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.8448753462603878,
+     "diff_latent": 0.8864265927977839,
+     "own_emission_heldout": 0.72
+    },
+    "within_family_acc_z": 0.4605263157894737,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.778393351800554,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.04170329123735428
+   },
+   "logp|mean|60": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.8337950138504155,
+     "diff_latent": 0.7811634349030471,
+     "own_emission_heldout": 0.715
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.6066481994459834,
+     "diff_latent": 0.6371191135734072,
+     "own_emission_heldout": 0.5078947368421053
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.7811634349030471,
+     "diff_latent": 0.6204986149584487,
+     "own_emission_heldout": 0.73
+    },
+    "within_family_acc_z": 0.35526315789473684,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.7405355493998154,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.02399418130517006
+   },
+   "lin|at|36": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.4930747922437673,
+     "diff_latent": 0.6204986149584487,
+     "own_emission_heldout": 0.58
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5290858725761773,
+     "diff_latent": 0.5734072022160664,
+     "own_emission_heldout": 0.5342105263157895
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.556786703601108,
+     "diff_latent": 0.5623268698060941,
+     "own_emission_heldout": 0.37666666666666665
+    },
+    "within_family_acc_z": 0.27631578947368424,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.5263157894736842,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.015309199690818787
+   },
+   "lin|at|44": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.5235457063711911,
+     "diff_latent": 0.7063711911357341,
+     "own_emission_heldout": 0.7225
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5152354570637119,
+     "diff_latent": 0.5457063711911357,
+     "own_emission_heldout": 0.5631578947368421
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.5457063711911357,
+     "diff_latent": 0.739612188365651,
+     "own_emission_heldout": 0.5666666666666667
+    },
+    "within_family_acc_z": 0.2894736842105263,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.5281625115420129,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.031875159591436386
+   },
+   "lin|at|52": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7562326869806094,
+     "diff_latent": 0.9168975069252078,
+     "own_emission_heldout": 0.745
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.6786703601108033,
+     "diff_latent": 0.7673130193905817,
+     "own_emission_heldout": 0.7026315789473684
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.8227146814404432,
+     "diff_latent": 0.8282548476454293,
+     "own_emission_heldout": 0.5966666666666667
+    },
+    "within_family_acc_z": 0.5789473684210527,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.752539242843952,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.022388895973563194
+   },
+   "lin|at|56": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7867036011080333,
+     "diff_latent": 0.8725761772853186,
+     "own_emission_heldout": 0.63
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.6011080332409973,
+     "diff_latent": 0.6952908587257618,
+     "own_emission_heldout": 0.6421052631578947
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.814404432132964,
+     "diff_latent": 0.8116343490304709,
+     "own_emission_heldout": 0.6966666666666667
+    },
+    "within_family_acc_z": 0.47368421052631576,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": true,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.7340720221606648,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.016550667583942413
+   },
+   "lin|at|60": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.6149584487534626,
+     "diff_latent": 0.8365650969529086,
+     "own_emission_heldout": 0.8575
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.590027700831025,
+     "diff_latent": 0.6648199445983379,
+     "own_emission_heldout": 0.7842105263157895
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.6537396121883656,
+     "diff_latent": 0.5789473684210527,
+     "own_emission_heldout": 0.7866666666666666
+    },
+    "within_family_acc_z": 0.42105263157894735,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": true,
+     "San Diego": true,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6195752539242844,
+    "own_latent_mean_headline": 0.6195752539242844,
+    "frac_in_constituent_span": 0.017577307298779488
+   },
+   "lin|mean|36": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.5484764542936288,
+     "diff_latent": 0.7202216066481995,
+     "own_emission_heldout": 0.7075
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5484764542936288,
+     "diff_latent": 0.6786703601108033,
+     "own_emission_heldout": 0.6842105263157895
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.628808864265928,
+     "diff_latent": 0.7119113573407202,
+     "own_emission_heldout": 0.62
+    },
+    "within_family_acc_z": 0.32894736842105265,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.5752539242843951,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.0495501346886158
+   },
+   "lin|mean|44": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.5290858725761773,
+     "diff_latent": 0.7673130193905817,
+     "own_emission_heldout": 0.8175
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5207756232686981,
+     "diff_latent": 0.6260387811634349,
+     "own_emission_heldout": 0.6973684210526315
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.5595567867036011,
+     "diff_latent": 0.7257617728531855,
+     "own_emission_heldout": 0.71
+    },
+    "within_family_acc_z": 0.3684210526315789,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.5364727608494921,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.06545469909906387
+   },
+   "lin|mean|52": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.8421052631578947,
+     "diff_latent": 0.9778393351800554,
+     "own_emission_heldout": 0.82
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.7534626038781164,
+     "diff_latent": 0.8725761772853186,
+     "own_emission_heldout": 0.8078947368421052
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.8587257617728532,
+     "diff_latent": 0.8808864265927978,
+     "own_emission_heldout": 0.7466666666666667
+    },
+    "within_family_acc_z": 0.6052631578947368,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.8180978762696215,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.03964850679039955
+   },
+   "lin|mean|56": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7950138504155124,
+     "diff_latent": 0.8808864265927978,
+     "own_emission_heldout": 0.435
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5678670360110804,
+     "diff_latent": 0.6592797783933518,
+     "own_emission_heldout": 0.5184210526315789
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.8088642659279779,
+     "diff_latent": 0.8448753462603878,
+     "own_emission_heldout": 0.5066666666666667
+    },
+    "within_family_acc_z": 0.42105263157894735,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": true,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.7239150507848567,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.034433960914611816
+   },
+   "lin|mean|60": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.6537396121883656,
+     "diff_latent": 0.8421052631578947,
+     "own_emission_heldout": 0.83
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5955678670360111,
+     "diff_latent": 0.6980609418282548,
+     "own_emission_heldout": 0.8315789473684211
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.6869806094182825,
+     "diff_latent": 0.6204986149584487,
+     "own_emission_heldout": 0.8
+    },
+    "within_family_acc_z": 0.5131578947368421,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": true,
+     "San Diego": true,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6454293628808864,
+    "own_latent_mean_headline": 0.6454293628808864,
+    "frac_in_constituent_span": 0.037229422479867935
+   },
+   "logit|at|36": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.6038781163434903,
+     "diff_latent": 0.6703601108033241,
+     "own_emission_heldout": 0.6975
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5983379501385041,
+     "diff_latent": 0.5955678670360111,
+     "own_emission_heldout": 0.7526315789473684
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.5983379501385041,
+     "diff_latent": 0.592797783933518,
+     "own_emission_heldout": 0.65
+    },
+    "within_family_acc_z": 0.3026315789473684,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6001846722068329,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.03155753016471863
+   },
+   "logit|at|44": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.6038781163434903,
+     "diff_latent": 0.775623268698061,
+     "own_emission_heldout": 0.81
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.590027700831025,
+     "diff_latent": 0.6177285318559557,
+     "own_emission_heldout": 0.7894736842105263
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.6011080332409973,
+     "diff_latent": 0.7008310249307479,
+     "own_emission_heldout": 0.8
+    },
+    "within_family_acc_z": 0.42105263157894735,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.5983379501385041,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.035967327654361725
+   },
+   "logit|at|52": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7119113573407202,
+     "diff_latent": 0.850415512465374,
+     "own_emission_heldout": 0.72
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.6620498614958449,
+     "diff_latent": 0.7811634349030471,
+     "own_emission_heldout": 0.7552631578947369
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.6925207756232687,
+     "diff_latent": 0.8614958448753463,
+     "own_emission_heldout": 0.8066666666666666
+    },
+    "within_family_acc_z": 0.4473684210526316,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6888273314866113,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.01417269092053175
+   },
+   "logit|at|56": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7673130193905817,
+     "diff_latent": 0.8448753462603878,
+     "own_emission_heldout": 0.69
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5318559556786704,
+     "diff_latent": 0.47645429362880887,
+     "own_emission_heldout": 0.6026315789473684
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.7008310249307479,
+     "diff_latent": 0.7645429362880887,
+     "own_emission_heldout": 0.8
+    },
+    "within_family_acc_z": 0.42105263157894735,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6666666666666666,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.008793028071522713
+   },
+   "logit|at|60": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.6343490304709142,
+     "diff_latent": 0.817174515235457,
+     "own_emission_heldout": 0.7075
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5650969529085873,
+     "diff_latent": 0.6481994459833795,
+     "own_emission_heldout": 0.6894736842105263
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.554016620498615,
+     "diff_latent": 0.6149584487534626,
+     "own_emission_heldout": 0.7866666666666666
+    },
+    "within_family_acc_z": 0.3684210526315789,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": true,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.5844875346260389,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.014130604453384876
+   },
+   "logit|mean|36": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.6537396121883656,
+     "diff_latent": 0.7673130193905817,
+     "own_emission_heldout": 0.6325
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.6204986149584487,
+     "diff_latent": 0.7285318559556787,
+     "own_emission_heldout": 0.5210526315789473
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.6481994459833795,
+     "diff_latent": 0.6204986149584487,
+     "own_emission_heldout": 0.7033333333333334
+    },
+    "within_family_acc_z": 0.47368421052631576,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6408125577100646,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.03460805118083954
+   },
+   "logit|mean|44": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.631578947368421,
+     "diff_latent": 0.7368421052631579,
+     "own_emission_heldout": 0.73
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.592797783933518,
+     "diff_latent": 0.6980609418282548,
+     "own_emission_heldout": 0.65
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.6149584487534626,
+     "diff_latent": 0.6731301939058172,
+     "own_emission_heldout": 0.7333333333333333
+    },
+    "within_family_acc_z": 0.4473684210526316,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6131117266851338,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.02294403500854969
+   },
+   "logit|mean|52": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7451523545706371,
+     "diff_latent": 0.8753462603878116,
+     "own_emission_heldout": 0.7425
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.6814404432132964,
+     "diff_latent": 0.8393351800554016,
+     "own_emission_heldout": 0.6552631578947369
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.6897506925207756,
+     "diff_latent": 0.8642659279778393,
+     "own_emission_heldout": 0.8166666666666667
+    },
+    "within_family_acc_z": 0.5657894736842105,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.7054478301015696,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.015750527381896973
+   },
+   "logit|mean|56": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7063711911357341,
+     "diff_latent": 0.7839335180055401,
+     "own_emission_heldout": 0.6725
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5318559556786704,
+     "diff_latent": 0.5872576177285319,
+     "own_emission_heldout": 0.5342105263157895
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.5817174515235457,
+     "diff_latent": 0.7673130193905817,
+     "own_emission_heldout": 0.7933333333333333
+    },
+    "within_family_acc_z": 0.47368421052631576,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": true,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6066481994459834,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.009610035456717014
+   },
+   "logit|mean|60": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.6620498614958449,
+     "diff_latent": 0.7340720221606648,
+     "own_emission_heldout": 0.655
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5650969529085873,
+     "diff_latent": 0.6232686980609419,
+     "own_emission_heldout": 0.5894736842105263
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.5484764542936288,
+     "diff_latent": 0.667590027700831,
+     "own_emission_heldout": 0.7833333333333333
+    },
+    "within_family_acc_z": 0.34210526315789475,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": true,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.5918744228993537,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.007905332371592522
+   },
+   "odds|at|36": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7008310249307479,
+     "diff_latent": 0.7534626038781164,
+     "own_emission_heldout": 0.6425
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.6011080332409973,
+     "diff_latent": 0.6592797783933518,
+     "own_emission_heldout": 0.5921052631578947
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.6398891966759003,
+     "diff_latent": 0.6204986149584487,
+     "own_emission_heldout": 0.6366666666666667
+    },
+    "within_family_acc_z": 0.39473684210526316,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6472760849492151,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.02661318890750408
+   },
+   "odds|at|44": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7867036011080333,
+     "diff_latent": 0.7922437673130194,
+     "own_emission_heldout": 0.85
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5844875346260388,
+     "diff_latent": 0.6842105263157895,
+     "own_emission_heldout": 0.7210526315789474
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.7091412742382271,
+     "diff_latent": 0.7368421052631579,
+     "own_emission_heldout": 0.8133333333333334
+    },
+    "within_family_acc_z": 0.40789473684210525,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.693444136657433,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.056430622935295105
+   },
+   "odds|at|52": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.9279778393351801,
+     "diff_latent": 0.9418282548476454,
+     "own_emission_heldout": 0.8775
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.7423822714681441,
+     "diff_latent": 0.8337950138504155,
+     "own_emission_heldout": 0.6763157894736842
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.850415512465374,
+     "diff_latent": 0.8393351800554016,
+     "own_emission_heldout": 0.91
+    },
+    "within_family_acc_z": 0.5263157894736842,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.840258541089566,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.024900762364268303
+   },
+   "odds|at|56": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.8753462603878116,
+     "diff_latent": 0.853185595567867,
+     "own_emission_heldout": 0.7725
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5817174515235457,
+     "diff_latent": 0.6177285318559557,
+     "own_emission_heldout": 0.5421052631578948
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.8227146814404432,
+     "diff_latent": 0.8393351800554016,
+     "own_emission_heldout": 0.83
+    },
+    "within_family_acc_z": 0.4342105263157895,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.7599261311172668,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.018857980147004128
+   },
+   "odds|at|60": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7977839335180056,
+     "diff_latent": 0.8227146814404432,
+     "own_emission_heldout": 0.8275
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5955678670360111,
+     "diff_latent": 0.6260387811634349,
+     "own_emission_heldout": 0.6131578947368421
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.6648199445983379,
+     "diff_latent": 0.7257617728531855,
+     "own_emission_heldout": 0.81
+    },
+    "within_family_acc_z": 0.40789473684210525,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6860572483841182,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.024123569950461388
+   },
+   "odds|mean|36": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7146814404432132,
+     "diff_latent": 0.7506925207756233,
+     "own_emission_heldout": 0.64
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5955678670360111,
+     "diff_latent": 0.8088642659279779,
+     "own_emission_heldout": 0.4105263157894737
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.667590027700831,
+     "diff_latent": 0.7063711911357341,
+     "own_emission_heldout": 0.7633333333333333
+    },
+    "within_family_acc_z": 0.4868421052631579,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6592797783933517,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.04211806505918503
+   },
+   "odds|mean|44": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7839335180055401,
+     "diff_latent": 0.8005540166204986,
+     "own_emission_heldout": 0.765
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.6343490304709142,
+     "diff_latent": 0.7839335180055401,
+     "own_emission_heldout": 0.6263157894736842
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.7590027700831025,
+     "diff_latent": 0.7451523545706371,
+     "own_emission_heldout": 0.75
+    },
+    "within_family_acc_z": 0.4473684210526316,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.7257617728531857,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.05537233129143715
+   },
+   "odds|mean|52": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.9501385041551247,
+     "diff_latent": 0.9833795013850416,
+     "own_emission_heldout": 0.9025
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.7673130193905817,
+     "diff_latent": 0.9279778393351801,
+     "own_emission_heldout": 0.5921052631578947
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.8808864265927978,
+     "diff_latent": 0.8670360110803325,
+     "own_emission_heldout": 0.88
+    },
+    "within_family_acc_z": 0.6447368421052632,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.8661126500461681,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.030122553929686546
+   },
+   "odds|mean|56": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.8725761772853186,
+     "diff_latent": 0.8670360110803325,
+     "own_emission_heldout": 0.6825
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5595567867036011,
+     "diff_latent": 0.7202216066481995,
+     "own_emission_heldout": 0.38421052631578945
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.7728531855955678,
+     "diff_latent": 0.8337950138504155,
+     "own_emission_heldout": 0.7766666666666666
+    },
+    "within_family_acc_z": 0.47368421052631576,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.7349953831948292,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.029800157994031906
+   },
+   "odds|mean|60": {
+    "San Diego|San Francisco": {
+     "own_latent": 0.7811634349030471,
+     "diff_latent": 0.8559556786703602,
+     "own_emission_heldout": 0.725
+    },
+    "San Diego|San Antonio": {
+     "own_latent": 0.5844875346260388,
+     "diff_latent": 0.6786703601108033,
+     "own_emission_heldout": 0.5131578947368421
+    },
+    "San Diego|San Jose": {
+     "own_latent": 0.6731301939058172,
+     "diff_latent": 0.6759002770083102,
+     "own_emission_heldout": 0.8233333333333334
+    },
+    "within_family_acc_z": 0.34210526315789475,
+    "within_family_chance": 0.25,
+    "stable_members": {
+     "San Francisco": false,
+     "San Diego": false,
+     "San Antonio": false,
+     "San Jose": false
+    },
+    "own_latent_mean": 0.6795937211449677,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.024943752214312553
+   }
+  },
+  "North Carolina": {
+   "logp|at|36": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6648199445983379,
+     "diff_latent": 0.7146814404432132,
+     "own_emission_heldout": 0.88
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6177285318559557,
+     "diff_latent": 0.778393351800554,
+     "own_emission_heldout": 0.55
+    },
+    "within_family_acc_z": 0.43859649122807015,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6412742382271468,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.015958717092871666
+   },
+   "logp|at|44": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.7063711911357341,
+     "diff_latent": 0.7229916897506925,
+     "own_emission_heldout": 0.9225
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6426592797783933,
+     "diff_latent": 0.817174515235457,
+     "own_emission_heldout": 0.68125
+    },
+    "within_family_acc_z": 0.47368421052631576,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6745152354570637,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.05639873072504997
+   },
+   "logp|at|52": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.8559556786703602,
+     "diff_latent": 0.8448753462603878,
+     "own_emission_heldout": 0.945
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.7506925207756233,
+     "diff_latent": 0.9224376731301939,
+     "own_emission_heldout": 0.6125
+    },
+    "within_family_acc_z": 0.5614035087719298,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.8033240997229918,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.039375610649585724
+   },
+   "logp|at|56": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.814404432132964,
+     "diff_latent": 0.8282548476454293,
+     "own_emission_heldout": 0.9825
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6869806094182825,
+     "diff_latent": 0.8337950138504155,
+     "own_emission_heldout": 0.48125
+    },
+    "within_family_acc_z": 0.49122807017543857,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.7506925207756232,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.028932955116033554
+   },
+   "logp|at|60": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.7313019390581718,
+     "diff_latent": 0.6731301939058172,
+     "own_emission_heldout": 0.825
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.7451523545706371,
+     "diff_latent": 0.9362880886426593,
+     "own_emission_heldout": 0.75625
+    },
+    "within_family_acc_z": 0.5263157894736842,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.7382271468144044,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.04614142328500748
+   },
+   "logp|mean|36": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6814404432132964,
+     "diff_latent": 0.7119113573407202,
+     "own_emission_heldout": 0.87
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6869806094182825,
+     "diff_latent": 0.7479224376731302,
+     "own_emission_heldout": 0.54375
+    },
+    "within_family_acc_z": 0.5614035087719298,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6842105263157895,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.0382922999560833
+   },
+   "logp|mean|44": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.7922437673130194,
+     "diff_latent": 0.814404432132964,
+     "own_emission_heldout": 0.9125
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.7285318559556787,
+     "diff_latent": 0.7922437673130194,
+     "own_emission_heldout": 0.7125
+    },
+    "within_family_acc_z": 0.5263157894736842,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.760387811634349,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.07128474861383438
+   },
+   "logp|mean|52": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.9445983379501385,
+     "diff_latent": 0.9667590027700831,
+     "own_emission_heldout": 0.905
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.925207756232687,
+     "diff_latent": 0.961218836565097,
+     "own_emission_heldout": 0.7
+    },
+    "within_family_acc_z": 0.7543859649122807,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.9349030470914128,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.0597655326128006
+   },
+   "logp|mean|56": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.9196675900277008,
+     "diff_latent": 0.9418282548476454,
+     "own_emission_heldout": 1.0
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.7894736842105263,
+     "diff_latent": 0.8254847645429363,
+     "own_emission_heldout": 0.5875
+    },
+    "within_family_acc_z": 0.631578947368421,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.8545706371191135,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.04808755964040756
+   },
+   "logp|mean|60": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.7229916897506925,
+     "diff_latent": 0.6952908587257618,
+     "own_emission_heldout": 0.785
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.7673130193905817,
+     "diff_latent": 0.8559556786703602,
+     "own_emission_heldout": 0.8125
+    },
+    "within_family_acc_z": 0.5263157894736842,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.7451523545706371,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.052676256746053696
+   },
+   "lin|at|36": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.5844875346260388,
+     "diff_latent": 0.7285318559556787,
+     "own_emission_heldout": 0.6775
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6011080332409973,
+     "diff_latent": 0.739612188365651,
+     "own_emission_heldout": 0.45625
+    },
+    "within_family_acc_z": 0.5087719298245614,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.592797783933518,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.023732319474220276
+   },
+   "lin|at|44": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6759002770083102,
+     "diff_latent": 0.8393351800554016,
+     "own_emission_heldout": 0.5975
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6398891966759003,
+     "diff_latent": 0.6731301939058172,
+     "own_emission_heldout": 0.4875
+    },
+    "within_family_acc_z": 0.5964912280701754,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6578947368421053,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.0753805935382843
+   },
+   "lin|at|52": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6260387811634349,
+     "diff_latent": 0.9501385041551247,
+     "own_emission_heldout": 0.705
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6481994459833795,
+     "diff_latent": 0.8199445983379502,
+     "own_emission_heldout": 0.5
+    },
+    "within_family_acc_z": 0.7192982456140351,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6371191135734072,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.04324735701084137
+   },
+   "lin|at|56": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.7867036011080333,
+     "diff_latent": 0.9168975069252078,
+     "own_emission_heldout": 0.9275
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.5401662049861495,
+     "diff_latent": 0.7423822714681441,
+     "own_emission_heldout": 0.41875
+    },
+    "within_family_acc_z": 0.631578947368421,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": true,
+     "North Carolina": true,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6634349030470914,
+    "own_latent_mean_headline": 0.6634349030470914,
+    "frac_in_constituent_span": 0.03199060633778572
+   },
+   "lin|at|60": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6980609418282548,
+     "diff_latent": 0.8282548476454293,
+     "own_emission_heldout": 0.73
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.8476454293628809,
+     "diff_latent": 0.9002770083102493,
+     "own_emission_heldout": 0.8875
+    },
+    "within_family_acc_z": 0.631578947368421,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": true,
+     "North Carolina": true,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.7728531855955678,
+    "own_latent_mean_headline": 0.7728531855955678,
+    "frac_in_constituent_span": 0.04501426964998245
+   },
+   "lin|mean|36": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6066481994459834,
+     "diff_latent": 0.7229916897506925,
+     "own_emission_heldout": 0.75
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6371191135734072,
+     "diff_latent": 0.853185595567867,
+     "own_emission_heldout": 0.50625
+    },
+    "within_family_acc_z": 0.5263157894736842,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6218836565096952,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.08107641339302063
+   },
+   "lin|mean|44": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6814404432132964,
+     "diff_latent": 0.8199445983379502,
+     "own_emission_heldout": 0.68
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6842105263157895,
+     "diff_latent": 0.7950138504155124,
+     "own_emission_heldout": 0.60625
+    },
+    "within_family_acc_z": 0.49122807017543857,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.682825484764543,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.12517525255680084
+   },
+   "lin|mean|52": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.817174515235457,
+     "diff_latent": 0.9778393351800554,
+     "own_emission_heldout": 0.75
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.8476454293628809,
+     "diff_latent": 0.9584487534626038,
+     "own_emission_heldout": 0.6
+    },
+    "within_family_acc_z": 0.7894736842105263,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": true,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.8324099722991689,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.10136554390192032
+   },
+   "lin|mean|56": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.8753462603878116,
+     "diff_latent": 0.96398891966759,
+     "own_emission_heldout": 0.95
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.7174515235457064,
+     "diff_latent": 0.889196675900277,
+     "own_emission_heldout": 0.475
+    },
+    "within_family_acc_z": 0.7368421052631579,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": true,
+     "North Carolina": true,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.7963988919667591,
+    "own_latent_mean_headline": 0.7963988919667591,
+    "frac_in_constituent_span": 0.07905329018831253
+   },
+   "lin|mean|60": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.7506925207756233,
+     "diff_latent": 0.9030470914127424,
+     "own_emission_heldout": 0.69
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.9030470914127424,
+     "diff_latent": 0.9584487534626038,
+     "own_emission_heldout": 0.8625
+    },
+    "within_family_acc_z": 0.7894736842105263,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": true,
+     "North Carolina": true,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.8268698060941828,
+    "own_latent_mean_headline": 0.8268698060941828,
+    "frac_in_constituent_span": 0.14164015650749207
+   },
+   "logit|at|36": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6371191135734072,
+     "diff_latent": 0.7229916897506925,
+     "own_emission_heldout": 0.7225
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6509695290858726,
+     "diff_latent": 0.7922437673130194,
+     "own_emission_heldout": 0.55625
+    },
+    "within_family_acc_z": 0.47368421052631576,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6440443213296398,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.020997820422053337
+   },
+   "logit|at|44": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6149584487534626,
+     "diff_latent": 0.703601108033241,
+     "own_emission_heldout": 0.605
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6260387811634349,
+     "diff_latent": 0.6952908587257618,
+     "own_emission_heldout": 0.50625
+    },
+    "within_family_acc_z": 0.47368421052631576,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6204986149584488,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.07275636494159698
+   },
+   "logit|at|52": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6925207756232687,
+     "diff_latent": 0.8282548476454293,
+     "own_emission_heldout": 0.79
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.631578947368421,
+     "diff_latent": 0.7867036011080333,
+     "own_emission_heldout": 0.58125
+    },
+    "within_family_acc_z": 0.631578947368421,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6620498614958449,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.03883291035890579
+   },
+   "logit|at|56": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.7340720221606648,
+     "diff_latent": 0.9113573407202216,
+     "own_emission_heldout": 0.9125
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.5955678670360111,
+     "diff_latent": 0.6204986149584487,
+     "own_emission_heldout": 0.5375
+    },
+    "within_family_acc_z": 0.5087719298245614,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6648199445983379,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.02633935771882534
+   },
+   "logit|at|60": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.5955678670360111,
+     "diff_latent": 0.6980609418282548,
+     "own_emission_heldout": 0.815
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6869806094182825,
+     "diff_latent": 0.8642659279778393,
+     "own_emission_heldout": 0.9
+    },
+    "within_family_acc_z": 0.5789473684210527,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6412742382271468,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.024110248312354088
+   },
+   "logit|mean|36": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.703601108033241,
+     "diff_latent": 0.7673130193905817,
+     "own_emission_heldout": 0.725
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.7423822714681441,
+     "diff_latent": 0.8033240997229917,
+     "own_emission_heldout": 0.5625
+    },
+    "within_family_acc_z": 0.543859649122807,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.7229916897506925,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.05408957228064537
+   },
+   "logit|mean|44": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6454293628808865,
+     "diff_latent": 0.8282548476454293,
+     "own_emission_heldout": 0.615
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6648199445983379,
+     "diff_latent": 0.7008310249307479,
+     "own_emission_heldout": 0.575
+    },
+    "within_family_acc_z": 0.5087719298245614,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6551246537396123,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.06515946984291077
+   },
+   "logit|mean|52": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.7534626038781164,
+     "diff_latent": 0.9362880886426593,
+     "own_emission_heldout": 0.6975
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.8005540166204986,
+     "diff_latent": 0.9030470914127424,
+     "own_emission_heldout": 0.775
+    },
+    "within_family_acc_z": 0.7543859649122807,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.7770083102493075,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.047240372747182846
+   },
+   "logit|mean|56": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.7673130193905817,
+     "diff_latent": 0.9556786703601108,
+     "own_emission_heldout": 0.83
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6897506925207756,
+     "diff_latent": 0.817174515235457,
+     "own_emission_heldout": 0.70625
+    },
+    "within_family_acc_z": 0.8245614035087719,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": true,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.7285318559556786,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.030343689024448395
+   },
+   "logit|mean|60": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.5872576177285319,
+     "diff_latent": 0.739612188365651,
+     "own_emission_heldout": 0.6925
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.7119113573407202,
+     "diff_latent": 0.8421052631578947,
+     "own_emission_heldout": 0.8375
+    },
+    "within_family_acc_z": 0.6666666666666666,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": true,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.649584487534626,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.020680543035268784
+   },
+   "odds|at|36": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.667590027700831,
+     "diff_latent": 0.6066481994459834,
+     "own_emission_heldout": 0.7925
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6398891966759003,
+     "diff_latent": 0.7811634349030471,
+     "own_emission_heldout": 0.63125
+    },
+    "within_family_acc_z": 0.43859649122807015,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6537396121883656,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.017150860279798508
+   },
+   "odds|at|44": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6149584487534626,
+     "diff_latent": 0.592797783933518,
+     "own_emission_heldout": 0.7475
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6620498614958449,
+     "diff_latent": 0.7922437673130194,
+     "own_emission_heldout": 0.625
+    },
+    "within_family_acc_z": 0.42105263157894735,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6385041551246537,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.06618937104940414
+   },
+   "odds|at|52": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.7811634349030471,
+     "diff_latent": 0.6426592797783933,
+     "own_emission_heldout": 0.88
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.7146814404432132,
+     "diff_latent": 0.8670360110803325,
+     "own_emission_heldout": 0.4875
+    },
+    "within_family_acc_z": 0.47368421052631576,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.7479224376731302,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.0399344302713871
+   },
+   "odds|at|56": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.7285318559556787,
+     "diff_latent": 0.6842105263157895,
+     "own_emission_heldout": 0.9425
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.631578947368421,
+     "diff_latent": 0.6842105263157895,
+     "own_emission_heldout": 0.45
+    },
+    "within_family_acc_z": 0.43859649122807015,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6800554016620499,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.033362459391355515
+   },
+   "odds|at|60": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.631578947368421,
+     "diff_latent": 0.5706371191135734,
+     "own_emission_heldout": 0.88
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.7423822714681441,
+     "diff_latent": 0.8559556786703602,
+     "own_emission_heldout": 0.81875
+    },
+    "within_family_acc_z": 0.47368421052631576,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": true,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6869806094182825,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.033981163054704666
+   },
+   "odds|mean|36": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6842105263157895,
+     "diff_latent": 0.703601108033241,
+     "own_emission_heldout": 0.7725
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.7119113573407202,
+     "diff_latent": 0.8421052631578947,
+     "own_emission_heldout": 0.6375
+    },
+    "within_family_acc_z": 0.5263157894736842,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6980609418282548,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.050806377083063126
+   },
+   "odds|mean|44": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6731301939058172,
+     "diff_latent": 0.7368421052631579,
+     "own_emission_heldout": 0.775
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6869806094182825,
+     "diff_latent": 0.7423822714681441,
+     "own_emission_heldout": 0.66875
+    },
+    "within_family_acc_z": 0.43859649122807015,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.6800554016620499,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.08126514405012131
+   },
+   "odds|mean|52": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.8670360110803325,
+     "diff_latent": 0.8393351800554016,
+     "own_emission_heldout": 0.8125
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.8781163434903048,
+     "diff_latent": 0.9141274238227147,
+     "own_emission_heldout": 0.64375
+    },
+    "within_family_acc_z": 0.5964912280701754,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.8725761772853187,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.06100436672568321
+   },
+   "odds|mean|56": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.739612188365651,
+     "diff_latent": 0.8005540166204986,
+     "own_emission_heldout": 0.895
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.6703601108033241,
+     "diff_latent": 0.7479224376731302,
+     "own_emission_heldout": 0.5375
+    },
+    "within_family_acc_z": 0.43859649122807015,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.7049861495844876,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.04317716136574745
+   },
+   "odds|mean|60": {
+    "North Carolina|North Korea": {
+     "own_latent": 0.6232686980609419,
+     "diff_latent": 0.631578947368421,
+     "own_emission_heldout": 0.7475
+    },
+    "North Carolina|North Dakota": {
+     "own_latent": 0.7811634349030471,
+     "diff_latent": 0.8698060941828255,
+     "own_emission_heldout": 0.825
+    },
+    "within_family_acc_z": 0.5087719298245614,
+    "within_family_chance": 0.3333333333333333,
+    "stable_members": {
+     "North Korea": false,
+     "North Carolina": false,
+     "North Dakota": false
+    },
+    "own_latent_mean": 0.7022160664819945,
+    "own_latent_mean_headline": 0.5,
+    "frac_in_constituent_span": 0.039498575031757355
+   }
+  }
+ },
+ "baselines": {
+  "New Zealand": {
+   "36": {
+    "New Zealand|New York": {
+     "J_first": 0.5298245614035088,
+     "J_sum": 0.887719298245614,
+     "J_mean": 0.887719298245614,
+     "constituent_ceiling": 0.921875,
+     "full_probe": 0.7638888888888888
+    },
+    "New Zealand|New Delhi": {
+     "J_first": 0.5964912280701754,
+     "J_sum": 0.9719298245614035,
+     "J_mean": 0.9719298245614035,
+     "constituent_ceiling": 0.9253472222222222,
+     "full_probe": 0.96875
+    },
+    "New Zealand|New Jersey": {
+     "J_first": 0.4982456140350877,
+     "J_sum": 0.8842105263157894,
+     "J_mean": 0.8842105263157894,
+     "constituent_ceiling": 0.984375,
+     "full_probe": 0.8038194444444444
+    }
+   },
+   "44": {
+    "New Zealand|New York": {
+     "J_first": 0.5614035087719298,
+     "J_sum": 0.9438596491228071,
+     "J_mean": 0.9438596491228071,
+     "constituent_ceiling": 0.984375,
+     "full_probe": 0.8194444444444444
+    },
+    "New Zealand|New Delhi": {
+     "J_first": 0.7473684210526316,
+     "J_sum": 0.9789473684210527,
+     "J_mean": 0.9789473684210527,
+     "constituent_ceiling": 1.0,
+     "full_probe": 0.8940972222222222
+    },
+    "New Zealand|New Jersey": {
+     "J_first": 0.5894736842105263,
+     "J_sum": 0.9192982456140351,
+     "J_mean": 0.9192982456140351,
+     "constituent_ceiling": 1.0,
+     "full_probe": 0.8784722222222222
+    }
+   },
+   "52": {
+    "New Zealand|New York": {
+     "J_first": 0.5473684210526316,
+     "J_sum": 0.9789473684210527,
+     "J_mean": 0.9789473684210527,
+     "constituent_ceiling": 0.984375,
+     "full_probe": 0.8315972222222222
+    },
+    "New Zealand|New Delhi": {
+     "J_first": 0.7719298245614035,
+     "J_sum": 0.9789473684210527,
+     "J_mean": 0.9789473684210527,
+     "constituent_ceiling": 1.0,
+     "full_probe": 0.984375
+    },
+    "New Zealand|New Jersey": {
+     "J_first": 0.6210526315789474,
+     "J_sum": 0.9649122807017544,
+     "J_mean": 0.9649122807017544,
+     "constituent_ceiling": 0.96875,
+     "full_probe": 0.921875
+    }
+   },
+   "56": {
+    "New Zealand|New York": {
+     "J_first": 0.8105263157894737,
+     "J_sum": 0.9473684210526315,
+     "J_mean": 0.9473684210526315,
+     "constituent_ceiling": 0.8975694444444444,
+     "full_probe": 0.984375
+    },
+    "New Zealand|New Delhi": {
+     "J_first": 0.8280701754385965,
+     "J_sum": 0.9964912280701754,
+     "J_mean": 0.9964912280701754,
+     "constituent_ceiling": 1.0,
+     "full_probe": 1.0
+    },
+    "New Zealand|New Jersey": {
+     "J_first": 0.8105263157894737,
+     "J_sum": 0.9508771929824561,
+     "J_mean": 0.9508771929824561,
+     "constituent_ceiling": 0.953125,
+     "full_probe": 1.0
+    }
+   },
+   "60": {
+    "New Zealand|New York": {
+     "J_first": 0.6701754385964912,
+     "J_sum": 0.9368421052631579,
+     "J_mean": 0.9368421052631579,
+     "constituent_ceiling": 0.8975694444444444,
+     "full_probe": 0.984375
+    },
+    "New Zealand|New Delhi": {
+     "J_first": 0.7859649122807018,
+     "J_sum": 0.9929824561403509,
+     "J_mean": 0.9929824561403509,
+     "constituent_ceiling": 1.0,
+     "full_probe": 1.0
+    },
+    "New Zealand|New Jersey": {
+     "J_first": 0.7017543859649122,
+     "J_sum": 0.9473684210526315,
+     "J_mean": 0.9473684210526315,
+     "constituent_ceiling": 0.9288194444444444,
+     "full_probe": 1.0
+    }
+   }
+  },
+  "South Korea": {
+   "36": {
+    "South Korea|South Africa": {
+     "J_first": 0.38227146814404434,
+     "J_sum": 0.8254847645429363,
+     "J_mean": 0.8254847645429363,
+     "constituent_ceiling": 0.9,
+     "full_probe": 0.925
+    },
+    "South Korea|South Dakota": {
+     "J_first": 0.5373961218836565,
+     "J_sum": 0.9473684210526315,
+     "J_mean": 0.9473684210526315,
+     "constituent_ceiling": 0.9625,
+     "full_probe": 0.975
+    },
+    "South Korea|South Carolina": {
+     "J_first": 0.48476454293628807,
+     "J_sum": 0.961218836565097,
+     "J_mean": 0.961218836565097,
+     "constituent_ceiling": 0.9277777777777778,
+     "full_probe": 0.8777777777777779
+    }
+   },
+   "44": {
+    "South Korea|South Africa": {
+     "J_first": 0.3656509695290859,
+     "J_sum": 0.8642659279778393,
+     "J_mean": 0.8642659279778393,
+     "constituent_ceiling": 0.9625,
+     "full_probe": 0.9527777777777778
+    },
+    "South Korea|South Dakota": {
+     "J_first": 0.4903047091412742,
+     "J_sum": 0.9473684210526315,
+     "J_mean": 0.9473684210526315,
+     "constituent_ceiling": 0.9625,
+     "full_probe": 0.9430555555555555
+    },
+    "South Korea|South Carolina": {
+     "J_first": 0.4265927977839335,
+     "J_sum": 0.9473684210526315,
+     "J_mean": 0.9473684210526315,
+     "constituent_ceiling": 0.9625,
+     "full_probe": 0.8902777777777778
+    }
+   },
+   "52": {
+    "South Korea|South Africa": {
+     "J_first": 0.31301939058171746,
+     "J_sum": 0.96398891966759,
+     "J_mean": 0.96398891966759,
+     "constituent_ceiling": 0.9875,
+     "full_probe": 1.0
+    },
+    "South Korea|South Dakota": {
+     "J_first": 0.5706371191135734,
+     "J_sum": 0.9833795013850416,
+     "J_mean": 0.9833795013850416,
+     "constituent_ceiling": 1.0,
+     "full_probe": 1.0
+    },
+    "South Korea|South Carolina": {
+     "J_first": 0.47645429362880887,
+     "J_sum": 1.0,
+     "J_mean": 1.0,
+     "constituent_ceiling": 1.0,
+     "full_probe": 1.0
+    }
+   },
+   "56": {
+    "South Korea|South Africa": {
+     "J_first": 0.2659279778393352,
+     "J_sum": 0.9833795013850416,
+     "J_mean": 0.9833795013850416,
+     "constituent_ceiling": 1.0,
+     "full_probe": 1.0
+    },
+    "South Korea|South Dakota": {
+     "J_first": 0.7506925207756233,
+     "J_sum": 0.9944598337950139,
+     "J_mean": 0.9944598337950139,
+     "constituent_ceiling": 1.0,
+     "full_probe": 1.0
+    },
+    "South Korea|South Carolina": {
+     "J_first": 0.4792243767313019,
+     "J_sum": 1.0,
+     "J_mean": 1.0,
+     "constituent_ceiling": 1.0,
+     "full_probe": 1.0
+    }
+   },
+   "60": {
+    "South Korea|South Africa": {
+     "J_first": 0.4182825484764543,
+     "J_sum": 1.0,
+     "J_mean": 1.0,
+     "constituent_ceiling": 1.0,
+     "full_probe": 1.0
+    },
+    "South Korea|South Dakota": {
+     "J_first": 0.778393351800554,
+     "J_sum": 0.997229916897507,
+     "J_mean": 0.997229916897507,
+     "constituent_ceiling": 1.0,
+     "full_probe": 1.0
+    },
+    "South Korea|South Carolina": {
+     "J_first": 0.6481994459833795,
+     "J_sum": 1.0,
+     "J_mean": 1.0,
+     "constituent_ceiling": 1.0,
+     "full_probe": 1.0
+    }
+   }
+  },
+  "San Diego": {
+   "36": {
+    "San Diego|San Francisco": {
+     "J_first": 0.5484764542936288,
+     "J_sum": 0.6481994459833795,
+     "J_mean": 0.6481994459833795,
+     "constituent_ceiling": 0.4930555555555555,
+     "full_probe": 0.5833333333333333
+    },
+    "San Diego|San Antonio": {
+     "J_first": 0.5373961218836565,
+     "J_sum": 0.6648199445983379,
+     "J_mean": 0.6648199445983379,
+     "constituent_ceiling": 0.6430555555555555,
+     "full_probe": 0.5583333333333333
+    },
+    "San Diego|San Jose": {
+     "J_first": 0.5429362880886427,
+     "J_sum": 0.5152354570637119,
+     "J_mean": 0.5152354570637119,
+     "constituent_ceiling": 0.5166666666666666,
+     "full_probe": 0.5333333333333333
+    }
+   },
+   "44": {
+    "San Diego|San Francisco": {
+     "J_first": 0.49584487534626037,
+     "J_sum": 0.6204986149584487,
+     "J_mean": 0.6204986149584487,
+     "constituent_ceiling": 0.6583333333333333,
+     "full_probe": 0.6680555555555555
+    },
+    "San Diego|San Antonio": {
+     "J_first": 0.5457063711911357,
+     "J_sum": 0.6371191135734072,
+     "J_mean": 0.6371191135734072,
+     "constituent_ceiling": 0.6083333333333333,
+     "full_probe": 0.48611111111111105
+    },
+    "San Diego|San Jose": {
+     "J_first": 0.5373961218836565,
+     "J_sum": 0.5457063711911357,
+     "J_mean": 0.5457063711911357,
+     "constituent_ceiling": 0.5638888888888889,
+     "full_probe": 0.6083333333333333
+    }
+   },
+   "52": {
+    "San Diego|San Francisco": {
+     "J_first": 0.5595567867036011,
+     "J_sum": 0.6537396121883656,
+     "J_mean": 0.6537396121883656,
+     "constituent_ceiling": 0.7055555555555555,
+     "full_probe": 0.925
+    },
+    "San Diego|San Antonio": {
+     "J_first": 0.6703601108033241,
+     "J_sum": 0.6814404432132964,
+     "J_mean": 0.6814404432132964,
+     "constituent_ceiling": 0.8027777777777778,
+     "full_probe": 0.9
+    },
+    "San Diego|San Jose": {
+     "J_first": 0.631578947368421,
+     "J_sum": 0.554016620498615,
+     "J_mean": 0.554016620498615,
+     "constituent_ceiling": 0.7180555555555556,
+     "full_probe": 0.8680555555555556
+    }
+   },
+   "56": {
+    "San Diego|San Francisco": {
+     "J_first": 0.5346260387811634,
+     "J_sum": 0.775623268698061,
+     "J_mean": 0.775623268698061,
+     "constituent_ceiling": 0.7583333333333333,
+     "full_probe": 1.0
+    },
+    "San Diego|San Antonio": {
+     "J_first": 0.6177285318559557,
+     "J_sum": 0.8476454293628809,
+     "J_mean": 0.8476454293628809,
+     "constituent_ceiling": 0.925,
+     "full_probe": 0.975
+    },
+    "San Diego|San Jose": {
+     "J_first": 0.6343490304709142,
+     "J_sum": 0.667590027700831,
+     "J_mean": 0.667590027700831,
+     "constituent_ceiling": 0.6958333333333333,
+     "full_probe": 0.9055555555555556
+    }
+   },
+   "60": {
+    "San Diego|San Francisco": {
+     "J_first": 0.5318559556786704,
+     "J_sum": 0.7811634349030471,
+     "J_mean": 0.7811634349030471,
+     "constituent_ceiling": 0.7833333333333333,
+     "full_probe": 1.0
+    },
+    "San Diego|San Antonio": {
+     "J_first": 0.6648199445983379,
+     "J_sum": 0.8310249307479224,
+     "J_mean": 0.8310249307479224,
+     "constituent_ceiling": 0.8430555555555556,
+     "full_probe": 0.9875
+    },
+    "San Diego|San Jose": {
+     "J_first": 0.5595567867036011,
+     "J_sum": 0.7562326869806094,
+     "J_mean": 0.7562326869806094,
+     "constituent_ceiling": 0.7486111111111111,
+     "full_probe": 0.9055555555555556
+    }
+   }
+  },
+  "North Carolina": {
+   "36": {
+    "North Carolina|North Korea": {
+     "J_first": 0.5678670360110804,
+     "J_sum": 0.9473684210526315,
+     "J_mean": 0.9473684210526315,
+     "constituent_ceiling": 0.925,
+     "full_probe": 0.9277777777777778
+    },
+    "North Carolina|North Dakota": {
+     "J_first": 0.5041551246537396,
+     "J_sum": 0.814404432132964,
+     "J_mean": 0.814404432132964,
+     "constituent_ceiling": 0.7902777777777777,
+     "full_probe": 0.7583333333333333
+    }
+   },
+   "44": {
+    "North Carolina|North Korea": {
+     "J_first": 0.5983379501385041,
+     "J_sum": 0.9501385041551247,
+     "J_mean": 0.9501385041551247,
+     "constituent_ceiling": 0.975,
+     "full_probe": 0.9180555555555555
+    },
+    "North Carolina|North Dakota": {
+     "J_first": 0.5457063711911357,
+     "J_sum": 0.8836565096952909,
+     "J_mean": 0.8836565096952909,
+     "constituent_ceiling": 0.8305555555555555,
+     "full_probe": 0.7083333333333333
+    }
+   },
+   "52": {
+    "North Carolina|North Korea": {
+     "J_first": 0.592797783933518,
+     "J_sum": 1.0,
+     "J_mean": 1.0,
+     "constituent_ceiling": 1.0,
+     "full_probe": 1.0
+    },
+    "North Carolina|North Dakota": {
+     "J_first": 0.4930747922437673,
+     "J_sum": 0.9501385041551247,
+     "J_mean": 0.9501385041551247,
+     "constituent_ceiling": 0.9625,
+     "full_probe": 0.9375
+    }
+   },
+   "56": {
+    "North Carolina|North Korea": {
+     "J_first": 0.5817174515235457,
+     "J_sum": 0.997229916897507,
+     "J_mean": 0.997229916897507,
+     "constituent_ceiling": 0.9875,
+     "full_probe": 1.0
+    },
+    "North Carolina|North Dakota": {
+     "J_first": 0.5678670360110804,
+     "J_sum": 0.9889196675900277,
+     "J_mean": 0.9889196675900277,
+     "constituent_ceiling": 0.9875,
+     "full_probe": 0.9875
+    }
+   },
+   "60": {
+    "North Carolina|North Korea": {
+     "J_first": 0.43490304709141275,
+     "J_sum": 1.0,
+     "J_mean": 1.0,
+     "constituent_ceiling": 1.0,
+     "full_probe": 1.0
+    },
+    "North Carolina|North Dakota": {
+     "J_first": 0.46814404432132967,
+     "J_sum": 0.9861495844875346,
+     "J_mean": 0.9861495844875346,
+     "constituent_ceiling": 0.9875,
+     "full_probe": 1.0
+    }
+   }
+  }
+ },
+ "positive_control": {
+  "New Zealand": {
+   "36": 0.13355061411857605,
+   "44": 0.1663004457950592,
+   "52": 0.29223519563674927,
+   "56": 0.45528411865234375,
+   "60": 0.6960586905479431
+  },
+  "South Korea": {
+   "36": 0.20781071484088898,
+   "44": 0.22862038016319275,
+   "52": 0.32217705249786377,
+   "56": 0.41722917556762695,
+   "60": 0.6352236270904541
+  },
+  "San Diego": {
+   "36": 0.3192329406738281,
+   "44": 0.3876970410346985,
+   "52": 0.48438841104507446,
+   "56": 0.6154850721359253,
+   "60": 0.7075216770172119
+  },
+  "North Carolina": {
+   "36": 0.24210813641548157,
+   "44": 0.24396419525146484,
+   "52": 0.34262749552726746,
+   "56": 0.4229097068309784,
+   "60": 0.6222363114356995
+  },
+  "ice cream": {
+   "36": 0.2693897485733032,
+   "44": 0.4218297004699707,
+   "52": 0.44620662927627563,
+   "56": 0.5728855133056641,
+   "60": 0.8512028455734253
+  },
+  "credit card": {
+   "36": 0.24291393160820007,
+   "44": 0.3617550730705261,
+   "52": 0.37283414602279663,
+   "56": 0.44171711802482605,
+   "60": 0.8136221170425415
+  }
+ }
+}

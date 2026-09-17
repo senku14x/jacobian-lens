@@ -17,7 +17,7 @@ Updated 2026-09-16 (evening).
 |---|---|---|
 | 001 | template-geometry | **done** — report in `research_artifacts/001-template-geometry/report.md` |
 | 002 | phraseJ-exact-compat | **done** — gate PASS (Amendment 2); report in `research_artifacts/002-phraseJ-exact-compat/report.md` |
-| 003a | phrase-objective | draft — awaiting agreement (inserted after 002; picks the non-saturating objective and adds the constituent-J ceiling before 003) |
+| 003a | phrase-objective | **done** — `lin` reliable at L56–60 but no readout gain over J-sum; constituent ceiling = probe except San; report in `research_artifacts/003a-phrase-objective/report.md` |
 | 003 | gradient-template-2x2 | draft — to be amended after 003a |
 | 004 | causal-geometry | stub — full design after 003 |
 | 001b | stein-diagnostic | not written; deferred |
@@ -34,15 +34,13 @@ frequencies) must be rerun before 003.
 
 ## Running
 
-Nothing. 001b and 001d reruns done (2026-09-17): `outputs/001/{sigma,null_acts,acts,unembed}.pt` and
-`token_freq.json` regenerated; `sigma_meta.json` byte-identical and `capture_meta.json` identical except
-wall-clock (2017 rows), so the 001 inputs are reproduced exactly.
+Nothing.
 
 ## Next
 
-003a on agreement of its design (`research_artifacts/003a-phrase-objective/design.md`): four per-token
-objectives (`logp`, `lin`, `logit`, `odds`), six phrases, two regimes, surprisal-matched nulls, constituent-J
-subspace ceiling, decision tree. 003 is amended after 003a picks the object.
+Decision on 003a report §6: skip 003b readout benchmark; pull the swap-validity harness forward and test `lin`
+difference phrase vectors vs J-sum composites (and template rows) as interventions on the four geographic families;
+optional CPU pre-screen of 001 families by ceiling-vs-probe gap.
 
 002 findings: implementation exact at the fit's graph shape (cos 0.9999 at every layer incl. L8); the
 early-layer discrepancy between batch-1 and batch-4 bf16 backwards is real, deterministic per shape, and
