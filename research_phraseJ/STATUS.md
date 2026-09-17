@@ -16,7 +16,7 @@ Updated 2026-09-16 (evening).
 | # | slug | state |
 |---|---|---|
 | 001 | template-geometry | **done** — report in `research_artifacts/001-template-geometry/report.md` |
-| 002 | phraseJ-exact-compat | **running** — design + Amendment 1 agreed 2026-09-17 |
+| 002 | phraseJ-exact-compat | **done** — gate PASS (Amendment 2); report in `research_artifacts/002-phraseJ-exact-compat/report.md` |
 | 003 | gradient-template-2x2 | draft — awaiting agreement |
 | 004 | causal-geometry | stub — full design after 003 |
 | 001b | stein-diagnostic | not written; deferred |
@@ -33,9 +33,16 @@ frequencies) must be rerun before 003.
 
 ## Running
 
-002 (started 07:13 UTC 2026-09-17, log `/content/logs/002_run.log`), under Amendment 1 of its design.
-Observed so far: bf16 batch-shape floor is large early (min cos 0.71 @L8 → 1.00 @L60).
+Nothing.
 
 ## Next
 
-002 (exact-J compatibility gate) on go-ahead. 001 findings: latent phrase identity within a first-token family is linearly decodable at L52–62 (cue-out AUC 0.94–1.00) and at 0.72–0.83 in L8–L48 where J-sum reads 0.55–0.83; covariance-duals fail the 0.95 stability bar; J rows and template rows near-orthogonal.
+003 after its design is amended (proposed 003 Amendment 1 is in the 002 report §5: logit-space
+conditional objects, surprisal-binned contexts as primary, one fixed graph shape, reliability-gated context
+counts, nulls in every table). 001b rerun (Σ, nulls) is a prerequisite for 003 calibration.
+
+002 findings: implementation exact at the fit's graph shape (cos 0.9999 at every layer incl. L8); the
+early-layer discrepancy between batch-1 and batch-4 bf16 backwards is real, deterministic per shape, and
+vanishes by ~L44 (relerr 0.41 @L8 for dense contractions, 0.13 for single rows); same-token rows across
+prompts have cos 0.03 @L8 → 0.95 @L60; log-prob phrase objects saturate in emission contexts (nulls are more
+reliable than real phrases); `per_token_fast` is exact. 001 findings: latent phrase identity within a first-token family is linearly decodable at L52–62 (cue-out AUC 0.94–1.00) and at 0.72–0.83 in L8–L48 where J-sum reads 0.55–0.83; covariance-duals fail the 0.95 stability bar; J rows and template rows near-orthogonal.
