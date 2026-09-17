@@ -34,8 +34,9 @@ frequencies) must be rerun before 003.
 
 ## Running
 
-001d rerun (regenerates `outputs/001/acts.pt`, needed by 003a's latent evaluation; started 09:55 UTC).
-001b rerun done (Σ, nulls, token frequencies regenerated; `sigma_meta.json` byte-identical to the original).
+Nothing. 001b and 001d reruns done (2026-09-17): `outputs/001/{sigma,null_acts,acts,unembed}.pt` and
+`token_freq.json` regenerated; `sigma_meta.json` byte-identical and `capture_meta.json` identical except
+wall-clock (2017 rows), so the 001 inputs are reproduced exactly.
 
 ## Next
 
