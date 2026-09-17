@@ -20,7 +20,7 @@ Updated 2026-09-16 (evening).
 | 003a | phrase-objective | **done** — `lin` reliable at L56–60 but no readout gain over J-sum; constituent ceiling = probe except San; report in `research_artifacts/003a-phrase-objective/report.md` |
 | 003a-controls | symmetry / San-likeness / mid-band specificity | **done** — Branch B: mid-band gap is generic early-J (single tokens show the same +0.24 at L8); San is the only late residual; matched Phrase-J ≤ J-sum except San L52; `lin` converges at L52+ and is a lag-specific covector; report in `research_artifacts/003a-controls/report.md` |
 | 003 | gradient-template-2x2 | superseded — generic readout benchmark dropped (Branch B) |
-| 004 | causal-geometry | stub — full design after 003 |
+| 004 | causal-geometry | **draft v1 — awaiting agreement** (make-or-break: one swap operator, matched norm/damage, first-order control, harsh criterion vs J-const) |
 | 001b | stein-diagnostic | not written; deferred |
 
 (`001-template-pretest` v1 was superseded before running and removed.)

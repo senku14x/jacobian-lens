@@ -85,7 +85,22 @@ reviews themselves may be added verbatim as `docs/06a_review_1.md`, `docs/06b_re
   bf16 (min cos 0.71 @L8, 1.00 @L60). This measures dense-cotangent graph-shape sensitivity, not J-row
   reproducibility (002 design, Amendment 2).
 
+## Frozen after 003a + 003a-controls (2026-09-17)
+
+- **Readout conclusions are closed.** On Qwen3.6-27B, late-layer (L52–62) multi-token latent identity is, for the
+  tested families, compositionally recoverable from ordinary constituent-token J coordinates (constituent-J subspace
+  ceiling = full probe on New, South, North; United marginal and messy); San is the single measured exception
+  (residual +0.10 to +0.17). No generic Phrase-J readout benchmark (003b) will be run.
+- **The mid-band probe-over-J gap is generic early-J**, not phrase-specific (single-token countries show the same
+  +0.24 at L8). L8–L32 is not a Phrase-J target.
+- **`lin` is the Phrase-J gradient object**; `logp` is a control only. `lin` converges at L52–60 with 33–60 contexts;
+  it is a phrase-conditioned, lag-specific covector, distinct from a J row (target lag, not variance).
+- **Every readout comparison is contrastive on both sides** (PJ diff vs J-sum diff); own-vector vs difference
+  comparisons are not reported as headlines.
+- **004 is make-or-break**: one swap operator (pseudoinverse two-coordinate patch) for every method, matched
+  perturbation norm and damage, first-order local control first, harsh pre-registered criterion against J-const.
+
 ## Order
 
-001 template geometry → 002 exact compat → 003 gradient-template 2×2 + multi-token readout →
-004 causal geometry (after swap-validity harness) → branch on results.
+001 template geometry → 002 exact compat → 003a objective screen → 003a-controls (Branch B) → **004 causal
+geometry** (first-order control, swap harness, matched-norm comparison) → decide the project on 004.
