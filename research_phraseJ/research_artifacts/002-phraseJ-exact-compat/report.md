@@ -52,9 +52,10 @@ Per-sequence (not averaged) B=1 vs B=4 dense floor from the main run: min cos 0.
 
 - **Observation.** Dense-cotangent vs one-hot-cotangent backwards agree to 1e-2 relative error at every layer
   when run at the same batch shape. Two backwards at the same shape are bit-identical. The batched code
-  path with `reps=1` equals batch 1 exactly. The only source of discrepancy is **batch size 1 vs 4**: bf16
-  kernels differ by shape, and the difference grows monotonically toward early layers (relerr 0.41 at L8
-  for 3-sequence dense averages; 0.13 for single one-hot rows).
+  path with `reps=1` equals batch 1 exactly. The dominant source of discrepancy is **batch size 1 vs 4**:
+  bf16 kernels differ by shape, and the difference grows monotonically toward early layers (relerr 0.41 at
+  L8 for 3-sequence dense averages; 0.13 for single one-hot rows). A residual 1–2% relative error remains
+  between dense and one-hot contractions at the same shape at L8 (0.2% at L60).
 - **Observation.** Single J rows are more shape-stable (cos 0.993 @L8) than dense contractions of 5120 rows
   (cos 0.928 @L8), consistent with contraction accumulating correlated per-row shape errors.
 - **Observation.** Genuine per-prompt variation dwarfs shape noise: the same token's batch-1 row on two
