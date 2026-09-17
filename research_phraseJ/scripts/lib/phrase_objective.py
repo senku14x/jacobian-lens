@@ -72,6 +72,39 @@ class PhraseJ:
         g, mask = _grad_of_scalar(self.m, input_ids, logit_objective(self.m, token_id)(self.tgt), self.L, self.tgt, skip_first=self.skip)
         return {l: g[l][mask].mean(0) for l in self.L}
 
+    def v_lin_batched(self, input_ids, q, reps=4):
+        """v_lin computed on the prompt replicated `reps` times along the batch axis (the graph shape
+        jlens.fit uses with dim_batch=reps). Returns the mean over batch elements. The difference to
+        v_lin (batch 1) is the bf16 batch-shape noise floor for the 002 gate."""
+        T = input_ids.shape[1]
+        mask = valid_position_mask(T, skip_first=self.skip)
+        at = sorted(set([*self.L, self.tgt]))
+        rep_ids = input_ids.expand(reps, -1)
+        with ActivationRecorder(self.m.layers, at=at, start_graph_at=min(self.L)) as rec, torch.enable_grad():
+            self.m.forward(rep_ids)
+            h = rec.activations[self.tgt]                                  # [reps, T, d]
+            scalar = (h[:, mask.to(h.device)] @ q.to(h.device, h.dtype)).sum()
+            srcs = [rec.activations[l] for l in self.L]
+            grads = torch.autograd.grad(outputs=scalar, inputs=srcs, retain_graph=False)
+        return {l: g[:, mask].float().mean(dim=(0, 1)).cpu() for l, g in zip(self.L, grads)}
+
+    def per_token_fast(self, ctx_ids, phrase_ids):
+        """Same outputs as per_token, but one forward with a retained graph and m backwards."""
+        full = torch.cat([ctx_ids, torch.tensor([phrase_ids], device=ctx_ids.device)], dim=1)
+        tprime = ctx_ids.shape[1] - 1
+        T = full.shape[1]
+        mask = valid_position_mask(T, skip_first=self.skip)
+        at = sorted(set([*self.L, self.tgt, self.m.n_layers - 1]))
+        out, lps = [], []
+        with ActivationRecorder(self.m.layers, at=at, start_graph_at=min(self.L)) as rec, torch.enable_grad():
+            self.m.forward(full)
+            srcs = [rec.activations[l] for l in self.L]
+            for i, w in enumerate(phrase_ids):
+                lp = logprob_at(self.m, rec, tprime + i, w); lps.append(float(lp.detach()))
+                grads = torch.autograd.grad(outputs=lp, inputs=srcs, retain_graph=(i < len(phrase_ids) - 1))
+                out.append({l: reduce_grad(g[0].float().cpu(), mask, tprime) for l, g in zip(self.L, grads)})
+        return out, lps, tprime
+
     def per_token(self, ctx_ids, phrase_ids):
         """Teacher-force phrase after ctx; return per-token gradients g_i (i=1..m) of log P(w_i | c, w_<i)
         w.r.t. each source layer, at t' (ctx end) and averaged over valid sources <= t'. Also returns logprobs."""

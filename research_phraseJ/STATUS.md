@@ -16,7 +16,7 @@ Updated 2026-09-16 (evening).
 | # | slug | state |
 |---|---|---|
 | 001 | template-geometry | **done** — report in `research_artifacts/001-template-geometry/report.md` |
-| 002 | phraseJ-exact-compat | draft — awaiting agreement |
+| 002 | phraseJ-exact-compat | **running** — design + Amendment 1 agreed 2026-09-17 |
 | 003 | gradient-template-2x2 | draft — awaiting agreement |
 | 004 | causal-geometry | stub — full design after 003 |
 | 001b | stein-diagnostic | not written; deferred |
@@ -25,11 +25,16 @@ Updated 2026-09-16 (evening).
 
 ## Environment
 
-Verified 2026-09-16: model + released J load; web-spinner → `spider` rank 4 @L40.
+Runtime crashed after 001; rebuilt 2026-09-17 (`scripts/000_env_verify.py`, infra, no design doc by
+agreement): model 52 GB at `/content/models/Qwen3.6-27B`, released lenses 24 GB at `/content/lenses/qwen3.6-27b`
+(j, r, both template stacks, all passage files), pile-10k cached; smoke test reproduces (`spider` rank 4 @L40,
+rank 8 @L46); one `v_lin` backward = 2.3 s at 59 GB peak. `outputs/` is empty: 001b (Σ, nulls, token
+frequencies) must be rerun before 003.
 
 ## Running
 
-Nothing.
+002 (started 07:13 UTC 2026-09-17, log `/content/logs/002_run.log`), under Amendment 1 of its design.
+Observed so far: bf16 batch-shape floor is large early (min cos 0.71 @L8 → 1.00 @L60).
 
 ## Next
 
