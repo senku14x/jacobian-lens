@@ -88,6 +88,38 @@ class PhraseJ:
             grads = torch.autograd.grad(outputs=scalar, inputs=srcs, retain_graph=False)
         return {l: g[:, mask].float().mean(dim=(0, 1)).cpu() for l, g in zip(self.L, grads)}
 
+    def per_token_multi(self, ctx_ids, phrase_ids, objectives=("logp", "lin", "logit", "odds"), q_of=None):
+        """003a: one forward (retained graph), then one backward per (phrase token, objective).
+        objectives: logp = log P(w_i); lin = q_{w_i}^T h_target[t_i] (q_of(token) -> vector, the J functional);
+        logit = actual output logit z_{w_i}; odds = z_{w_i} - logsumexp_{j != w_i} z_j.
+        Returns ({obj: [ {layer: (at_tprime, source_mean)} per token ]}, per-token logp, tprime)."""
+        full = torch.cat([ctx_ids, torch.tensor([phrase_ids], device=ctx_ids.device)], dim=1)
+        tprime = ctx_ids.shape[1] - 1
+        mask = valid_position_mask(full.shape[1], skip_first=self.skip)
+        at = sorted(set([*self.L, self.tgt, self.m.n_layers - 1]))
+        out = {o: [] for o in objectives}; lps = []
+        n_back = len(phrase_ids) * len(objectives); done = 0
+        with ActivationRecorder(self.m.layers, at=at, start_graph_at=min(self.L)) as rec, torch.enable_grad():
+            self.m.forward(full)
+            srcs = [rec.activations[l] for l in self.L]
+            for i, w in enumerate(phrase_ids):
+                pos = tprime + i
+                h63 = rec.activations[self.m.n_layers - 1][0, pos:pos + 1]
+                z = self.m.unembed(h63).float()[0]                                  # actual logits at pos
+                lps.append(float(torch.log_softmax(z.detach(), -1)[w]))
+                for o in objectives:
+                    if o == "logp":   s = torch.log_softmax(z, -1)[w]
+                    elif o == "logit": s = z[w]
+                    elif o == "odds":
+                        others = torch.cat([z[:w], z[w + 1:]]); s = z[w] - torch.logsumexp(others, 0)
+                    elif o == "lin":
+                        h62 = rec.activations[self.tgt][0, pos]; q = q_of(w).to(h62.device, h62.dtype); s = (h62 @ q).float()
+                    else: raise ValueError(o)
+                    done += 1
+                    grads = torch.autograd.grad(outputs=s, inputs=srcs, retain_graph=(done < n_back))
+                    out[o].append({l: reduce_grad(g[0].float().cpu(), mask, tprime) for l, g in zip(self.L, grads)})
+        return out, lps, tprime
+
     def per_token_fast(self, ctx_ids, phrase_ids):
         """Same outputs as per_token, but one forward with a retained graph and m backwards."""
         full = torch.cat([ctx_ids, torch.tensor([phrase_ids], device=ctx_ids.device)], dim=1)

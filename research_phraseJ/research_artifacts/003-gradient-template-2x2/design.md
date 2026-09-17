@@ -1,6 +1,16 @@
 # 003 — Gradient-template 2×2 and the first multi-token readout
 
-Status: **draft, 2026-09-16.** Awaiting agreement. Runs after 002 passes.
+Status: **draft, 2026-09-16 — SUPERSEDED PENDING 003a (2026-09-17).** Do not run as written. 002 showed the
+log-probability `v_seq/v_cond/v_PB` objects saturate in emission contexts; 003a picks the objective first.
+Known defects to fix in the 003b rewrite after 003a reports: (1) the phrase set is not all in the template
+vocabulary (001: only United States/United Nations form a two-member template family), so use two universes,
+U_shared = the fitted concepts (primary, fair) and the 13,731 template rows (secondary, only for methods that
+have all rows), and split concepts into T (template row exists) and N; (2) ≥ 20 heterogeneous latent prompts
+per concept, not ≥ 5; (3) the "2×2" has an empty generic-context mean-difference cell, so call it an
+estimator × fitting-distribution decomposition unless that cell is built; (4) one graph shape for every
+gradient object; comparisons to released J only at L36+; (5) coverage and accuracy reported separately, with
+unstable phrases counted as failures in the headline; (6) compute: scalar backwards cost seconds, so ~15k
+backwards is hours, not minutes.
 
 ## 1. Question
 

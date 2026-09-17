@@ -28,7 +28,13 @@ variable is the target functional. 003 as drafted would spend ~15k backwards on 
 | **`odds`** | z_{w_i} − log Σ_{j≠w_i} exp z_j | log-odds; non-saturating, shift-invariant |
 
 For each object: `v_seq = Σ_i g_i`, `v_cond = Σ_{i>k} g_i` (k = family prefix length), gradients reduced two
-ways (at t′; mean over valid sources ≤ t′) and stored per context. No `v_PB` in 003a. Everything is computed
+ways and stored per context. **Pre-registered reduction:** the vector read at the final pre-phrase position,
+`at_tprime`, is the **primary** lens vector for the latent benchmark (the latent readout is at the final
+prompt token, the same kind of position); the mean over valid source positions ≤ t′ (`source_mean`, the
+J-style global analogue) is the secondary arm, reported alongside. No `v_PB` in 003a.
+Single-token positive control: the first-token object `g₁^{lin}` (source-mean reduction) is compared to the
+released J row `J_ℓᵀq_{w₁}` at L36+; expect high but not unit cosine (single target lag vs all lags, 20 vs 25
+contexts). "general relativity" is not used (1 natural occurrence in pile-10k). Everything is computed
 with `per_token_fast` (retained graph) at batch 1; nothing is compared across graph shapes. Comparisons to
 released J and J-sum are restricted to L36+ (002: shape floor relerr ≤ 0.03 there).
 
