@@ -59,5 +59,25 @@ for l in LAYERS:
     out["per_layer"][str(l)] = {k: {"min": float(min(v)), "median": float(np.median(v)), "max": float(max(v))} for k, v in r.items()} | {"raw": r}
     m = lambda k: np.median(r[k])
     print(f"{l:>3} | {m('same_shape_cos'):.4f}/{m('same_shape_relerr'):.4f} | {m('batch1_cos'):.4f}/{m('batch1_relerr'):.4f} | {m('repeat_cos'):.4f}/{m('repeat_relerr'):.4f} | {m('reps1_cos'):.4f}/{m('reps1_relerr'):.4f} | {m('cross_prompt_cos'):.3f}", flush=True)
+# --- Amendment 2, step 1 identity: fitter-row contraction equals J_fresh^T q (fp32 sum order only)
+out["rowwise_identity_max_relerr"] = float(max(relerr(sum(q_vec(t)[d] * fresh.jacobians[l].float()[d] for d in range(model.d_model)), fresh.jacobians[l].float().T @ q_vec(t)) for t in toks[:1] for l in (LAYERS[0], LAYERS[-1])))
+print("rowwise identity max relerr:", out["rowwise_identity_max_relerr"])
+
+# --- Amendment 2, step 3: single J rows (one-hot cotangent) at batch 1 vs batch dim_batch, twice each
+def row_grad(x, d, reps):
+    e = torch.zeros(model.d_model); e[d] = 1.0
+    return pj.v_lin(x, e) if reps == 1 else pj.v_lin_batched(x, e, reps=reps)
+rng = np.random.default_rng(0); dims = [int(d) for d in rng.choice(model.d_model, 4, replace=False)]
+rows = {str(l): {"cross_shape_cos": [], "cross_shape_relerr": [], "repeat_b1_cos": [], "repeat_bDB_cos": []} for l in LAYERS}
+for x in ids[:2]:
+    for d in dims:
+        r1a, r1b, rDa, rDb = row_grad(x, d, 1), row_grad(x, d, 1), row_grad(x, d, DB), row_grad(x, d, DB)
+        for l in LAYERS:
+            rows[str(l)]["cross_shape_cos"].append(cos(r1a[l], rDa[l])); rows[str(l)]["cross_shape_relerr"].append(relerr(r1a[l], rDa[l]))
+            rows[str(l)]["repeat_b1_cos"].append(cos(r1a[l], r1b[l])); rows[str(l)]["repeat_bDB_cos"].append(cos(rDa[l], rDb[l]))
+out["row_reproducibility"] = {l: {k: {"min": float(min(v)), "median": float(np.median(v))} for k, v in r.items()} for l, r in rows.items()}
+print(f"{'L':>3} | row cross-shape cos (min/med) | relerr med | repeat B=1 cos min | repeat B=DB cos min")
+for l in LAYERS:
+    r = rows[str(l)]; print(f"{l:>3} | {min(r['cross_shape_cos']):.4f}/{np.median(r['cross_shape_cos']):.4f} | {np.median(r['cross_shape_relerr']):.4f} | {min(r['repeat_b1_cos']):.4f} | {min(r['repeat_bDB_cos']):.4f}", flush=True)
 json.dump(out, open(f"{RES}/same_shape_check.json", "w"), indent=1)
 print("done")

@@ -72,6 +72,19 @@ reviews themselves may be added verbatim as `docs/06a_review_1.md`, `docs/06b_re
 - Qwen3.6 emits `<think>` after `Q: … A:` frames; avoid that frame. The second-word-letter-count
   route does not elicit name content; drop it.
 
+## Learned in 002 setup (2026-09-17)
+
+- The final norm on Qwen3.6-27B is exactly (1+γ)·x/rms(x) (tested on the loaded module, max |Δ| 1e-6);
+  q_t = (1+γ)⊙W_U[t] stands.
+- **Correction to "DDD removed":** the checkpoint ships an MTP module (`mtp.fc`, `mtp.layers.0.*`,
+  `mtp.norm`; config `mtp_num_hidden_layers: 1`, `mtp_use_dedicated_embeddings: false`). HF's
+  `Qwen3_5ForCausalLM` does not load it, but the weights exist. It is one transformer block conditioned on the
+  next-token embedding (DeepSeek-style), so it is a nonlinear conditional t+2 readout, not a linear word head.
+  DDD is reopened at low priority, after 003.
+- A dense scalar backward (`v_lin`) at batch 1 vs the prompt replicated ×4 differs strongly at early layers in
+  bf16 (min cos 0.71 @L8, 1.00 @L60). This measures dense-cotangent graph-shape sensitivity, not J-row
+  reproducibility (002 design, Amendment 2).
+
 ## Order
 
 001 template geometry → 002 exact compat → 003 gradient-template 2×2 + multi-token readout →

@@ -22,7 +22,7 @@ For phrase w = (w₁…w_m) with common family prefix p = (w₁…w_k), context 
 | object | scalar target | note |
 |---|---|---|
 | `v_lin` | Σ_{j∈T} q_tᵀ h₆₂,j with q_t = (1+γ)⊙W_U[t], T = all valid target positions, then average over valid source positions exactly as `jlens/fitting.py` | single tokens only; the compatibility object |
-| `v_logit` | logit_t(t′) through layer 63 and the final norm | single tokens; measures what the last block adds |
+| `v_logit,agg` | Σ_{j∈T} logit_t(j) through layer 63 and the final norm, same target aggregation as `v_lin` (Amendment 2; was written as a single position t′) | single tokens; measures what the last block + norm + logit machinery add |
 | per-token `g_i` | ∇ log P(wᵢ | c, w₍<ᵢ₎) at position t′+i−1, i = 1..m | stored per context; everything below is a combination |
 | `v_seq` | Σᵢ gᵢ | complete-phrase verbalization |
 | `v_cond` | Σᵢ>ₖ gᵢ = ∇ log P(w_{k+1:m} | c, p) | phrase information beyond the shared prefix |
@@ -109,4 +109,52 @@ batch-1 128-token graph from L8 peaks at 59 GB, so `dim_batch=8` cannot fit besi
 Interpretation rule added: if the early-layer floor is confirmed by the post-run same-shape check, then a
 single-prompt J row at L8–L28 in bf16 is not a reproducible object on this model, which bears on every
 early-layer claim in the ekko-lens ledger and on the paper's "sensory band". That is an observation to carry
-into 003's layer choices, not a claim of this experiment.
+into 003's layer choices, not a claim of this experiment. *(Superseded by Amendment 2: the floor measures a
+dense-cotangent contraction, not J rows; see below.)*
+
+## Amendment 2 (2026-09-17, after external review of Amendment 1; written while the fresh fit was still running, before any compat or gate line printed)
+
+**What Amendment 1 got wrong.** `v_lin_batched` puts the *same dense* cotangent q on every replicated batch
+element. The fitter puts a *different one-hot* cotangent e_{d+b} on each element and forms Jᵀq afterwards as
+a linear combination of rows. So `v_lin` vs `v_lin_batched` isolates the batch-shape effect on a dense
+backward, but `v_lin_batched` vs `J_freshᵀq` still mixes two numerical differences: batch shape, and one
+dense backward vs thousands of one-hot backwards contracted post hoc. In exact arithmetic all are equal; in
+bf16 over ~55 layers they need not be. The measured floor therefore says "the dense scalar gradient is
+sensitive to graph shape early", not "J rows are irreproducible". The Amendment 1 sentence about J rows is
+withdrawn.
+
+**Verified before the rerun decision.** The loaded final norm is exactly (1+γ)·x/rms(x) (max |Δ| 9.5e-7 on
+random inputs; the γ-only form is off by 4.3), so q_t = (1+γ)⊙W_U[t] is the right functional.
+
+**Revised validation hierarchy (frozen now):**
+
+1. **Hard implementation gate (code):** the fitter-row contraction Σ_d q_d J_fresh[d,:] equals J_freshᵀq by
+   construction (identity check, ~1e-6); and **`v_lin` (batch 1) vs `J_freshᵀq` at L44–L60**, where the
+   measured dense floor is ≤ 0.0356 relerr / ≥ 0.9994 cos, must satisfy cos > 0.999. A mask, averaging, or
+   target-layer bug is layer-uniform and would show here; numerical conditioning is not. Failure here → stop.
+2. **Numerical measurement (not a gate):** per layer, cos and relerr of (a) `v_lin` B=1 vs `J_freshᵀq`,
+   (b) `v_lin_batched` B=dim_batch vs `J_freshᵀq`, (c) B=1 vs B=dim_batch, (d) two repeated B=1 runs,
+   (e) `v_lin_batched` reps=1 vs B=1. Decomposition: (c)≠1 but (b)≈1 → batch shape dominates; (c)≈1 but
+   (b)≠1 → dense-vs-one-hot numerics dominate; both → both. Reported as the result, whatever it is.
+3. **Row reproducibility (new):** for 4 output dims d, recompute the single J row ∇_h Σ_j h_{62,j,d} with a
+   one-hot cotangent at batch 1 and at batch dim_batch, twice each; cos/relerr across shapes and repeats.
+   This tests whether *rows themselves* are batch-shape sensitive, which the review's hierarchy assumes they
+   are not.
+4. **Released J:** external consistency measurement only (25-prompt corpus, unknown `dim_batch`), never a
+   gate; the design's "cos > 0.99 vs released" is dropped as a criterion and reported as a number.
+5. **Phrase objects:** `v_seq`, `v_cond`, `v_PB` are dense scalar objectives. Their early-layer reliability
+   in 003 must be read against measurement 2; until the conditioning is understood, 003 treats layers where
+   (a)–(c) sit below cos 0.99 as numerically unreliable for phrase-J and reports them separately.
+
+**Naming fix.** The implemented `v_logit` sums the actual logit over all valid target positions (same
+aggregation as `v_lin`), not a single position t′. The design's §3 row is corrected to **`v_logit,agg`**; the
+difference `v_logit,agg` vs `v_lin` isolates the last block + final norm + logit machinery. A single-position
+actual-logit gradient, if ever needed, is a separate object.
+
+**Smoke reading rule.** Per-token log-probs (hence −log P(w|c) and mean surprisal) are stored per context in
+`smoke_*.pt` and summarized in `smoke.json`; norm ratios and split-half cosines of real phrases vs nulls are
+read only alongside their surprisals, since gradient norm and reliability track improbability.
+
+**Checkpointing.** The current run was launched before this amendment and is not restarted (its fresh J and
+`compat_vectors.pt` are exactly what steps 1–2 need; steps 2(b–e) and 3 run in `002b_same_shape_check.py`
+after it). Future 002-class scripts write results after each prompt / context and record the git SHA.
