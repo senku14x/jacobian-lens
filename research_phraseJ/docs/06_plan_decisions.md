@@ -100,6 +100,21 @@ reviews themselves may be added verbatim as `docs/06a_review_1.md`, `docs/06b_re
 - **004 is make-or-break**: one swap operator (pseudoinverse two-coordinate patch) for every method, matched
   perturbation norm and damage, first-order local control first, harsh pre-registered criterion against J-const.
 
+## Decided after 004 (2026-09-17)
+
+- **Phrase-J as a general method is closed on this model.** Constituent-token J coordinates are the equal-or-better
+  reader (003a, 003a-controls) and the better writer at matched norm and matched damage (004: PJ − Jc −0.33 to −0.61
+  nats, CIs below zero; all-positions arm same ordering). The `lin` object is locally causal (gate slope 1.01, R² 0.97)
+  but not a better edit direction for compositional phrases.
+- **The San dissociation is the project's positive result**: on the one family where the full probe beats the
+  constituent-J ceiling, the phrase-conditioned gradient is the only direction that moves the answer the right way
+  (PJ − Jc CI-clear at every dose and both position conventions, up to +4.6 nats), and J-const does nothing.
+  Read/write consistent; n = 11 items, one route, one family.
+- **No two-layer edit flips answers** at ≤ 0.4·‖h‖ against a ≈ 5-nat clean margin; flips need a wider band and are
+  not required for the comparison.
+- **Next question is about concepts, not the lens**: how common are San-type concepts and what distinguishes them.
+  Screen new candidate families by Δ_residual (CPU after one capture), then replicate 004 on hits.
+
 ## Order
 
 001 template geometry → 002 exact compat → 003a objective screen → 003a-controls (Branch B) → **004 causal

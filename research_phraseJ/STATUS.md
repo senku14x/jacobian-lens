@@ -20,7 +20,7 @@ Updated 2026-09-16 (evening).
 | 003a | phrase-objective | **done** — `lin` reliable at L56–60 but no readout gain over J-sum; constituent ceiling = probe except San; report in `research_artifacts/003a-phrase-objective/report.md` |
 | 003a-controls | symmetry / San-likeness / mid-band specificity | **done** — Branch B: mid-band gap is generic early-J (single tokens show the same +0.24 at L8); San is the only late residual; matched Phrase-J ≤ J-sum except San L52; `lin` converges at L52+ and is a lag-specific covector; report in `research_artifacts/003a-controls/report.md` |
 | 003 | gradient-template-2x2 | superseded — generic readout benchmark dropped (Branch B) |
-| 004 | causal-geometry | **draft v1 — awaiting agreement** (make-or-break: one swap operator, matched norm/damage, first-order control, harsh criterion vs J-const) |
+| 004 | causal-geometry | **done** — gate PASS (slope 1.01, R² 0.97); pooled: J-const is the better write direction at matched norm and damage (PJ − Jc −0.33…−0.61, CIs < 0); no method flips (clean margin ≈ 5 nats); **San: PJ beats Jc at every dose and position set (CIs > 0, up to +4.6)**; report in `research_artifacts/004-causal-geometry/report.md` |
 | 001b | stein-diagnostic | not written; deferred |
 
 (`001-template-pretest` v1 was superseded before running and removed.)
@@ -39,11 +39,12 @@ Nothing.
 
 ## Next
 
-Branch B confirmed by 003a-controls. Next: 004 design (intervention geometry) — swap-validity harness first, then
-`lin` difference / family-centred vectors vs J-sum composites vs template rows as latent-intermediate swaps on the four
-geographic families at L52–56, with dose-response, norm-matched random, unrelated-output preservation, reversal, and
-constituent-J intervention as comparator. Cache of all outputs (001/002/003a) is at HF `senku21x/phraseJ-cache`
-(private).
+004 closed Phrase-J as a general method (read and write). Surviving object: San-type concepts, where phrase
+information lies outside constituent-J coordinates and the phrase-conditioned gradient both reads (003a-controls) and
+writes (004) where token atoms do not. Next, on agreement: a CPU screen over many new candidate families by Δ_residual
+(one activation capture), then a pre-registered 004 replication on whatever it finds; if nothing beyond San, close the
+project with the compositional-representation result. Cache of all regenerable outputs is at HF
+`senku21x/phraseJ-cache` (private).
 
 002 findings: implementation exact at the fit's graph shape (cos 0.9999 at every layer incl. L8); the
 early-layer discrepancy between batch-1 and batch-4 bf16 backwards is real, deterministic per shape, and
