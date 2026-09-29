@@ -1,0 +1,11 @@
+# host driver is CUDA 12.5 -> cu126 build (cu130 wheels do not run here)
+--extra-index-url https://download.pytorch.org/whl/cu126
+torch==2.14.0+cu126
+transformers==5.17.0
+safetensors==0.8.0
+huggingface_hub
+datasets
+pyarrow
+numpy
+scipy
+matplotlib
