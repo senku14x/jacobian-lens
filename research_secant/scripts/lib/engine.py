@@ -22,7 +22,7 @@ class Engine:
         self.device, self.l0 = device, int(l0)
         self.tok = AutoTokenizer.from_pretrained(MODEL_ID, revision=REVISION)
         self.model = AutoModelForCausalLM.from_pretrained(
-            MODEL_ID, revision=REVISION, dtype=torch.bfloat16, device_map="cpu", attn_implementation=attn)
+            MODEL_ID, revision=REVISION, dtype=torch.bfloat16, attn_implementation=attn)
         self.model.eval().requires_grad_(False)
         self.inner = self.model.model
         self.layer_types = list(self.inner.config.layer_types)
