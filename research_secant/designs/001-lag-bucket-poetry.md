@@ -64,6 +64,42 @@ Paired, on the same items and cells:
 - **Guardrail:** if a bucket's gain comes with the top-10 filling with generic tokens (the same tokens across items),
   report it. Measured as the fraction of items sharing ≥ 5 of their top-10 tokens.
 
+## Amendment 1 (registered 2026-09-29 while run v1 was in flight, before any analysis)
+
+Only the per-item log lines of the first ~10 items had been seen, at one layer. No aggregate was computed. The
+amendment adds controls and changes no success or kill threshold. It was prompted by the question "how are we not
+fooling ourselves?", which exposed four gaps in the original design.
+
+1. **No validation of the lag estimator.** 000 validated FULL_U, not the sign-randomised lag decomposition, which is
+   new code (a shift-direction or masking bug would silently scramble lags).
+   - **Gate G_lag** (before the main run): at L48, for 2 item activations on 8 hosts, compute the exact per-bucket
+     estimate by perturbing one source position at a time (all p ∈ P, ± pairs). Compare with the signed estimator at
+     R ∈ {1, 2, 8}.
+   - Pass: B3 cos(signed_R8, exact) ≥ 0.9, and agreement increasing in R (unbiased and noise-limited).
+2. **No positive control, so a null would be uninterpretable.** The tokens of line two are known, and so are their
+   lags from the newline (1 to lag_rhyme−1).
+   - **PC:** for each bucket, the mean log-rank of line-two tokens whose true lag lies inside the bucket vs outside it
+     (diagonal enrichment).
+   - Pass: B0/B1 rank lag-1–3 tokens better than B3 does (at minimum). Otherwise a B3 kill is reported as "instrument
+     insensitive", not "no plan".
+3. **No specificity null.** A readout that boosts all short, common words would improve the rhyme's rank without
+   reading the plan.
+   - **Decoy null:** at every cell, rank all 100 items' rhyme tokens. Per item, AUC_own = the fraction of the other
+     items' rhyme words ranked below its own rhyme word (0.5 = no item specificity).
+   - **Added to the success rule:** B3's gain over FULL_U must also hold on per-item AUC_own (paired Wilcoxon,
+     p < 0.05).
+4. **Forking paths / replication.** Report everything separately on the two WSB sources: `jlens_source` (51,
+   Anthropic-derived) and `staging*` (49). A success must hold in the same direction in both halves.
+
+Engineering: save every readout vector (fp16, `outputs/001/vecs.pt`, gitignored), so later analyses are post hoc on
+stored data rather than recomputed. Run v1 (`ranks.jsonl`, own-rank only) is superseded by v2 and kept as a record.
+
+**Known limitation, stated before results.** Hosts are generic pile text. A rhyme plan may only drive the rhyme word
+inside a couplet, so on web-text hosts its effect at lag ~10 may be ≈0 even if the plan is linearly present. A B3 kill
+with a passing PC therefore licenses only "lag re-weighting over generic hosts does not surface plans". The follow-up
+it would motivate is **domain-matched hosts** (other couplets as hosts, perturbed at their own newline). That would be
+a separate design, shown to the user before any run.
+
 ## Cost
 100 items × 5 layers × 64 forward pairs of 128 tokens through ≤ 22 fp32 blocks. Estimated after 000's measured
 throughput; if it exceeds 2 GPU-hours, drop to layers {44, 52} and state it.
