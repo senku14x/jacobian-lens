@@ -140,6 +140,37 @@ success/kill thresholds.
    - **C, reliability.** Spaced B3 split-half cos at the planned budget. If < 0.7, double R before the main run
      (pre-committed).
 
+## Amendment 3 (registered 2026-09-30, after the G_lag gate and before the main run; the user approved the estimator change)
+
+No v2 outcome data exists. The gate recorded estimator agreement and reliability only, no rhyme ranks. v1 is invalid
+(gate B) and will not be analysed.
+
+1. **Estimator: exact single-source.** Per host, 8 source positions stratified over [4, 126] (one uniformly random
+   position per stratum of ~15 positions, seeded per item and layer). Each source is perturbed alone (± pair), and its
+   Δy_{p+δ} is read for δ = 0..min(32, 126−p). There is no cross-source leakage by construction. That makes gate A
+   moot, because this *is* the gate's reference.
+   - m̄_δ is the mean over samples.
+   - Buckets use J̄'s lag weighting (N_p−δ)/N_p.
+   - 32 hosts × 8 = 256 samples per cell, plus FULL_U.
+   - **Preflight (gate C):** at L48 on items 0–1, B3 host split-half vocab cos ≥ 0.7. Otherwise the positions per host
+     double to 16 (pre-committed).
+2. **Layers {40, 48, 56}.** These are the layers validated in 000. The run is resumable per (item, layer), so 44 and 52
+   can be added later at incremental cost only.
+3. **Primary analysis is per layer (replaces "best rank over layers").** Best-over-layers favours noisier readouts
+   (more chances at a lucky rank), and the user's spec rules require per-layer reporting.
+   - At each layer, compare B2 and B3 against FULL_U, paired on items (single-token rhymes):
+     - log-rank, Wilcoxon signed-rank;
+     - top-10 hit, McNemar.
+   - Holm correction over the 6 tests (2 buckets × 3 layers).
+   - **Success:** at some layer, a bucket passes both tests after Holm, with ≥ 0.10 hit-rate gain and ≥ 2× median-rank
+     improvement. At the same layer it must also improve per-item decoy AUC_own over FULL_U (Wilcoxon, p < 0.05), and
+     the direction must hold in both source halves.
+   - **Kill:** no bucket at any layer improves the median rank over FULL_U by ≥ 1.5×.
+   - The thresholds are unchanged from the original design.
+4. **Secondary: cross-validated best layer.** Choose each item's layer on host-half A, score it on half B, and vice
+   versa. WITEM and FULL32 are reported per layer.
+5. Positive control, decoy null and source split exactly as in Amendment 1, with the lag indexing of Amendment 2.
+
 ## Cost
 100 items × 5 layers × 64 forward pairs of 128 tokens through ≤ 22 fp32 blocks. Estimated after 000's measured
 throughput; if it exceeds 2 GPU-hours, drop to layers {44, 52} and state it.

@@ -1,16 +1,18 @@
-"""001 v2 — lag-bucket matrix-free lens on WSB poetry, with Amendment 1+2 controls.
-Design: designs/001-lag-bucket-poetry.md (Amendments 1 and 2). Run only after gate G_lag passes (001_gate_lag.py).
+"""001 v2 — lag-bucket matrix-free lens on WSB poetry, with Amendment 1-3 controls.
+Design: designs/001-lag-bucket-poetry.md (Amendments 1-3). Estimator: exact single-source (Amendment 3), preceded by
+the pre-committed reliability preflight (gate C: B3 host split-half vocab cos >= 0.7 at L48 on items 0-1, else
+positions per host are doubled).
 
 Per (item, layer) records: ranks of the own rhyme token, of all items' rhyme tokens (decoy null), of line-two tokens
 with their lags (positive control), host-half ranks (reliability), top-10 tokens; saves readout vectors (fp16).
-Usage: python 001_lag_bucket_poetry_v2.py [--R 4] [--K 32] [--layers 40,44,48,52,56] [--limit N]
+Usage: python 001_lag_bucket_poetry_v2.py [--positions 8] [--K 32] [--layers 40,48,56] [--limit N]
 """
 import argparse, json, os, sys, time
 import torch
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "lib"))
 from engine import Engine
-from mfl import (lag_profile_spaced, buckets_from_profile, tbar_uniform_halves, valid_positions)
+from mfl import (lag_profile_exact_halves, buckets_from_profile, tbar_uniform_halves, valid_positions, cos)
 
 ROOT = os.path.abspath(os.path.join(HERE, ".."))
 OUT = os.path.join(ROOT, "results", "001-lag-bucket-poetry", "v2"); os.makedirs(OUT, exist_ok=True)
@@ -38,9 +40,9 @@ def ranks_of(sc, ids):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--R", type=int, default=4)
+    ap.add_argument("--positions", type=int, default=8)
     ap.add_argument("--K", type=int, default=32)
-    ap.add_argument("--layers", default="40,44,48,52,56")
+    ap.add_argument("--layers", default="40,48,56")
     ap.add_argument("--limit", type=int, default=None)
     a = ap.parse_args()
     layers = [int(x) for x in a.layers.split(",")]
@@ -79,6 +81,21 @@ def main():
     U = eng.U
     Np = len(valid_positions(128))
 
+    # ---- preflight (gate C, pre-committed): B3 host split-half reliability at L48 on items 0-1
+    npos = a.positions
+    pre = {"layer": 48, "items": [c["name"] for c in cap[:2]], "positions": npos, "b3_split_half_vocab_cos": []}
+    if 48 in layers:
+        for c in cap[:2]:
+            S, Cn = lag_profile_exact_halves(eng, HX[48], hkw, 48, c["h"][48], n_pos=npos, seed=7)
+            Cd = Cn.to(S.device).clamp_min(1)
+            bh = [buckets_from_profile(S[k] / Cd[k][:, None], BUCKETS, Np) for k in (0, 1)]
+            pre["b3_split_half_vocab_cos"].append(float(cos(U @ bh[0]["B3"], U @ bh[1]["B3"])))
+        if min(pre["b3_split_half_vocab_cos"]) < 0.7:
+            npos = 2 * npos
+        pre["positions_used"] = npos
+        json.dump(pre, open(os.path.join(OUT, "preflight.json"), "w"), indent=1)
+        log("preflight", pre)
+
     fp = os.path.join(OUT, "cells.jsonl")
     done = set()
     if os.path.exists(fp):
@@ -91,7 +108,7 @@ def main():
             if (c["name"], l) in done:
                 continue
             h = c["h"][l]
-            S, Cn, _, _ = lag_profile_spaced(eng, HX[l], hkw, l, h, R=a.R, seed=100000 + 100 * ci + l)
+            S, Cn = lag_profile_exact_halves(eng, HX[l], hkw, l, h, n_pos=npos, seed=100000 + 100 * ci + l)
             Cd = Cn.to(S.device).clamp_min(1)
             m = S.sum(0) / Cd.sum(0)[:, None]
             mh = [S[k] / Cd[k][:, None] for k in (0, 1)]

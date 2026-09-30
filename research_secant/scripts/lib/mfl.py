@@ -193,6 +193,46 @@ def lag_profile_exact(eng, X, kw, l, h, samples, max_lag=32, rel_eps=1e-3, skip=
     return S, C
 
 
+def stratified_sources(T, n_pos, skip=4, gen=None):
+    """n_pos source positions over the valid range [skip, T-2]: one uniform draw per equal-width stratum."""
+    lo, hi = skip, T - 2
+    edges = torch.linspace(lo, hi + 1, n_pos + 1)
+    out = []
+    for a, b in zip(edges[:-1], edges[1:]):
+        a, b = int(a.ceil()), max(int(a.ceil()) + 1, int(b.ceil()))
+        out.append(a + int(torch.randint(0, b - a, (1,), generator=gen)))
+    return sorted(set(min(p, hi) for p in out))
+
+
+@torch.no_grad()
+def lag_profile_exact_halves(eng, X, kw, l, h, n_pos=8, max_lag=32, rel_eps=1e-3, skip=4, seed=0, chunk=32):
+    """001 Amendment 3 estimator: each (host, source) perturbed ALONE (± pair), all lags 0..max_lag read from the
+    same forward. Returns S [2, max_lag+1, d] (sum of dy_{p+delta}/(2 eps), per host-half) and C [2, max_lag+1]."""
+    K, T, d = X.shape
+    P = valid_positions(T, skip); pmax = T - 2
+    med = X[:, P, :].norm(dim=-1).median().item()
+    h = h.to(eng.device).float()
+    eps = rel_eps * med / h.norm().clamp_min(1e-12).item()
+    g = torch.Generator().manual_seed(seed)
+    jobs = [(k, p) for k in range(K) for p in stratified_sources(T, n_pos, skip, g)]
+    Xg = X.to(eng.device)
+    S = torch.zeros(2, max_lag + 1, d, device=eng.device); C = torch.zeros(2, max_lag + 1)
+    for st in range(0, len(jobs), chunk):
+        jb = jobs[st:st + chunk]; b = len(jb)
+        xb = torch.stack([Xg[k] for k, _ in jb])
+        pert = torch.zeros(b, T, device=eng.device)
+        for j, (k, p) in enumerate(jb):
+            pert[j, p] = 1.0
+        dh = pert[:, :, None] * (eps * h)[None, None, :]
+        y = eng.run_from(torch.cat([xb + dh, xb - dh], 0), l, kw)
+        dy = (y[:b] - y[b:]) / (2 * eps)
+        for j, (k, p) in enumerate(jb):
+            hh = int(k >= K // 2)
+            n = min(max_lag, pmax - p) + 1
+            S[hh, :n] += dy[j, p:p + n]; C[hh, :n] += 1
+    return S, C
+
+
 def buckets_from_profile(m, buckets, Np, extra=None):
     """m: [max_lag+1, d] mean lag profile. Bucket_B = sum_{delta in B} ((Np-delta)/Np) m_delta; FULL32 = all lags."""
     L = m.shape[0]

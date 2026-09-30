@@ -46,7 +46,7 @@ important check".
 
 ---
 
-## 001 — Lag-bucket lens on planned rhymes (your spec II.5): PAUSED at the estimator gate
+## 001 — Lag-bucket lens on planned rhymes (your spec II.5): RUNNING v2 (exact estimator, layers 40/48/56)
 
 Design `designs/001-lag-bucket-poetry.md`, with Amendment 1 (controls) and Amendment 2 (estimator fix), both
 committed before the runs they govern.
@@ -56,8 +56,13 @@ committed before the runs they govern.
 - **Gate G_lag** (report: `results/001-lag-bucket-poetry/gate_lag_report.md`). The new spaced estimator is implemented
   correctly: it agrees with the exact reference at 0.98–1.00 for short lags. But it **failed the pre-registered
   leakage check** at 9–16 tokens (0.945 on one item) and at 17–32 (0.85–0.93). So the main run was **not launched**.
-- **Proposed Amendment 3** (awaiting your go): use the exact estimator, one perturbed position per forward pair,
-  which has no leakage by construction. 256 samples per cell. About 2.3 h for 5 layers, or 1.4 h for 3 layers.
+- **Amendment 3** (you approved; registered before the run):
+  - exact estimator, one perturbed position per forward pair, no leakage;
+  - layers 40/48/56 (44/52 can be added later, resumably);
+  - **per-layer primary analysis**, following your own spec rule, instead of best-over-layers, because the "best of
+    several noisy tries" rule favours the noisier readout;
+  - a reliability preflight before the main loop.
+  - Output: `results/001-lag-bucket-poetry/v2/`. Log: `outputs/logs/001_v2.log`. About 1.4 h.
 
 Everything else in the earlier description of 001 (why, predictions, success/kill rules, the controls) is unchanged.
 
