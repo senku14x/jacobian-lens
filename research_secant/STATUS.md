@@ -1,6 +1,6 @@
 # STATUS — research_secant (what is running, why, and what we expect)
 
-Updated 2026-09-29. Branch `secant` of `/workspace/ekko-lens`. Layout and conventions are in `README.md`.
+Updated 2026-09-30. Branch `secant` of `/workspace/ekko-lens`. Layout and conventions are in `README.md`.
 
 ## The big picture in three sentences
 
@@ -8,8 +8,9 @@ Your spec's central tool is a **matrix-free J-lens**: compute "J̄ times a vecto
 ordinary text, instead of using the stored 5120×5120 J matrix. Once that tool reproduces the released lens exactly,
 the *definition* of the lens can be changed at no cost, with no refit. Examples: count only effects 9–16 tokens ahead,
 count only effects inside this sequence's horizon, or use chat text instead of pile text. Today's runs are (000)
-proving the tool is exact, and (001) using it for the cheapest decisive test in your spec: whether the J-lens misses
-planned rhyme words only because its definition is dominated by short-range effects.
+proving the tool is exact; (001) using it for the cheapest decisive test in your spec, namely whether the J-lens misses
+planned rhyme words only because its definition is dominated by short-range effects; and (002) the general version of
+that test, on the words Qwen actually wrote later in its own responses.
 
 Nothing is being fitted. Every quantity is a forward-pass average over host documents.
 
@@ -46,25 +47,42 @@ important check".
 
 ---
 
-## 001 — Lag-bucket lens on planned rhymes (your spec II.5): RUNNING v2 (exact estimator, layers 40/48/56)
+## 001 — Lag-bucket lens on planned rhymes (your spec II.5): RUNNING (50-item subset)
 
-Design `designs/001-lag-bucket-poetry.md`, with Amendment 1 (controls) and Amendment 2 (estimator fix), both
-committed before the runs they govern.
+Design `designs/001-lag-bucket-poetry.md`. Amendments 1–4 are each committed before the runs they govern.
 
 - **v1** (the all-positions ± estimator) was stopped at 101/500 cells. The gate showed its 9–16-token window was
   mostly noise (split-half 0.61 / 0.11). It is kept as a record; **do not analyse it**.
-- **Gate G_lag** (report: `results/001-lag-bucket-poetry/gate_lag_report.md`). The new spaced estimator is implemented
-  correctly: it agrees with the exact reference at 0.98–1.00 for short lags. But it **failed the pre-registered
-  leakage check** at 9–16 tokens (0.945 on one item) and at 17–32 (0.85–0.93). So the main run was **not launched**.
-- **Amendment 3** (you approved; registered before the run):
-  - exact estimator, one perturbed position per forward pair, no leakage;
-  - layers 40/48/56 (44/52 can be added later, resumably);
-  - **per-layer primary analysis**, following your own spec rule, instead of best-over-layers, because the "best of
-    several noisy tries" rule favours the noisier readout;
-  - a reliability preflight before the main loop.
-  - Output: `results/001-lag-bucket-poetry/v2/`. Log: `outputs/logs/001_v2.log`. About 1.4 h.
+- **Gate G_lag** (`results/001-lag-bucket-poetry/gate_lag_report.md`): the spaced estimator failed its leakage check,
+  so the main run was not launched then.
+- **Amendment 3** (you approved):
+  - exact estimator, one perturbed position per forward pair;
+  - layers 40/48/56;
+  - per-layer primary analysis (your spec's rule) instead of best-over-layers;
+  - reliability preflight passed (0.83 / 0.85).
+- **Amendment 4** (you asked for 50 items):
+  - a seeded random 50, split 25/25 by source (`v2/subset50.json`); 5 are already done, so 45 remain;
+  - thresholds unchanged. At n≈50 only ~15–20-point gains are detectable. Effect-size-but-not-significant counts as
+    "borderline", in which case we add the other 50.
+- Analysis script `scripts/001_analysis.py`, committed before any aggregate was viewed.
 
-Everything else in the earlier description of 001 (why, predictions, success/kill rules, the controls) is unchanged.
+## 002 — Future words in the model's own text (generality test of II.5): RUNNING after 001
+
+Design `designs/002-future-words-own-text.md`, committed before the run.
+
+- **Why:** a poetry result only covers rhymes. This asks the general question: at a position inside Qwen's own
+  response, does the 4–8- or 9–16-tokens-ahead window rank the words Qwen *actually wrote* that far ahead better than
+  ordinary J̄?
+- **Data:** 50 seeded responses from WorkspaceBench's hallucination bank, using the verbatim sampled token ids. Only
+  content words not already in the context count; a decoy null uses another response's future words. There's a
+  next-word positive control.
+- **Same estimator and hosts as 001. No judge, nothing fitted.**
+- **Predictions:** my priors are 15% for 4–8 and 10% for 9–16. The decision table reading 001 and 002 together is in
+  the design.
+- Analysis script `scripts/002_analysis.py`, committed before any real data (dry-run on a 1-item smoke file only).
+
+**Chain:** `scripts/run_001subset_002.sh`. Logs: `outputs/logs/001_v2_subset.log`, then `outputs/logs/002.log`.
+About 38 + 45 min.
 
 ## Queued (not started; each needs your go after I show the spec)
 

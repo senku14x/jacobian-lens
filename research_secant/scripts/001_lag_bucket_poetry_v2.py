@@ -44,6 +44,8 @@ def main():
     ap.add_argument("--K", type=int, default=32)
     ap.add_argument("--layers", default="40,48,56")
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--items_file", default=None, help="JSON with 'names': process only these (Amendment 4); "
+                    "seeds stay tied to the bank index so reused and new cells are consistent")
     a = ap.parse_args()
     layers = [int(x) for x in a.layers.split(",")]
     items = json.load(open(POETRY))["items"][: a.limit]
@@ -102,7 +104,10 @@ def main():
         for x in open(fp):
             r = json.loads(x); done.add((r["name"], r["layer"]))
     f = open(fp, "a")
+    only = set(json.load(open(a.items_file))["names"]) if a.items_file else None
     for ci, c in enumerate(cap):
+        if only is not None and c["name"] not in only:
+            continue
         row = None
         for l in layers:
             if (c["name"], l) in done:

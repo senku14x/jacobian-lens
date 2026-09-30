@@ -171,6 +171,25 @@ No v2 outcome data exists. The gate recorded estimator agreement and reliability
    versa. WITEM and FULL32 are reported per layer.
 5. Positive control, decoy null and source split exactly as in Amendment 1, with the lag indexing of Amendment 2.
 
+## Amendment 4 (registered 2026-09-30, user decision, before any aggregate analysis)
+
+The only look at v2 data was a user-requested descriptive glance at the first 4 items. No decision was taken on it,
+and no threshold changes here.
+
+1. **50 items instead of 100.** `results/001-lag-bucket-poetry/v2/subset50.json`: a seeded random sample (seed
+   20260930) of 25 `jlens_source` items and 25 `staging`/`staging_b3` items. Stratification keeps the both-halves
+   replication rule usable. 5 of the 15 already-computed items fall in the subset and are reused (seeds are tied to
+   the bank index, so reused and new cells are consistent).
+2. **Power, stated in advance.** At n≈50 the paired tests detect roughly ≥ 15–20-point hit-rate gains, not 10. The
+   thresholds are unchanged.
+   - Significant success: claim at the scoped level.
+   - Effect size above the thresholds but not significant: "borderline". The remaining 50 are then added (resumable,
+     no recomputation), and the analysis is rerun on 100.
+   - Kill (effect-size based): unaffected by n.
+3. **Poetry is no longer the only test.** Design 002 (future words in the model's own text) runs alongside, as the
+   generality test of the same hypothesis. The interpretation of 001 is read jointly with 002 (see 002's decision
+   table).
+
 ## Cost
 100 items × 5 layers × 64 forward pairs of 128 tokens through ≤ 22 fp32 blocks. Estimated after 000's measured
 throughput; if it exceeds 2 GPU-hours, drop to layers {44, 52} and state it.

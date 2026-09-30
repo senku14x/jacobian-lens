@@ -28,4 +28,5 @@ research_secant/
 | # | slug | state | one line |
 |---|---|---|---|
 | 000 | matrix-free-lens | done | reproduces J_CB at cos .997/.998/.999 (L40/48/56); fit corpus identified |
-| 001 | lag-bucket-poetry | running | does a lag-9–16 lens surface planned rhymes that J̄ misses? |
+| 001 | lag-bucket-poetry | running (50-item subset, Amendments 1–4) | does a distance-matched window surface planned rhymes that J̄ misses? |
+| 002 | future-words-own-text | queued after 001 | does it surface the words Qwen actually wrote 4–16 tokens later (generality test)? |

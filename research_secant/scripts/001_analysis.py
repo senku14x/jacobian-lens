@@ -48,9 +48,14 @@ def auc_own(row, n):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--dry", action="store_true"); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--dry", action="store_true")
+    ap.add_argument("--items_file", default=None, help="restrict to the Amendment-4 subset")
+    a = ap.parse_args()
     rows = [json.loads(x) for x in open(IN)]
     rows = [r for r in rows if r["single"]]
+    if a.items_file:
+        keep = set(json.load(open(a.items_file))["names"])
+        rows = [r for r in rows if r["name"] in keep]
     layers = sorted({r["layer"] for r in rows})
     by = collections.defaultdict(dict)                       # by[layer][name] = row
     for r in rows:

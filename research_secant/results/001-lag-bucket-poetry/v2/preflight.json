@@ -1,0 +1,13 @@
+{
+ "layer": 48,
+ "items": [
+  "couplet-ahead-head",
+  "couplet-blame-game"
+ ],
+ "positions": 8,
+ "b3_split_half_vocab_cos": [
+  0.830984354019165,
+  0.8514009714126587
+ ],
+ "positions_used": 8
+}
