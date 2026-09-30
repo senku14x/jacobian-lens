@@ -46,74 +46,20 @@ important check".
 
 ---
 
-## 001 — Lag-bucket lens on planned rhymes (your spec II.5): RUNNING
+## 001 — Lag-bucket lens on planned rhymes (your spec II.5): PAUSED at the estimator gate
 
-- **Started** 2026-09-29 ~23:55; about 30 s per item, so ~50 min for 100 items.
-- **Design:** `designs/001-lag-bucket-poetry.md`, committed before the run (b39d380).
-- **Script:** `scripts/001_lag_bucket_poetry.py`.
-- **Output** (live, resumable): `results/001-lag-bucket-poetry/ranks.jsonl`. **Log:** `outputs/logs/001.log`.
+Design `designs/001-lag-bucket-poetry.md`, with Amendment 1 (controls) and Amendment 2 (estimator fix), both
+committed before the runs they govern.
 
-**Why.**
-- On WorkspaceBench's poetry family, the J-lens almost never shows the rhyme word the model has planned (pass
-  ≈ .07). The prompt is "A rhyming couplet: …route ahead,⏎ And told his crew to follow where he'd", with target `led`,
-  read at the ⏎.
-- J̄ adds up a position's influence on *every* later token, with weights that heavily favour the next few tokens. The
-  rhyme word comes 8–12 tokens later.
-- **Hypothesis (yours):** the plan *is* in the activation, and the lens definition drowns it in short-range
-  (next-token and format) effects. If so, a lens that counts only influence 9–16 tokens ahead should rank the rhyme
-  word much higher.
-- **The alternative:** the planned rhyme isn't linearly readable in the vocabulary direction at any lag, so no
-  re-definition of J helps. The fix would then have to be something else, or the plan isn't there.
+- **v1** (the all-positions ± estimator) was stopped at 101/500 cells. The gate showed its 9–16-token window was
+  mostly noise (split-half 0.61 / 0.11). It is kept as a record; **do not analyse it**.
+- **Gate G_lag** (report: `results/001-lag-bucket-poetry/gate_lag_report.md`). The new spaced estimator is implemented
+  correctly: it agrees with the exact reference at 0.98–1.00 for short lags. But it **failed the pre-registered
+  leakage check** at 9–16 tokens (0.945 on one item) and at 17–32 (0.85–0.93). So the main run was **not launched**.
+- **Proposed Amendment 3** (awaiting your go): use the exact estimator, one perturbed position per forward pair,
+  which has no leakage by construction. 256 samples per cell. About 2.3 h for 5 layers, or 1.4 h for 3 layers.
 
-**What it does.** For each of the 100 couplets, at the ⏎, at layers 40/44/48/52/56:
-- take the activation h;
-- on 32 fresh pile documents, add ±εh at every position, **with a random ±1 sign per position**. The signs let one
-  forward pair separate the effect at each lag δ: the effect at t'−δ is recovered by multiplying by the sign at t'−δ;
-  everything else averages out;
-- sum the lag effects into buckets: B0 = same token, B1 = 1–3 ahead, B2 = 4–8, **B3 = 9–16**, B4 = 17–32;
-- also compute the **ordinary full J̄h on the same documents (FULL_U)**. This is the fair comparator: same hosts, same
-  code, only the lag window differs;
-- for each readout, record the rank of the rhyme token in the full 248k vocabulary (0 = top).
-
-Also recorded alongside:
-- J_CB (released, n=25);
-- J_NP (Neuronpedia, n=1000, WorkspaceBench's J);
-- the logit lens;
-- a sign-randomised FULL (a noise reference);
-- ranks from two halves of the host set (a noise check);
-- the top-10 tokens per readout, for qualitative samples.
-
-There are no LLM judges and no API cost.
-
-**What we expect (pre-registered).**
-- **Your prediction:** B3 ranks the rhyme word well above J̄.
-- **My prior** that it passes the success rule: 25%. phrase_J found lag-specific directions differ from J rows and are
-  noisier, and a rhyme plan may not push the word at a consistent lag in generic pile text.
-- **Success:** B3 (or B2) top-10 hit rate beats FULL_U by ≥ 0.10 (McNemar p < 0.05), and the median best rank
-  improves ≥ 2×.
-- **Kill:** no bucket improves the median best rank over FULL_U by ≥ 1.5×.
-- **In between:** inconclusive; add sign draws before claiming anything.
-- **Guardrail:** if a bucket "wins" by filling its top-10 with the same generic tokens on every item, that is not a
-  win. We check the overlap.
-
-**First two items (not interpretable yet, n=2).** Log line labels say "L48" but actually show the *last* layer, L56.
-That's a cosmetic bug in the log line only; the data file is correct.
-
-| item | B3 rank | FULL_U | J_CB |
-|---|---|---|---|
-| `led` | 194,306 | 844 | 1,014 |
-| `game` | 51,720 | 4,235 | 5,128 |
-
-So far this points toward the kill, but two items at one layer means nothing yet.
-
-**What each outcome changes.**
-- **Success:** planned content is hidden by the lens's lag weighting. Lag- or horizon-matched readouts become a
-  standard option, and G_hz in Part I becomes more important.
-- **Kill:** re-weighting J̄ by lag doesn't surface the plan. That removes one class of "J++" readers (lag/horizon
-  re-weighting) for this content. It says nothing yet about whether the plan is present (the probe ceiling, spec II.7,
-  would answer that).
-
----
+Everything else in the earlier description of 001 (why, predictions, success/kill rules, the controls) is unchanged.
 
 ## Queued (not started; each needs your go after I show the spec)
 
