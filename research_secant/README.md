@@ -1,14 +1,17 @@
 # research_secant — matrix-free J-lens, secant decomposition, and method upgrades
 
-Branch `secant` of `senku14x/jacobian-lens` (local clone `/workspace/ekko-lens`), forked from `ekko-lens` at 89ae076.
-Read `STATUS.md` first (what is running and why), then `docs/01_spec_review_2026-09-29.md` (the review of the
-method spec this project implements).
+Branch `research_secant` of `senku14x/jacobian-lens` (local clone `/workspace/ekko-lens`), forked from `ekko-lens` at 89ae076.
+Read `STATUS.md` first (what was run and why), then `docs/00_user_spec_secant_and_upgrades_2026-09-30.md` (the method
+spec, verbatim) and `docs/01_spec_review_2026-09-29.md` (our review of it).
 
 ## Layout
 ```
 research_secant/
   README.md  STATUS.md  requirements.txt
-  docs/            review and notes
+  docs/            00 = the method spec (verbatim), 01 = our review of it
+    notes/           reading notes: the workspace paper, follow-up posts, prior repos (ekko-lens, phrase_J, phrase-lens,
+                     RHUT), seeded WorkspaceBench screening subsets
+    workspace_bench/ our local WorkspaceBench patches (mojibake + OOM fixes) and findings for its authors
   designs/         NNN-slug.md    written and committed BEFORE a run: why, what, predictions, decision rules
   results/NNN-slug report.md after the run + compact JSON/JSONL outputs
   scripts/         NNN_slug.py;   lib/engine.py (bf16 capture, fp32 upper-stack replay), lib/mfl.py (matrix-free lens)
@@ -29,4 +32,4 @@ research_secant/
 |---|---|---|---|
 | 000 | matrix-free-lens | done | reproduces J_CB at cos .997/.998/.999 (L40/48/56); fit corpus identified |
 | 001 | lag-bucket-poetry | done: **KILL** | distance-matched windows do not surface planned rhymes; worse than J̄ at every layer |
-| 002 | future-words-own-text | done: **KILL** | does it surface the words Qwen actually wrote 4–16 tokens later (generality test)? |
+| 002 | future-words-own-text | done: **KILL** | nor the words Qwen actually wrote 4–16 tokens later; with 001, the lag-bucket branch is closed |

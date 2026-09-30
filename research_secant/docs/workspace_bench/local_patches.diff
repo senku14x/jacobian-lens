@@ -1,0 +1,97 @@
+diff --git a/src/wsbench/produce/methods.py b/src/wsbench/produce/methods.py
+index 43d7dc1..96826fa 100644
+--- a/src/wsbench/produce/methods.py
++++ b/src/wsbench/produce/methods.py
+@@ -51,7 +51,7 @@ class LogitLens:
+ 
+     def bind(self, backend: Backend) -> None:
+         self._b = backend
+-        self._w_u = backend.unembed.float()
++        self._w_u = backend.unembed.detach().float()
+ 
+     def read(self, h: Any, layer: int) -> Readout:
+         import torch
+@@ -82,7 +82,15 @@ def _load_jacobians(repo: str, filename: str, device: str) -> Any:
+         layers = list(range(stacked.shape[0]))
+     if layers != list(range(len(layers))):
+         raise ValueError(f"{filename}: source_layers not contiguous from 0: {layers}")
+-    return stacked.to(device)
++    return stacked  # kept on CPU; readers move one layer at a time (see _layer_on)
++
++
++def _layer_on(lens: Any, layer: int) -> Any:
++    """The layer's ``J`` on the backend device, caching one layer (the full fp32 stack does not
++    fit on one 80GB GPU beside a 27B model)."""
++    if getattr(lens, "_cur", None) is None or lens._cur[0] != layer:
++        lens._cur = (layer, lens._jac[layer].to(lens._b.device))
++    return lens._cur[1]
+ 
+ 
+ @dataclass
+@@ -104,7 +112,7 @@ class JLens:
+     def bind(self, backend: Backend) -> None:
+         self._b = backend
+         self._jac = _load_jacobians(self.repo, self.filename, backend.device)
+-        self._w_u = backend.unembed.float()
++        self._w_u = backend.unembed.detach().float()
+ 
+     def read(self, h: Any, layer: int) -> Readout:
+         import torch
+@@ -114,9 +122,13 @@ class JLens:
+         if layer >= self._jac.shape[0]:
+             raise ValueError(f"layer {layer} beyond the lens's {self._jac.shape[0]} source layers")
+         w_u = self._w_u
++        jac = _layer_on(self, layer)
+         if layer not in self._denom:
+-            self._denom[layer] = (w_u @ self._jac[layer]).norm(dim=1).clamp_min(1e-9)
+-        scores = ((h.to(b.device) @ self._jac[layer].T) @ w_u.T) / self._denom[layer]
++            # chunked over the vocabulary: the full (vocab, d) product does not fit beside a 27B model
++            self._denom[layer] = torch.cat(
++                [(c @ jac).norm(dim=1) for c in w_u.split(16384)]
++            ).clamp_min(1e-9)
++        scores = ((h.to(b.device) @ jac.T) @ w_u.T) / self._denom[layer]
+         vals, ids = torch.topk(scores, self.k)
+         return Readout(
+             tokens=display_tokens(b.tokenizer, ids.tolist()),
+@@ -141,14 +153,14 @@ class RLens:
+     def bind(self, backend: Backend) -> None:
+         self._b = backend
+         self._jac = _load_jacobians(self.repo, self.filename, backend.device)
+-        self._w_u = backend.unembed.float()
++        self._w_u = backend.unembed.detach().float()
+ 
+     def read(self, h: Any, layer: int) -> Readout:
+         import torch
+ 
+         b = self._b
+         assert b is not None and self._jac is not None
+-        x = b.final_norm(h.to(b.device) @ self._jac[layer].T)
++        x = b.final_norm(h.to(b.device) @ _layer_on(self, layer).T)
+         vals, ids = torch.topk(x @ self._w_u.T, self.k)
+         return Readout(
+             tokens=display_tokens(b.tokenizer, ids.tolist()),
+diff --git a/src/wsbench/produce/render.py b/src/wsbench/produce/render.py
+index 3e0428a..a4028b8 100644
+--- a/src/wsbench/produce/render.py
++++ b/src/wsbench/produce/render.py
+@@ -22,10 +22,16 @@ class Rendered:
+ def display_tokens(tokenizer: Any, ids: list[int]) -> list[str]:
+     """Token strings as the benchmark's readouts spell them: byte-level BPE with ``Ġ``/``▁``
+     shown as the space they encode (``" the"``), so a readout can be read and matched as text."""
+-    return [
+-        t.replace("Ġ", " ").replace("▁", " ") if isinstance(t, str) else ""
+-        for t in tokenizer.convert_ids_to_tokens(ids)
+-    ]
++    out = []
++    for i, t in zip(ids, tokenizer.convert_ids_to_tokens(ids)):
++        if not isinstance(t, str):
++            out.append("")
++            continue
++        # decode the byte-level alphabet ("çļĦ" -> "的"); a partial UTF-8 fragment cannot be
++        # decoded alone, so it keeps its raw spelling
++        s = tokenizer.decode([i])
++        out.append(t.replace("Ġ", " ").replace("▁", " ") if "�" in s else s)
++    return out
+ 
+ 
+ def _chat(tokenizer: Any, messages: list[dict[str, str]], prefill: str = "") -> list[int]:
