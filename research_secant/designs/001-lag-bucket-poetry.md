@@ -100,6 +100,46 @@ with a passing PC therefore licenses only "lag re-weighting over generic hosts d
 it would motivate is **domain-matched hosts** (other couplets as hosts, perturbed at their own newline). That would be
 a separate design, shown to the user before any run.
 
+## Amendment 2 (registered 2026-09-30, after stopping v1 at 101/500 cells, before running v2, no aggregate analysis)
+
+Disclosure: two per-item log lines of v1 had been seen ("led" B3 rank 194,306; "game" B3 rank 51,720). The amendment
+fixes an estimator defect found while writing the G_lag gate. It does not change the question, the predictions or the
+success/kill thresholds.
+
+1. **Defect in the all-positions sign estimator.** With every p ∈ P perturbed with sign sₚ, the bucket sum
+   Σ_{t'} s_{t'−δ}·Δy_{t'} contains, for every t', the **self term** s_{t'−δ}·s_{t'}·J_{t't'}h.
+   - J_{t't'} carries the residual identity path. It is typically far larger than any cross-position block
+     J_{t'+δ, t'}.
+   - These |B|·N_p self terms have random signs but nearly the same direction (≈ J_self·h). The noise is therefore
+     unbiased but *structured*: a random-signed multiple of one high-norm direction, with amplitude ~√(|B|·N_p)·‖J_self h‖
+     against a signal ~|B|·N_p·‖J_lag h‖.
+   - Token ranks then depend on the sign of that noise.
+2. **Replacement: the spaced-source estimator.**
+   - Per host and draw, sources are at o, o+40, o+80, with o ~ U[4, 43] and independent signs.
+   - Per source p: m_δ ← s_p·Δy_{p+δ}/(2ε) for δ = 0..32 (p+δ ≤ 126).
+   - No target window contains another source, so there are no self terms. The residual leakage is from earlier
+     sources at lags ≥ 40, with random signs and zero mean.
+   - Bucket_B = Σ_{δ∈B} ((N_p−δ)/N_p)·m̄_δ, which is J̄'s own weighting of lag δ.
+   - Budget: K = 32 hosts × R = 4 draws × 3 sources = 384 samples per lag, plus FULL_U (uniform, all positions) for the
+     standard J̄h.
+3. **Lag indexing made explicit.** y_{t'} predicts token t'+1. The rhyme token (index len(ids)) is therefore predicted
+   at δ_item = len(ids) − 1 − nl ∈ [7, 11] (median 9): in B3 for δ_item ≥ 9, in B2 for 7–8. The success rule already
+   read "B3 (or B2)", and stays unchanged.
+   - Pre-registered secondary readout: the item-matched window W_item = [δ_item − 1, δ_item + 1], defined from each
+     item's geometry, not tuned.
+   - Positive control, with the corrected lags: the line-two token at index q is predicted at δ = q − 1 − nl. So the
+     first word of line two is a B0 (lag-0) token, and the next three are B1 tokens.
+4. **Matched comparator.** FULL32 = Σ_{δ=0}^{32} ((N_p−δ)/N_p)·m̄_δ, from the same samples as the buckets (the same
+   noise level). FULL_U stays the primary comparator; it is conservative against the hypothesis, because it is less
+   noisy than the buckets.
+5. **Gate G_lag, revised** (L48, run before the main v2 run):
+   - **A, implementation/leakage.** 2 item activations × 8 hosts × 2 draws. The spaced estimator vs exact single-source
+     perturbations of the *same* (host, source) samples. Pass: cos ≥ 0.95 for B1–B4 and FULL32.
+   - **B, documentation of the defect.** Split-half cos of B3 (16 vs 16 hosts) for the old all-positions estimator
+     (K=32, R=2) vs the spaced estimator (K=32, R=4).
+   - **C, reliability.** Spaced B3 split-half cos at the planned budget. If < 0.7, double R before the main run
+     (pre-committed).
+
 ## Cost
 100 items × 5 layers × 64 forward pairs of 128 tokens through ≤ 22 fp32 blocks. Estimated after 000's measured
 throughput; if it exceeds 2 GPU-hours, drop to layers {44, 52} and state it.
