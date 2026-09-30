@@ -47,7 +47,10 @@ important check".
 
 ---
 
-## 001 — Lag-bucket lens on planned rhymes (your spec II.5): RUNNING (50-item subset)
+## 001 — Lag-bucket lens on planned rhymes (your spec II.5): DONE — KILL (pre-registered)
+
+Report: `results/001-lag-bucket-poetry/report.md`. Looking 4–16 tokens ahead does **not** surface planned rhymes better than ordinary J̄; it is worse at every layer. The positive control passes at L48/56, so the tool isn't blind there. No lens, J included, reads rhymes (≤4% top-10; WorkspaceBench's own judge gives 2–4% for every arm).
+
 
 Design `designs/001-lag-bucket-poetry.md`. Amendments 1–4 are each committed before the runs they govern.
 
@@ -66,7 +69,7 @@ Design `designs/001-lag-bucket-poetry.md`. Amendments 1–4 are each committed b
     "borderline", in which case we add the other 50.
 - Analysis script `scripts/001_analysis.py`, committed before any aggregate was viewed.
 
-## 002 — Future words in the model's own text (generality test of II.5): RUNNING after 001
+## 002 — Future words in the model's own text (generality test of II.5): RUNNING
 
 Design `designs/002-future-words-own-text.md`, committed before the run.
 
