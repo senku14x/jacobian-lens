@@ -190,6 +190,27 @@ and no threshold changes here.
    generality test of the same hypothesis. The interpretation of 001 is read jointly with 002 (see 002's decision
    table).
 
+## Amendment 5 (registered 2026-09-30, user decision, after the run finished and before any analysis)
+
+The data were complete (50/50). No aggregate had been computed or viewed; only the per-item log lines were visible. The
+**decision rule (Amendment 3's per-layer primary) is unchanged.** Two established metrics are added as **reporting
+metrics** for comparability with the field (the user wants what is "already out there"):
+
+1. **Anthropic paper metric (§A.6).**
+   - An item counts as recovered at k if the rhyme token is in the top-k at any evaluated layer (40/48/56).
+   - pass@k for k ∈ {1, 2, 5, 10, 20, 50, 100, 200, 500, 1000}.
+   - The normalized AUC of pass@k against log10 k over [0, 3] (trapezoid, divided by 3). Paired bootstrap (2,000
+     resamples over items) for each arm minus FULL_U.
+   - Caveat: any-layer favours noisier readouts. That is why it is reporting only.
+2. **WorkspaceBench's own poetry protocol.** Each arm's top-10 tokens (with scores) at the read cell, for layers
+   40/48/56, are judged by WSB's pinned poetry judge (`google/gemini-3.8-flash`, bank prompt version). An item passes if
+   any of the 3 layers names the rhyme. Items = `subset50`.
+   - Flagged as a **subset** of WSB's 11-layer grid: every arm, J included, is judged on the same 3 layers.
+   - Arms: B2, B3, WITEM, FULL_U, J_CB, J_NP (standard readout), **J_NP_cos** (WSB's official J arm: cosine readout,
+     raw W_U, recomputed from the saved vectors), LOGIT.
+   - Paired McNemar of each arm vs FULL_U and vs J_NP_cos.
+   - Reference floor: WSB's frozen poetry prompt-only baseline (0.71 on its 100 items) is quoted, not re-measured.
+
 ## Cost
 100 items × 5 layers × 64 forward pairs of 128 tokens through ≤ 22 fp32 blocks. Estimated after 000's measured
 throughput; if it exceeds 2 GPU-hours, drop to layers {44, 52} and state it.
