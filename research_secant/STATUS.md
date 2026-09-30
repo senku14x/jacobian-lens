@@ -69,7 +69,10 @@ Design `designs/001-lag-bucket-poetry.md`. Amendments 1–4 are each committed b
     "borderline", in which case we add the other 50.
 - Analysis script `scripts/001_analysis.py`, committed before any aggregate was viewed.
 
-## 002 — Future words in the model's own text (generality test of II.5): RUNNING
+## 002 — Future words in the model's own text (generality test of II.5): DONE — KILL (pre-registered)
+
+Report: `results/002-future-words-own-text/report.md`. Looking 4–16 tokens ahead finds the words Qwen actually wrote *worse* than ordinary J̄, at every layer: 1.3–2.6×, significant in 5/6. The positive control passes everywhere and the windows are reliable (0.75–0.94), so this is not noise. **Joint with 001: the lag-bucket branch (II.5) is closed.**
+
 
 Design `designs/002-future-words-own-text.md`, committed before the run.
 
@@ -87,11 +90,13 @@ Design `designs/002-future-words-own-text.md`, committed before the run.
 **Chain:** `scripts/run_001subset_002.sh`. Logs: `outputs/logs/001_v2_subset.log`, then `outputs/logs/002.log`.
 About 38 + 45 min.
 
-## Queued (not started; each needs your go after I show the spec)
+## Next: paused for discussion (2026-09-30)
 
-1. **Part I Stage 1, revised:** span-level P / A / curvature / P^int×P^ψ on RHUT's 12 two-hop items, plus the horizon
-   gap G_hz.
-2. **II.1:** write directions (filter vs pattern vs Fisher) on the ekko M2 set.
+No new experiment starts until we agree a plan by goal:
+- better reader / better writer / what the workspace is;
+- the user's companion doc `workspace-identity-branch` is requested.
+
+Candidate next items are listed in the chat: II.1 on brew (writer), II.7 ceilings before any new reader, and Part I.
 
 ## Where things are
 

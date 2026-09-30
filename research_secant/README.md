@@ -29,4 +29,4 @@ research_secant/
 |---|---|---|---|
 | 000 | matrix-free-lens | done | reproduces J_CB at cos .997/.998/.999 (L40/48/56); fit corpus identified |
 | 001 | lag-bucket-poetry | done: **KILL** | distance-matched windows do not surface planned rhymes; worse than J̄ at every layer |
-| 002 | future-words-own-text | running | does it surface the words Qwen actually wrote 4–16 tokens later (generality test)? |
+| 002 | future-words-own-text | done: **KILL** | does it surface the words Qwen actually wrote 4–16 tokens later (generality test)? |
